@@ -8,18 +8,14 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/inputItemNombre"
+        android:id="@+id/inputCuartoNombre"
         android:hint="Nombre Articulo"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/inputItemDescripcion"
         android:hint="Descripcion Articulo"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/inputItemCuarto"
-        android:hint="Cuarto Articulo"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,10 +26,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Agregar"
-        android:id="@+id/buttonAddItem" />
+        android:id="@+id/buttonAddCuarto" />
 
     <Button
-        android:id="@+id/buttonCancelItem"
+        android:id="@+id/buttonCancelCuarto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cancelar" />

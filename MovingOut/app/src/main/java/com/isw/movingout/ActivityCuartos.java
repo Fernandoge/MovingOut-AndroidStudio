@@ -12,21 +12,22 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class ActivityCuartos extends AppCompatActivity
+{
 
-    daoArticulo dao;
-    Adaptador adapter;
-    ArrayList<Articulo> lista;
-    Articulo articulo;
+    daoCuarto dao;
+    AdaptadorCuartos adapter;
+    ArrayList<Cuarto> lista;
+    Cuarto cuarto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.menu_cuartos);
 
-        dao = new daoArticulo(this);
+        dao = new daoCuarto(this);
         lista = dao.verTodos();
-        adapter = new Adaptador(this, lista, dao);
+        adapter = new AdaptadorCuartos(this, lista, dao);
         ListView list = (ListView) findViewById(R.id.listBox);
         Button agregar = (Button) findViewById(R.id.buttonAdd);
         list.setAdapter(adapter);
@@ -40,27 +41,22 @@ public class MainActivity extends AppCompatActivity {
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Dialog dialogo = new Dialog(MainActivity.this);
+                final Dialog dialogo = new Dialog(ActivityCuartos.this);
                 dialogo.setTitle("Nuevo registro");
                 dialogo.setCancelable(true);
-                dialogo.setContentView(R.layout.item_parameters);
+                dialogo.setContentView(R.layout.crear_cuarto);
                 dialogo.show();
-                final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
-                final EditText cuarto = (EditText) dialogo.findViewById(R.id.inputItemCuarto);
-                final EditText etiqueta = (EditText) dialogo.findViewById(R.id.inputItemEtiqueta);
-                final EditText descripcion = (EditText) dialogo.findViewById(R.id.inputItemDescripcion);
-                Button guardar = (Button) dialogo.findViewById(R.id.buttonAddItem);
-                Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelItem);
+                final EditText nombre = (EditText) dialogo.findViewById(R.id.inputCuartoNombre);
+                Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
+                Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
 
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
-                            articulo = new Articulo(nombre.getText().toString(),
-                                    descripcion.getText().toString(),
-                                    cuarto.getText().toString(),
-                                    etiqueta.getText().toString());
-                            dao.insertar(articulo);
+                            cuarto = new Cuarto(nombre.getText().toString());
+                            dao.insertar(cuarto);
+                            lista = dao.verTodos();
                             adapter.notifyDataSetChanged();
                             dialogo.dismiss();
                         }catch (Exception e){
@@ -79,4 +75,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 }

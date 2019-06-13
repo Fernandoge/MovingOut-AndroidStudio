@@ -2,7 +2,6 @@ package com.isw.movingout;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +12,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class Adaptador extends BaseAdapter
+public class AdaptadorArticulos extends BaseAdapter
 {
     ArrayList<Articulo> lista;
-    daoArticulo dao;
+    daoArticulo clsDaoArticulo;
     Articulo articulo;
     Activity activity;
 
-    public Adaptador(Activity a, ArrayList<Articulo> lista, daoArticulo dao)
+    public AdaptadorArticulos(Activity a, ArrayList<Articulo> lista, daoArticulo dao)
     {
         this.lista = lista;
         this.activity = a;
-        this.dao = dao;
+        this.clsDaoArticulo = dao;
     }
 
     @Override
@@ -50,18 +49,18 @@ public class Adaptador extends BaseAdapter
     @Override
     public View getView(int posicion, View view, ViewGroup viewGroup) {
         View v = view;
-        if (v != null)
+        if (v == null)
         {
             LayoutInflater li = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = li.inflate(R.layout.item_list, null);
+            view = li.inflate(R.layout.articulo_cuarto, null);
         }
         articulo = lista.get(posicion);
         TextView nombre = (TextView)view.findViewById(R.id.textItemNombre);
         TextView descripcion = (TextView) view.findViewById(R.id.textItemDescripcion);
         TextView cuarto = (TextView) view.findViewById(R.id.textItemCuarto);
         TextView etiqueta = (TextView) view.findViewById(R.id.textItemEtiqueta);
-        Button editar = (Button) view.findViewById(R.id.buttonEditItem);
-        Button eliminar = (Button) view.findViewById(R.id.buttonDeleteItem);
+        Button editar = (Button) view.findViewById(R.id.buttonEditCuarto);
+        Button eliminar = (Button) view.findViewById(R.id.buttonDeleteCuarto);
 
         nombre.setText(articulo.getNombre());
         etiqueta.setText(articulo.getEtiqueta());

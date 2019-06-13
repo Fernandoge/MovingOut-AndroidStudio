@@ -46,13 +46,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/buttonEditItem"
+            android:id="@+id/buttonEditCuarto"
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:background="@mipmap/edit_icon"></Button>
 
         <Button
-            android:id="@+id/buttonDeleteItem"
+            android:id="@+id/buttonDeleteCuarto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@mipmap/delete_icon"></Button>
