@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class daoArticulo {
     SQLiteDatabase cx;
-    ArrayList<Articulo> lista = new ArrayList<Articulo>();
-    Articulo articulo;
+    ArrayList<ArticuloCuarto> lista = new ArrayList<ArticuloCuarto>();
+    ArticuloCuarto articulo;
     Context contexto;
     String currentCuarto;
     String nombreBD = "BDArticulos";
@@ -27,7 +27,7 @@ public class daoArticulo {
 
     }
 
-    public boolean insertar(Articulo articulo)
+    public boolean insertar(ArticuloCuarto articulo)
     {
         ContentValues contenedor = new ContentValues();
         contenedor.put("nombre", articulo.getNombre());
@@ -39,15 +39,19 @@ public class daoArticulo {
 
     public boolean eliminar(int id)
     {
-        return true;
+        return (cx.delete("articulo", "id="+id,null)) > 0;
     }
 
-    public boolean editar(Articulo a)
+    public boolean editar(ArticuloCuarto a)
     {
-        return true;
+        ContentValues contenedor = new ContentValues();
+        contenedor.put("nombre", a.getNombre());
+        contenedor.put("descripcion", a.getDescripcion());
+        contenedor.put("etiqueta", a.getEtiqueta());
+        return (cx.update("articulo", contenedor, "id="+a.getId(), null)) > 0;
     }
 
-    public ArrayList<Articulo> verTodos()
+    public ArrayList<ArticuloCuarto> verTodos()
     {
 
         lista.clear();
@@ -55,7 +59,7 @@ public class daoArticulo {
         if (cursor != null && cursor.getCount()>0){
             cursor.moveToFirst();
             do{
-                lista.add(new Articulo(cursor.getInt(0),
+                lista.add(new ArticuloCuarto(cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getString(2),
                         cursor.getString(3),
@@ -66,11 +70,11 @@ public class daoArticulo {
         return lista;
     }
 
-    public Articulo verUno(int posicion)
+    public ArticuloCuarto verUno(int posicion)
     {
         Cursor cursor = cx.rawQuery("select * from articulo where cuarto = ?", args);
         cursor.moveToPosition(posicion);
-        articulo = new Articulo(cursor.getInt(0),
+        articulo = new ArticuloCuarto(cursor.getInt(0),
                 cursor.getString(1),
                 cursor.getString(2),
                 cursor.getString(3),

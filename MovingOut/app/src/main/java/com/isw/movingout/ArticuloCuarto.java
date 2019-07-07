@@ -1,23 +1,35 @@
 package com.isw.movingout;
 
-public class Articulo {
+public class ArticuloCuarto {
     int id;
     String nombre;
     String descripcion;
     String cuarto;
     String etiqueta;
 
-    public Articulo() {
+    public ArticuloCuarto() {
     }
 
-    public Articulo(String nombre, String descripcion, String cuarto, String etiqueta) {
+    public ArticuloCuarto(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    public ArticuloCuarto(String nombre, String descripcion, String cuarto, String etiqueta) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.cuarto = cuarto;
         this.etiqueta = etiqueta;
     }
 
-    public Articulo(int id, String nombre, String descripcion, String cuarto, String etiqueta) {
+    public ArticuloCuarto(int id, String nombre, String descripcion, String etiqueta) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.etiqueta = etiqueta;
+    }
+
+    public ArticuloCuarto(int id, String nombre, String descripcion, String cuarto, String etiqueta) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;

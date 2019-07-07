@@ -16,8 +16,8 @@ public class ActivityArticulos extends AppCompatActivity {
 
     daoArticulo dao;
     AdaptadorArticulos adapter;
-    ArrayList<Articulo> lista;
-    Articulo articulo;
+    ArrayList<ArticuloCuarto> lista;
+    ArticuloCuarto articulo;
     String currentCuarto;
 
     @Override
@@ -52,7 +52,7 @@ public class ActivityArticulos extends AppCompatActivity {
                 dialogo.setCancelable(true);
                 dialogo.setContentView(R.layout.crear_articulocuarto);
                 dialogo.show();
-                final EditText nombre = (EditText) dialogo.findViewById(R.id.inputCuartoNombre);
+                final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
                 final EditText etiqueta = (EditText) dialogo.findViewById(R.id.inputItemEtiqueta);
                 final EditText descripcion = (EditText) dialogo.findViewById(R.id.inputItemDescripcion);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
@@ -62,7 +62,7 @@ public class ActivityArticulos extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         try {
-                            articulo = new Articulo(nombre.getText().toString(),
+                            articulo = new ArticuloCuarto(nombre.getText().toString(),
                                     descripcion.getText().toString(),
                                     currentCuarto,
                                     etiqueta.getText().toString());

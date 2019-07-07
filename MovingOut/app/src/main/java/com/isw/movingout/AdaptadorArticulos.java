@@ -1,25 +1,39 @@
 package com.isw.movingout;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
 public class AdaptadorArticulos extends BaseAdapter
 {
-    ArrayList<Articulo> lista;
+    ArrayList<ArticuloCuarto> lista;
     daoArticulo clsDaoArticulo;
-    Articulo articulo;
+    ArticuloCuarto articulo;
     Activity activity;
+    int id = 0;
 
-    public AdaptadorArticulos(Activity a, ArrayList<Articulo> lista, daoArticulo dao)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public AdaptadorArticulos(Activity a, ArrayList<ArticuloCuarto> lista, daoArticulo dao)
     {
         this.lista = lista;
         this.activity = a;
@@ -35,7 +49,7 @@ public class AdaptadorArticulos extends BaseAdapter
     }
 
     @Override
-    public Articulo getItem(int i) {
+    public ArticuloCuarto getItem(int i) {
         articulo = lista.get(i);
         return null;
     }
@@ -59,8 +73,8 @@ public class AdaptadorArticulos extends BaseAdapter
         TextView descripcion = (TextView) view.findViewById(R.id.textItemDescripcion);
         TextView cuarto = (TextView) view.findViewById(R.id.textItemCuarto);
         TextView etiqueta = (TextView) view.findViewById(R.id.textItemEtiqueta);
-        Button editar = (Button) view.findViewById(R.id.buttonEditCuarto);
-        Button eliminar = (Button) view.findViewById(R.id.buttonDeleteCuarto);
+        Button editar = (Button) view.findViewById(R.id.buttonEditItem);
+        Button eliminar = (Button) view.findViewById(R.id.buttonDeleteItem);
 
         nombre.setText(articulo.getNombre());
         etiqueta.setText(articulo.getEtiqueta());
@@ -69,14 +83,49 @@ public class AdaptadorArticulos extends BaseAdapter
         editar.setTag(posicion);
         eliminar.setTag(posicion);
 
-        editar.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                //Dialogo de editar dialogo.xml
-            }
-        });
+        editar.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  int pos = Integer.parseInt(view.getTag().toString());
+                  final Dialog dialogo = new Dialog(activity);
+                  dialogo.setTitle("Editar registro");
+                  dialogo.setCancelable(true);
+                  dialogo.setContentView(R.layout.crear_articulocuarto);
+                  dialogo.show();
+                  final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
+                  final EditText descripcion = (EditText) dialogo.findViewById(R.id.inputItemDescripcion);
+                  final EditText etiqueta = (EditText) dialogo.findViewById(R.id.inputItemEtiqueta);
+                  Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
+                  Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
+                  guardar.setText("Editar");
+                  articulo = lista.get(pos);
+                  setId(articulo.getId());
+                  nombre.setText(articulo.getNombre());
+                  descripcion.setText(articulo.getDescripcion());
+                  etiqueta.setText(articulo.getEtiqueta());
+                  guardar.setOnClickListener(new View.OnClickListener() {
+                      @Override
+                      public void onClick(View v) {
+                          try {
+                              articulo = new ArticuloCuarto(getId(), nombre.getText().toString(), descripcion.getText().toString(), etiqueta.getText().toString());
+                              clsDaoArticulo.editar(articulo);
+                              lista = clsDaoArticulo.verTodos();
+                              notifyDataSetChanged();
+                              dialogo.dismiss();
+                          } catch (Exception e) {
+                              Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
+                          }
+                      }
+                  });
+                  cancelar.setOnClickListener(new View.OnClickListener() {
+                      @Override
+                      public void onClick(View v) {
+                          dialogo.dismiss();
+                      }
+                  });
+
+              }
+          });
 
         eliminar.setOnClickListener(new View.OnClickListener()
         {
@@ -84,6 +133,27 @@ public class AdaptadorArticulos extends BaseAdapter
             public void onClick(View view)
             {
                 //Dialogo confirmar si / no
+                int pos = Integer.parseInt(view.getTag().toString());
+                articulo = lista.get(pos);
+                setId(articulo.getId());
+                AlertDialog.Builder del = new AlertDialog.Builder(activity);
+                del.setMessage("¿Estas seguro de eliminar este articulo?");
+                del.setCancelable(false);
+                del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        clsDaoArticulo.eliminar(getId());
+                        lista = clsDaoArticulo.verTodos();
+                        notifyDataSetChanged();
+                    }
+                });
+                del.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                del.show();
             }
         });
 

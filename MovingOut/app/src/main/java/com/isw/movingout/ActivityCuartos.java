@@ -46,7 +46,7 @@ public class ActivityCuartos extends AppCompatActivity
                 dialogo.setCancelable(true);
                 dialogo.setContentView(R.layout.crear_cuarto);
                 dialogo.show();
-                final EditText nombre = (EditText) dialogo.findViewById(R.id.inputCuartoNombre);
+                final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
 

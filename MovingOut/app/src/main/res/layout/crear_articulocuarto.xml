@@ -6,15 +6,16 @@
     android:orientation="vertical">
 
     <EditText
+        android:id="@+id/inputItemNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/inputCuartoNombre"
-        android:hint="Nombre Articulo"/>
+        android:hint="Nombre Articulo" />
+
     <EditText
+        android:id="@+id/inputItemDescripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/inputItemDescripcion"
-        android:hint="Descripcion Articulo"/>
+        android:hint="Descripcion Articulo" />
 
     <EditText
         android:layout_width="match_parent"
@@ -23,10 +24,10 @@
         android:hint="Etiqueta Articulo"/>
 
     <Button
+        android:id="@+id/buttonAddCuarto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar"
-        android:id="@+id/buttonAddCuarto" />
+        android:text="Agregar" />
 
     <Button
         android:id="@+id/buttonCancelCuarto"

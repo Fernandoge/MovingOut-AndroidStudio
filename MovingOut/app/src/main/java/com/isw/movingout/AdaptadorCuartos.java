@@ -50,7 +50,7 @@ public class AdaptadorCuartos extends BaseAdapter
     }
 
     @Override
-    public Articulo getItem(int i) {
+    public ArticuloCuarto getItem(int i) {
         cuarto = lista.get(i);
         return null;
     }
@@ -71,8 +71,8 @@ public class AdaptadorCuartos extends BaseAdapter
         }
         cuarto = lista.get(posicion);
         Button nombre = (Button)view.findViewById(R.id.buttonCuarto);
-        Button editar = (Button) view.findViewById(R.id.buttonEditCuarto);
-        Button eliminar = (Button) view.findViewById(R.id.buttonDeleteCuarto);
+        Button editar = (Button) view.findViewById(R.id.buttonEditItem);
+        Button eliminar = (Button) view.findViewById(R.id.buttonDeleteItem);
 
         nombre.setText(cuarto.getNombre());
         nombre.setTag(posicion);
@@ -101,7 +101,7 @@ public class AdaptadorCuartos extends BaseAdapter
                 dialogo.setCancelable(true);
                 dialogo.setContentView(R.layout.crear_cuarto);
                 dialogo.show();
-                final EditText nombre = (EditText) dialogo.findViewById(R.id.inputCuartoNombre);
+                final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
                 guardar.setText("Editar");
