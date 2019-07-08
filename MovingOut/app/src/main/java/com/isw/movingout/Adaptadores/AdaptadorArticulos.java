@@ -1,4 +1,4 @@
-package com.isw.movingout;
+package com.isw.movingout.Adaptadores;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,6 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.isw.movingout.Objetos.ArticuloCuarto;
+import com.isw.movingout.R;
+import com.isw.movingout.Daos.daoArticulo;
 
 import java.util.ArrayList;
 

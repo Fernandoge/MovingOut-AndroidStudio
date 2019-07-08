@@ -1,40 +1,34 @@
-package com.isw.movingout;
+package com.isw.movingout.Objetos;
 
-public class ArticuloCuarto {
+public class Caja {
     int id;
     String nombre;
     String descripcion;
-    String cuarto;
+    String estado;
+    String tamanio;
     String etiqueta;
+    String cuarto;
 
-    public ArticuloCuarto() {
+    public Caja() {
     }
 
-    public ArticuloCuarto(int id, String nombre) {
+    public Caja(int id, String nombre, String descripcion, String estado, String tamanio, String etiqueta, String cuarto) {
         this.id = id;
         this.nombre = nombre;
-    }
-
-    public ArticuloCuarto(String nombre, String descripcion, String cuarto, String etiqueta) {
-        this.nombre = nombre;
         this.descripcion = descripcion;
+        this.estado = estado;
+        this.tamanio = tamanio;
+        this.etiqueta = etiqueta;
         this.cuarto = cuarto;
-        this.etiqueta = etiqueta;
     }
 
-    public ArticuloCuarto(int id, String nombre, String descripcion, String etiqueta) {
-        this.id = id;
+    public Caja(String nombre, String descripcion, String estado, String tamanio, String etiqueta, String cuarto) {
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.estado = estado;
+        this.tamanio = tamanio;
         this.etiqueta = etiqueta;
-    }
-
-    public ArticuloCuarto(int id, String nombre, String descripcion, String cuarto, String etiqueta) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
         this.cuarto = cuarto;
-        this.etiqueta = etiqueta;
     }
 
     public int getId() {
@@ -61,12 +55,20 @@ public class ArticuloCuarto {
         this.descripcion = descripcion;
     }
 
-    public String getCuarto() {
-        return cuarto;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setCuarto(String cuarto) {
-        this.cuarto = cuarto;
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getTamanio() {
+        return tamanio;
+    }
+
+    public void setTamanio(String tamanio) {
+        this.tamanio = tamanio;
     }
 
     public String getEtiqueta() {
@@ -76,4 +78,15 @@ public class ArticuloCuarto {
     public void setEtiqueta(String etiqueta) {
         this.etiqueta = etiqueta;
     }
+
+    public String getCuarto() {
+        return cuarto;
+    }
+
+    public void setCuarto(String cuarto) {
+        this.cuarto = cuarto;
+    }
 }
+
+
+

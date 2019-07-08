@@ -1,4 +1,4 @@
-package com.isw.movingout;
+package com.isw.movingout.Objetos;
 
 public class Cuarto {
 

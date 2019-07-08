@@ -1,9 +1,11 @@
-package com.isw.movingout;
+package com.isw.movingout.Daos;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.isw.movingout.Objetos.Cuarto;
 
 import java.util.ArrayList;
 

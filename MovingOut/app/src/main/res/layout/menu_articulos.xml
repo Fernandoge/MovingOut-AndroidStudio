@@ -5,20 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ActivityArticulos">
+    tools:context=".Activities.ActivityArticulosYCajas">
 
     <Button
-        android:id="@+id/buttonAdd"
+        android:id="@+id/buttonAddArticuloCuarto"
         android:layout_width="162dp"
         android:layout_height="158dp"
         android:background="@mipmap/add_icon"
+        android:text="ArticuloCuarto"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="228dp" />
+
+    <Button
+        android:id="@+id/buttonAddCaja"
+        android:layout_width="168dp"
+        android:layout_height="112dp"
+        android:background="@mipmap/add_icon"
+        android:text="Caja"
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="228dp" />
 
     <ListView
-        android:id="@+id/listBox"
+        android:id="@+id/listBoxArticulos"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="211dp"
+        android:layout_weight="0.2"></ListView>
+
+    <ListView
+        android:id="@+id/listBoxCajas"
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
         android:layout_weight="0.2"></ListView>
 
 </LinearLayout>

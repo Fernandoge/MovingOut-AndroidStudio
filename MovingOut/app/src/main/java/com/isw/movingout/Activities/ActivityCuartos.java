@@ -1,4 +1,4 @@
-package com.isw.movingout;
+package com.isw.movingout.Activities;
 
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.isw.movingout.Adaptadores.AdaptadorCuartos;
+import com.isw.movingout.Objetos.Cuarto;
+import com.isw.movingout.R;
+import com.isw.movingout.Daos.daoCuarto;
 
 import java.util.ArrayList;
 
@@ -29,7 +34,7 @@ public class ActivityCuartos extends AppCompatActivity
         lista = dao.verTodos();
         adapter = new AdaptadorCuartos(this, lista, dao);
         ListView list = (ListView) findViewById(R.id.listBox);
-        Button agregar = (Button) findViewById(R.id.buttonAdd);
+        Button agregar = (Button) findViewById(R.id.buttonAddArticuloCuarto);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

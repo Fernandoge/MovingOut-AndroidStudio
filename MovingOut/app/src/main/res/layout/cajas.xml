@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="98dp"
+        android:layout_height="53dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textCajaNombre"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:text="Nombre" />
+
+        <TextView
+            android:id="@+id/textCajaDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descripcion" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="76dp"
+        android:layout_height="53dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textCajaCuarto"
+            android:layout_width="76dp"
+            android:layout_height="30dp"
+            android:text="Cuarto" />
+
+        <TextView
+            android:id="@+id/textCajaEtiqueta"
+            android:layout_width="76dp"
+            android:layout_height="wrap_content"
+            android:text="Etiqueta" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="70dp"
+        android:layout_height="53dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textCajaTamanio"
+            android:layout_width="68dp"
+            android:layout_height="30dp"
+            android:text="Tamanio" />
+
+        <TextView
+            android:id="@+id/textCajaEstado"
+            android:layout_width="67dp"
+            android:layout_height="wrap_content"
+            android:text="Estado" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonEditCaja"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/edit_icon"></Button>
+
+        <Button
+            android:id="@+id/buttonDeleteCaja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/delete_icon"></Button>
+    </LinearLayout>
+
+
+
+</LinearLayout>

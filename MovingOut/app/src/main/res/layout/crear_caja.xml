@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="center"
+android:orientation="vertical">
+
+<EditText
+    android:id="@+id/inputCajaNombre"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Nombre Articulo" />
+
+<EditText
+    android:id="@+id/inputCajaDescripcion"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Descripcion Articulo" />
+
+<EditText
+    android:id="@+id/inputCajaEstado"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Estado Articulo" />
+
+<EditText
+    android:id="@+id/inputCajaTamanio"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Tamaño Articulo" />
+
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/inputCajaEtiqueta"
+    android:hint="Etiqueta Articulo"/>
+
+
+
+<Button
+android:id="@+id/buttonAddCaja"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="Agregar" />
+
+<Button
+    android:id="@+id/buttonCancelCaja"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Cancelar" />
+
+</LinearLayout>

@@ -1,9 +1,11 @@
-package com.isw.movingout;
+package com.isw.movingout.Daos;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.isw.movingout.Objetos.ArticuloCuarto;
 
 import java.util.ArrayList;
 
@@ -33,7 +35,7 @@ public class daoArticulo {
         contenedor.put("nombre", articulo.getNombre());
         contenedor.put("descripcion", articulo.getDescripcion());
         contenedor.put("etiqueta", articulo.getEtiqueta());
-        contenedor.put("cuarto", currentCuarto);
+        contenedor.put("cuarto", articulo.getCuarto());
         return (cx.insert("articulo", null, contenedor)) > 0;
     }
 

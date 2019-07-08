@@ -1,4 +1,4 @@
-package com.isw.movingout;
+package com.isw.movingout.Adaptadores;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,6 +13,12 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.isw.movingout.Activities.ActivityArticulosYCajas;
+import com.isw.movingout.Objetos.ArticuloCuarto;
+import com.isw.movingout.Objetos.Cuarto;
+import com.isw.movingout.R;
+import com.isw.movingout.Daos.daoCuarto;
 
 import java.util.ArrayList;
 
@@ -84,7 +90,7 @@ public class AdaptadorCuartos extends BaseAdapter
             public void onClick(View view) {
                 int pos = Integer.parseInt(view.getTag().toString());
                 cuarto = lista.get(pos);
-                Intent intent = new Intent(view.getContext(), ActivityArticulos.class);
+                Intent intent = new Intent(view.getContext(), ActivityArticulosYCajas.class);
                 intent.putExtra("cuarto", cuarto.getNombre());
                 view.getContext().startActivity(intent);
             }
