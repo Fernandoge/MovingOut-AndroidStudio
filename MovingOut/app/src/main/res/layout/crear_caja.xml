@@ -6,35 +6,35 @@ android:layout_height="match_parent"
 android:gravity="center"
 android:orientation="vertical">
 
-<EditText
-    android:id="@+id/inputCajaNombre"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Nombre Articulo" />
+    <EditText
+        android:id="@+id/inputCajaNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre Caja" />
 
-<EditText
-    android:id="@+id/inputCajaDescripcion"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Descripcion Articulo" />
+    <EditText
+        android:id="@+id/inputCajaDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripcion Caja" />
 
-<EditText
-    android:id="@+id/inputCajaEstado"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Estado Articulo" />
+    <EditText
+        android:id="@+id/inputCajaEstado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Estado Caja" />
 
-<EditText
-    android:id="@+id/inputCajaTamanio"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Tamaño Articulo" />
+    <EditText
+        android:id="@+id/inputCajaTamanio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tamaño Caja" />
 
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/inputCajaEtiqueta"
-    android:hint="Etiqueta Articulo"/>
+    <EditText
+        android:id="@+id/inputCajaEtiqueta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Etiqueta Caja" />
 
 
 

@@ -9,11 +9,11 @@
         android:layout_height="53dp"
         android:orientation="vertical">
 
-        <TextView
+        <Button
             android:id="@+id/textCajaNombre"
             android:layout_width="match_parent"
-            android:layout_height="29dp"
-            android:text="Nombre" />
+            android:layout_height="33dp"
+            android:text="Button" />
 
         <TextView
             android:id="@+id/textCajaDescripcion"
@@ -65,7 +65,7 @@
 
         <Button
             android:id="@+id/buttonEditCaja"
-            android:layout_width="95dp"
+            android:layout_width="74dp"
             android:layout_height="wrap_content"
             android:background="@mipmap/edit_icon"></Button>
 

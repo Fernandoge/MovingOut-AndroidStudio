@@ -2,7 +2,7 @@ package com.isw.movingout.Adaptadores;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.Layout;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.isw.movingout.Activities.ActivityCaja;
 import com.isw.movingout.Daos.daoCaja;
 import com.isw.movingout.Objetos.Caja;
 import com.isw.movingout.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -87,10 +86,20 @@ public class AdaptadorCajas extends BaseAdapter {
         descripcion.setText(caja.getDescripcion());
         tamanio.setText(caja.getTamanio());
         estado.setText(caja.getEstado());
+        nombre.setTag(posicion);
         editar.setTag(posicion);
         eliminar.setTag(posicion);
 
-
+        nombre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = Integer.parseInt(view.getTag().toString());
+                caja = lista.get(pos);
+                Intent intent = new Intent(view.getContext(), ActivityCaja.class);
+                intent.putExtra("caja", caja.getNombre());
+                view.getContext().startActivity(intent);
+            }
+        });
 
 
 

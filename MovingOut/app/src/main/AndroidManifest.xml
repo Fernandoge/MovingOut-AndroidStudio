@@ -19,6 +19,8 @@
 
         <activity android:name="com.isw.movingout.Activities.ActivityArticulosYCajas"/>
 
+        <activity android:name="com.isw.movingout.Activities.ActivityCaja"/>
+
     </application>
 
 </manifest>

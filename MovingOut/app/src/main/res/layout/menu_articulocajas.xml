@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.ActivityCuartos">
+    tools:context=".Activities.ActivityCaja">
 
     <Button
-        android:id="@+id/buttonAddArticuloCuarto"
+        android:id="@+id/buttonAddArticuloCaja"
         android:layout_width="162dp"
         android:layout_height="158dp"
         android:background="@mipmap/add_icon"
+        android:text="artikulitos"
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="228dp" />
 
