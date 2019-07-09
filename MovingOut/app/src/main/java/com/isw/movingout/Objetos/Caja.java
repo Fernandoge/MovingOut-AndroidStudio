@@ -7,28 +7,31 @@ public class Caja {
     String estado;
     String tamanio;
     String etiqueta;
-    String cuarto;
+    String cuartoNombre;
+    int cuartoID;
 
     public Caja() {
     }
 
-    public Caja(int id, String nombre, String descripcion, String estado, String tamanio, String etiqueta, String cuarto) {
+    public Caja(int id, String nombre, String descripcion, String estado, String tamanio, String etiqueta, String cuartoNombre, int cuartoID) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.estado = estado;
         this.tamanio = tamanio;
         this.etiqueta = etiqueta;
-        this.cuarto = cuarto;
+        this.cuartoNombre = cuartoNombre;
+        this.cuartoID = cuartoID;
     }
 
-    public Caja(String nombre, String descripcion, String estado, String tamanio, String etiqueta, String cuarto) {
+    public Caja(String nombre, String descripcion, String estado, String tamanio, String etiqueta, String cuartoNombre, int cuartoID) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.estado = estado;
         this.tamanio = tamanio;
         this.etiqueta = etiqueta;
-        this.cuarto = cuarto;
+        this.cuartoNombre = cuartoNombre;
+        this.cuartoID = cuartoID;
     }
 
     public int getId() {
@@ -79,12 +82,20 @@ public class Caja {
         this.etiqueta = etiqueta;
     }
 
-    public String getCuarto() {
-        return cuarto;
+    public String getCuartoNombre() {
+        return cuartoNombre;
     }
 
-    public void setCuarto(String cuarto) {
-        this.cuarto = cuarto;
+    public void setCuartoNombre(String cuartoNombre) {
+        this.cuartoNombre = cuartoNombre;
+    }
+
+    public int getCuartoID() {
+        return cuartoID;
+    }
+
+    public void setCuartoID(int cuartoID) {
+        this.cuartoID = cuartoID;
     }
 }
 

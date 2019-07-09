@@ -82,7 +82,7 @@ public class AdaptadorCajas extends BaseAdapter {
 
         nombre.setText(caja.getNombre());
         etiqueta.setText(caja.getEtiqueta());
-        cuarto.setText(caja.getCuarto());
+        cuarto.setText(caja.getCuartoNombre());
         descripcion.setText(caja.getDescripcion());
         tamanio.setText(caja.getTamanio());
         estado.setText(caja.getEstado());

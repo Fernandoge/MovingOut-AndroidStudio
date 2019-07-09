@@ -30,7 +30,8 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
     ArrayList<Caja> listaCajas;
     ArticuloCuarto articulo;
     Caja caja;
-    String currentCuarto;
+    String currentCuartoNombre;
+    int currentCuartoID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +40,15 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            currentCuarto = extras.getString("cuarto");
+            currentCuartoNombre = extras.getString("cuartoNombre");
+            currentCuartoID = extras.getInt("cuartoID");
         }
 
-        daoArticulo = new daoArticulo(this, currentCuarto);
+        daoArticulo = new daoArticulo(this, currentCuartoNombre);
         listaArticulos = daoArticulo.verTodos();
         adapterArticulos = new AdaptadorArticulos(this, listaArticulos, daoArticulo);
 
-        daoCaja = new daoCaja(this, currentCuarto);
+        daoCaja = new daoCaja(this, currentCuartoID);
         listaCajas = daoCaja.verTodos();
         adapterCajas = new AdaptadorCajas(this, listaCajas, daoCaja);
 
@@ -95,7 +97,8 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                                     estado.getText().toString(),
                                     tamanio.getText().toString(),
                                     etiqueta.getText().toString(),
-                                    currentCuarto);
+                                    currentCuartoNombre,
+                                    currentCuartoID);
                             daoCaja.insertar(caja);
                             listaCajas = daoCaja.verTodos();
                             adapterCajas.notifyDataSetChanged();
@@ -135,7 +138,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                         try {
                             articulo = new ArticuloCuarto(nombre.getText().toString(),
                                     descripcion.getText().toString(),
-                                    currentCuarto,
+                                    currentCuartoNombre,
                                     etiqueta.getText().toString());
                             daoArticulo.insertar(articulo);
                             listaArticulos = daoArticulo.verTodos();

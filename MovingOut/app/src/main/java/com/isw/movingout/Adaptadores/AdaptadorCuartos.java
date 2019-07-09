@@ -91,7 +91,8 @@ public class AdaptadorCuartos extends BaseAdapter
                 int pos = Integer.parseInt(view.getTag().toString());
                 cuarto = lista.get(pos);
                 Intent intent = new Intent(view.getContext(), ActivityArticulosYCajas.class);
-                intent.putExtra("cuarto", cuarto.getNombre());
+                intent.putExtra("cuartoNombre", cuarto.getNombre());
+                intent.putExtra("cuartoID", cuarto.getId());
                 view.getContext().startActivity(intent);
             }
         });

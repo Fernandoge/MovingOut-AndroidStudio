@@ -15,17 +15,17 @@ public class daoCaja {
     ArrayList<Caja> lista = new ArrayList<Caja>();
     Caja caja;
     Context contexto;
-    String currentCuarto;
+    int currentCuarto;
     String nombreBD = "BDCajas";
     String[] args;
 
-    public daoCaja(Context c, String cuarto)
+    public daoCaja(Context c, int cuartoID)
     {
         this.contexto = c;
-        this.currentCuarto = cuarto;
-        args = new String[] {currentCuarto};
+        this.currentCuarto = cuartoID;
+        //args = new String[] {currentCuarto};
         cx = c.openOrCreateDatabase(nombreBD, Context.MODE_PRIVATE, null);
-        cx.execSQL("create table if not exists caja (id integer primary key autoincrement, nombre text, descripcion text, estado text, tamanio text, etiqueta text, cuarto text)");
+        cx.execSQL("create table if not exists caja (id integer primary key autoincrement, nombre text, descripcion text, estado text, tamanio text, etiqueta text, cuartonombre text, cuartoid integer)");
     }
 
 
@@ -37,7 +37,8 @@ public class daoCaja {
         contenedor.put("estado", caja.getEstado());
         contenedor.put("tamanio", caja.getTamanio());
         contenedor.put("etiqueta", caja.getEtiqueta());
-        contenedor.put("cuarto", caja.getCuarto());
+        contenedor.put("cuartonombre", caja.getCuartoNombre());
+        contenedor.put("cuartoid", caja.getCuartoID());
         return (cx.insert("caja", null, contenedor)) > 0;
 
     }
@@ -61,7 +62,7 @@ public class daoCaja {
     public ArrayList<Caja> verTodos()
     {
         lista.clear();
-        Cursor cursor = cx.rawQuery("select * from caja where cuarto = ?", args);
+        Cursor cursor = cx.rawQuery("select * from caja where cuartoid ="+ currentCuarto, null);
         if (cursor != null && cursor.getCount()>0){
             cursor.moveToFirst();
             do{
@@ -71,7 +72,8 @@ public class daoCaja {
                         cursor.getString(3),
                         cursor.getString(4),
                         cursor.getString(5),
-                        cursor.getString(6)));
+                        cursor.getString(6),
+                        cursor.getInt(7)));
 
             }while (cursor.moveToNext());
         }
@@ -80,7 +82,7 @@ public class daoCaja {
 
     public Caja verUno(int posicion)
     {
-        Cursor cursor = cx.rawQuery("select * from caja where cuarto = ?", args);
+        Cursor cursor = cx.rawQuery("select * from caja where cuartoid ="+ currentCuarto, null);
         cursor.moveToPosition(posicion);
         caja = new Caja(cursor.getInt(0),
                 cursor.getString(1),
@@ -88,7 +90,8 @@ public class daoCaja {
                 cursor.getString(3),
                 cursor.getString(4),
                 cursor.getString(5),
-                cursor.getString(6));
+                cursor.getString(6),
+                cursor.getInt(7));
         return caja;
     }
 }
