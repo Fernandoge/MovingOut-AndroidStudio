@@ -76,13 +76,11 @@ public class AdaptadorCajas extends BaseAdapter {
         TextView estado = (TextView)view.findViewById(R.id.textCajaEstado);
         TextView tamanio = (TextView)view.findViewById(R.id.textCajaTamanio);
         TextView etiqueta = (TextView)view.findViewById(R.id.textCajaEtiqueta);
-        TextView cuarto = (TextView)view.findViewById(R.id.textCajaCuarto);
         Button editar = (Button) view.findViewById(R.id.buttonEditCaja);
         Button eliminar = (Button) view.findViewById(R.id.buttonDeleteCaja);
 
         nombre.setText(caja.getNombre());
         etiqueta.setText(caja.getEtiqueta());
-        cuarto.setText(caja.getCuartoNombre());
         descripcion.setText(caja.getDescripcion());
         tamanio.setText(caja.getTamanio());
         estado.setText(caja.getEstado());

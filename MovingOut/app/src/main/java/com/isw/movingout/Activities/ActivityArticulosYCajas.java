@@ -15,22 +15,21 @@ import com.isw.movingout.Adaptadores.AdaptadorCajas;
 import com.isw.movingout.Objetos.ArticuloCuarto;
 import com.isw.movingout.Objetos.Caja;
 import com.isw.movingout.R;
-import com.isw.movingout.Daos.daoArticulo;
+import com.isw.movingout.Daos.daoArticuloCuarto;
 import com.isw.movingout.Daos.daoCaja;
 
 import java.util.ArrayList;
 
 public class ActivityArticulosYCajas extends AppCompatActivity {
 
-    daoArticulo daoArticulo;
+    daoArticuloCuarto daoArticuloCuarto;
     daoCaja daoCaja;
-    AdaptadorArticulos adapterArticulos;
+    AdaptadorArticulos adapterArticulosCuarto;
     AdaptadorCajas adapterCajas;
     ArrayList<ArticuloCuarto> listaArticulos;
     ArrayList<Caja> listaCajas;
     ArticuloCuarto articulo;
     Caja caja;
-    String currentCuartoNombre;
     int currentCuartoID;
 
     @Override
@@ -40,13 +39,12 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            currentCuartoNombre = extras.getString("cuartoNombre");
             currentCuartoID = extras.getInt("cuartoID");
         }
 
-        daoArticulo = new daoArticulo(this, currentCuartoNombre);
-        listaArticulos = daoArticulo.verTodos();
-        adapterArticulos = new AdaptadorArticulos(this, listaArticulos, daoArticulo);
+        daoArticuloCuarto = new daoArticuloCuarto(this, currentCuartoID);
+        listaArticulos = daoArticuloCuarto.verTodos();
+        adapterArticulosCuarto = new AdaptadorArticulos(this, listaArticulos, daoArticuloCuarto);
 
         daoCaja = new daoCaja(this, currentCuartoID);
         listaCajas = daoCaja.verTodos();
@@ -56,7 +54,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
         ListView listCajas = (ListView) findViewById(R.id.listBoxCajas);
         Button agregarCaja = (Button) findViewById(R.id.buttonAddCaja);
         Button agregarArticulo = (Button) findViewById(R.id.buttonAddArticuloCuarto);
-        listArticulos.setAdapter(adapterArticulos);
+        listArticulos.setAdapter(adapterArticulosCuarto);
         listArticulos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -97,7 +95,6 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                                     estado.getText().toString(),
                                     tamanio.getText().toString(),
                                     etiqueta.getText().toString(),
-                                    currentCuartoNombre,
                                     currentCuartoID);
                             daoCaja.insertar(caja);
                             listaCajas = daoCaja.verTodos();
@@ -138,11 +135,11 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                         try {
                             articulo = new ArticuloCuarto(nombre.getText().toString(),
                                     descripcion.getText().toString(),
-                                    currentCuartoNombre,
-                                    etiqueta.getText().toString());
-                            daoArticulo.insertar(articulo);
-                            listaArticulos = daoArticulo.verTodos();
-                            adapterArticulos.notifyDataSetChanged();
+                                    etiqueta.getText().toString(),
+                                    currentCuartoID);
+                            daoArticuloCuarto.insertar(articulo);
+                            listaArticulos = daoArticuloCuarto.verTodos();
+                            adapterArticulosCuarto.notifyDataSetChanged();
                             dialogo.dismiss();
                         }catch (Exception e){
                             Toast.makeText(getApplication(), "ERROR", Toast.LENGTH_SHORT).show();

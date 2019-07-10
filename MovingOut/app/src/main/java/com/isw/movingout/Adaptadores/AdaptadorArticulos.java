@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.isw.movingout.Objetos.ArticuloCuarto;
 import com.isw.movingout.R;
-import com.isw.movingout.Daos.daoArticulo;
+import com.isw.movingout.Daos.daoArticuloCuarto;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class AdaptadorArticulos extends BaseAdapter
 {
     ArrayList<ArticuloCuarto> lista;
-    daoArticulo clsDaoArticulo;
+    daoArticuloCuarto clsDaoArticuloCuarto;
     ArticuloCuarto articulo;
     Activity activity;
     int id = 0;
@@ -37,11 +37,11 @@ public class AdaptadorArticulos extends BaseAdapter
         this.id = id;
     }
 
-    public AdaptadorArticulos(Activity a, ArrayList<ArticuloCuarto> lista, daoArticulo dao)
+    public AdaptadorArticulos(Activity a, ArrayList<ArticuloCuarto> lista, daoArticuloCuarto dao)
     {
         this.lista = lista;
         this.activity = a;
-        this.clsDaoArticulo = dao;
+        this.clsDaoArticuloCuarto = dao;
     }
 
     @Override
@@ -75,14 +75,12 @@ public class AdaptadorArticulos extends BaseAdapter
         articulo = lista.get(posicion);
         TextView nombre = (TextView)view.findViewById(R.id.textItemNombre);
         TextView descripcion = (TextView) view.findViewById(R.id.textItemDescripcion);
-        TextView cuarto = (TextView) view.findViewById(R.id.textItemCuarto);
         TextView etiqueta = (TextView) view.findViewById(R.id.textItemEtiqueta);
         Button editar = (Button) view.findViewById(R.id.buttonEditItem);
         Button eliminar = (Button) view.findViewById(R.id.buttonDeleteItem);
 
         nombre.setText(articulo.getNombre());
         etiqueta.setText(articulo.getEtiqueta());
-        cuarto.setText(articulo.getCuarto());
         descripcion.setText(articulo.getDescripcion());
         editar.setTag(posicion);
         eliminar.setTag(posicion);
@@ -112,8 +110,8 @@ public class AdaptadorArticulos extends BaseAdapter
                       public void onClick(View v) {
                           try {
                               articulo = new ArticuloCuarto(getId(), nombre.getText().toString(), descripcion.getText().toString(), etiqueta.getText().toString());
-                              clsDaoArticulo.editar(articulo);
-                              lista = clsDaoArticulo.verTodos();
+                              clsDaoArticuloCuarto.editar(articulo);
+                              lista = clsDaoArticuloCuarto.verTodos();
                               notifyDataSetChanged();
                               dialogo.dismiss();
                           } catch (Exception e) {
@@ -146,8 +144,8 @@ public class AdaptadorArticulos extends BaseAdapter
                 del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        clsDaoArticulo.eliminar(getId());
-                        lista = clsDaoArticulo.verTodos();
+                        clsDaoArticuloCuarto.eliminar(getId());
+                        lista = clsDaoArticuloCuarto.verTodos();
                         notifyDataSetChanged();
                     }
                 });

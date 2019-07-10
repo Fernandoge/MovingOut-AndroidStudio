@@ -12,14 +12,9 @@
         <Button
             android:id="@+id/textCajaNombre"
             android:layout_width="match_parent"
-            android:layout_height="33dp"
+            android:layout_height="match_parent"
             android:text="Button" />
 
-        <TextView
-            android:id="@+id/textCajaDescripcion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Descripcion" />
     </LinearLayout>
 
     <LinearLayout
@@ -28,16 +23,16 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textCajaCuarto"
-            android:layout_width="76dp"
-            android:layout_height="30dp"
-            android:text="Cuarto" />
-
-        <TextView
             android:id="@+id/textCajaEtiqueta"
             android:layout_width="76dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:text="Etiqueta" />
+
+        <TextView
+            android:id="@+id/textCajaDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:text="Descripcion" />
     </LinearLayout>
 
     <LinearLayout

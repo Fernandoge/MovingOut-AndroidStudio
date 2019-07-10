@@ -17,15 +17,13 @@ public class daoCaja {
     Context contexto;
     int currentCuarto;
     String nombreBD = "BDCajas";
-    String[] args;
 
     public daoCaja(Context c, int cuartoID)
     {
         this.contexto = c;
         this.currentCuarto = cuartoID;
-        //args = new String[] {currentCuarto};
         cx = c.openOrCreateDatabase(nombreBD, Context.MODE_PRIVATE, null);
-        cx.execSQL("create table if not exists caja (id integer primary key autoincrement, nombre text, descripcion text, estado text, tamanio text, etiqueta text, cuartonombre text, cuartoid integer)");
+        cx.execSQL("create table if not exists caja (id integer primary key autoincrement, nombre text, descripcion text, estado text, tamanio text, etiqueta text, cuartoid integer)");
     }
 
 
@@ -37,7 +35,6 @@ public class daoCaja {
         contenedor.put("estado", caja.getEstado());
         contenedor.put("tamanio", caja.getTamanio());
         contenedor.put("etiqueta", caja.getEtiqueta());
-        contenedor.put("cuartonombre", caja.getCuartoNombre());
         contenedor.put("cuartoid", caja.getCuartoID());
         return (cx.insert("caja", null, contenedor)) > 0;
 
@@ -72,8 +69,7 @@ public class daoCaja {
                         cursor.getString(3),
                         cursor.getString(4),
                         cursor.getString(5),
-                        cursor.getString(6),
-                        cursor.getInt(7)));
+                        cursor.getInt(6)));
 
             }while (cursor.moveToNext());
         }
@@ -90,8 +86,7 @@ public class daoCaja {
                 cursor.getString(3),
                 cursor.getString(4),
                 cursor.getString(5),
-                cursor.getString(6),
-                cursor.getInt(7));
+                cursor.getInt(6));
         return caja;
     }
 }

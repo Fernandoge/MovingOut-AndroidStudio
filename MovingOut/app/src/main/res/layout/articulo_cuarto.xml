@@ -28,15 +28,9 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textItemCuarto"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Cuarto" />
-
-        <TextView
             android:id="@+id/textItemEtiqueta"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="Etiqueta" />
     </LinearLayout>
 

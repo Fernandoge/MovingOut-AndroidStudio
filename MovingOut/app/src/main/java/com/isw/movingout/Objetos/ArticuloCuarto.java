@@ -4,36 +4,31 @@ public class ArticuloCuarto {
     int id;
     String nombre;
     String descripcion;
-    String cuarto;
     String etiqueta;
+    int cuartoID;
 
     public ArticuloCuarto() {
     }
 
-    public ArticuloCuarto(int id, String nombre) {
+    public ArticuloCuarto(int id, String nombre, String descripcion, String etiqueta, int cuartoID) {
         this.id = id;
         this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.etiqueta = etiqueta;
+        this.cuartoID = cuartoID;
     }
 
-    public ArticuloCuarto(String nombre, String descripcion, String cuarto, String etiqueta) {
+    public ArticuloCuarto(String nombre, String descripcion, String etiqueta, int cuartoID) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.cuarto = cuarto;
         this.etiqueta = etiqueta;
+        this.cuartoID = cuartoID;
     }
 
     public ArticuloCuarto(int id, String nombre, String descripcion, String etiqueta) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.etiqueta = etiqueta;
-    }
-
-    public ArticuloCuarto(int id, String nombre, String descripcion, String cuarto, String etiqueta) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.cuarto = cuarto;
         this.etiqueta = etiqueta;
     }
 
@@ -61,19 +56,19 @@ public class ArticuloCuarto {
         this.descripcion = descripcion;
     }
 
-    public String getCuarto() {
-        return cuarto;
-    }
-
-    public void setCuarto(String cuarto) {
-        this.cuarto = cuarto;
-    }
-
     public String getEtiqueta() {
         return etiqueta;
     }
 
     public void setEtiqueta(String etiqueta) {
         this.etiqueta = etiqueta;
+    }
+
+    public int getCuartoID() {
+        return cuartoID;
+    }
+
+    public void setCuartoID(int cuartoID) {
+        this.cuartoID = cuartoID;
     }
 }
