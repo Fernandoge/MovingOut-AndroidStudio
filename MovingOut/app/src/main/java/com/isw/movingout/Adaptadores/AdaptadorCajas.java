@@ -1,14 +1,19 @@
 package com.isw.movingout.Adaptadores;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.isw.movingout.Activities.ActivityCaja;
 import com.isw.movingout.Daos.daoCaja;
@@ -96,6 +101,88 @@ public class AdaptadorCajas extends BaseAdapter {
                 Intent intent = new Intent(view.getContext(), ActivityCaja.class);
                 intent.putExtra("caja", caja.getNombre());
                 view.getContext().startActivity(intent);
+            }
+        });
+
+        editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = Integer.parseInt(view.getTag().toString());
+                final Dialog dialogo = new Dialog(activity);
+                dialogo.setTitle("Editar registro");
+                dialogo.setCancelable(true);
+                dialogo.setContentView(R.layout.crear_caja);
+                dialogo.show();
+                final EditText nombre = (EditText) dialogo.findViewById(R.id.inputCajaNombre);
+                final EditText descripcion = (EditText) dialogo.findViewById(R.id.inputCajaDescripcion);
+                final EditText estado = (EditText) dialogo.findViewById(R.id.inputCajaEstado);
+                final EditText tamanio = (EditText) dialogo.findViewById(R.id.inputCajaTamanio);
+                final EditText etiqueta = (EditText) dialogo.findViewById(R.id.inputCajaEtiqueta);
+                Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCaja);
+                Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCaja);
+                guardar.setText("Editar");
+                caja = lista.get(pos);
+                setId(caja.getId());
+                nombre.setText(caja.getNombre());
+                descripcion.setText(caja.getDescripcion());
+                etiqueta.setText(caja.getEtiqueta());
+                estado.setText(caja.getEstado());
+                tamanio.setText(caja.getTamanio());
+                guardar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            caja = new Caja(getId(), nombre.getText().toString(),
+                                    descripcion.getText().toString(),
+                                    estado.getText().toString(),
+                                    tamanio.getText().toString(),
+                                    etiqueta.getText().toString());
+                            clsDaoCaja.editar(caja);
+                            lista = clsDaoCaja.verTodos();
+                            notifyDataSetChanged();
+                            dialogo.dismiss();
+                        }catch (Exception e){
+                            Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                cancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogo.dismiss();
+                    }
+                });
+
+            }
+        });
+
+        eliminar.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                //Dialogo confirmar si / no
+                int pos = Integer.parseInt(view.getTag().toString());
+                caja = lista.get(pos);
+                setId(caja.getId());
+                AlertDialog.Builder del = new AlertDialog.Builder(activity);
+                del.setMessage("¿Estas seguro de eliminar esta caja?");
+                del.setCancelable(false);
+                del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        clsDaoCaja.eliminar(getId());
+                        lista = clsDaoCaja.verTodos();
+                        notifyDataSetChanged();
+                    }
+                });
+                del.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                del.show();
             }
         });
 

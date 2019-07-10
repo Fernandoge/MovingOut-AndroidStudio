@@ -31,7 +31,8 @@ public class Caja {
         this.cuartoID = cuartoID;
     }
 
-    public Caja(String nombre, String descripcion, String estado, String tamanio, String etiqueta) {
+    public Caja(int id, String nombre, String descripcion, String estado, String tamanio, String etiqueta) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.estado = estado;
