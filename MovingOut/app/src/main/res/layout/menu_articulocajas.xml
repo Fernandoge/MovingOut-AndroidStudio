@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.ActivityCaja">
+    tools:context=".Activities.ActivityArticulosCaja">
 
     <Button
         android:id="@+id/buttonAddArticuloCaja"

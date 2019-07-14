@@ -21,7 +21,7 @@ import com.isw.movingout.Daos.daoArticuloCuarto;
 import java.util.ArrayList;
 
 
-public class AdaptadorArticulos extends BaseAdapter
+public class AdaptadorArticulosCuarto extends BaseAdapter
 {
     ArrayList<ArticuloCuarto> lista;
     daoArticuloCuarto clsDaoArticuloCuarto;
@@ -37,7 +37,7 @@ public class AdaptadorArticulos extends BaseAdapter
         this.id = id;
     }
 
-    public AdaptadorArticulos(Activity a, ArrayList<ArticuloCuarto> lista, daoArticuloCuarto dao)
+    public AdaptadorArticulosCuarto(Activity a, ArrayList<ArticuloCuarto> lista, daoArticuloCuarto dao)
     {
         this.lista = lista;
         this.activity = a;

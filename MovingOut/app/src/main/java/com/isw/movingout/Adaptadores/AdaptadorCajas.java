@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.isw.movingout.Activities.ActivityCaja;
+import com.isw.movingout.Activities.ActivityArticulosCaja;
 import com.isw.movingout.Daos.daoCaja;
 import com.isw.movingout.Objetos.Caja;
 import com.isw.movingout.R;
@@ -98,8 +98,8 @@ public class AdaptadorCajas extends BaseAdapter {
             public void onClick(View view) {
                 int pos = Integer.parseInt(view.getTag().toString());
                 caja = lista.get(pos);
-                Intent intent = new Intent(view.getContext(), ActivityCaja.class);
-                intent.putExtra("caja", caja.getNombre());
+                Intent intent = new Intent(view.getContext(), ActivityArticulosCaja.class);
+                intent.putExtra("cajaID", caja.getNombre());
                 view.getContext().startActivity(intent);
             }
         });

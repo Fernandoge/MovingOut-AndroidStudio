@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.isw.movingout.Adaptadores.AdaptadorArticulos;
+import com.isw.movingout.Adaptadores.AdaptadorArticulosCuarto;
 import com.isw.movingout.Adaptadores.AdaptadorCajas;
 import com.isw.movingout.Objetos.ArticuloCuarto;
 import com.isw.movingout.Objetos.Caja;
@@ -24,7 +24,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
 
     daoArticuloCuarto daoArticuloCuarto;
     daoCaja daoCaja;
-    AdaptadorArticulos adapterArticulosCuarto;
+    AdaptadorArticulosCuarto adapterArticulosCuarto;
     AdaptadorCajas adapterCajas;
     ArrayList<ArticuloCuarto> listaArticulos;
     ArrayList<Caja> listaCajas;
@@ -44,7 +44,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
 
         daoArticuloCuarto = new daoArticuloCuarto(this, currentCuartoID);
         listaArticulos = daoArticuloCuarto.verTodos();
-        adapterArticulosCuarto = new AdaptadorArticulos(this, listaArticulos, daoArticuloCuarto);
+        adapterArticulosCuarto = new AdaptadorArticulosCuarto(this, listaArticulos, daoArticuloCuarto);
 
         daoCaja = new daoCaja(this, currentCuartoID);
         listaCajas = daoCaja.verTodos();

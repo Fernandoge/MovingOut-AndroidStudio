@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class daoArticuloCuarto {
     SQLiteDatabase cx;
     ArrayList<ArticuloCuarto> lista = new ArrayList<ArticuloCuarto>();
-    ArticuloCuarto articulo;
+    ArticuloCuarto articuloCuarto;
     Context contexto;
     int currentCuarto;
     String nombreBD = "BDArticulosCuarto";
@@ -74,11 +74,11 @@ public class daoArticuloCuarto {
     {
         Cursor cursor = cx.rawQuery("select * from articuloCuarto where cuartoid ="+ currentCuarto, null);
         cursor.moveToPosition(posicion);
-        articulo = new ArticuloCuarto(cursor.getInt(0),
+        articuloCuarto = new ArticuloCuarto(cursor.getInt(0),
                 cursor.getString(1),
                 cursor.getString(2),
                 cursor.getString(3),
                 cursor.getInt(4));
-        return articulo;
+        return articuloCuarto;
     }
 }

@@ -19,7 +19,7 @@
 
         <activity android:name="com.isw.movingout.Activities.ActivityArticulosYCajas"/>
 
-        <activity android:name="com.isw.movingout.Activities.ActivityCaja"/>
+        <activity android:name="com.isw.movingout.Activities.ActivityArticulosCaja"/>
 
     </application>
 
