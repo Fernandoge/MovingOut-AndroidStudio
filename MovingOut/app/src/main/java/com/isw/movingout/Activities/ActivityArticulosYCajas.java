@@ -125,7 +125,6 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 dialogo.show();
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
                 final EditText etiqueta = (EditText) dialogo.findViewById(R.id.inputItemEtiqueta);
-                final EditText descripcion = (EditText) dialogo.findViewById(R.id.inputItemDescripcion);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
 
@@ -134,7 +133,6 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                     public void onClick(View v) {
                         try {
                             articulo = new ArticuloCuarto(nombre.getText().toString(),
-                                    descripcion.getText().toString(),
                                     etiqueta.getText().toString(),
                                     currentCuartoID);
                             daoArticuloCuarto.insertar(articulo);

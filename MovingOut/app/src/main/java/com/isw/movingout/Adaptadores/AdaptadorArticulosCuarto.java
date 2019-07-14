@@ -74,14 +74,12 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
         }
         articulo = lista.get(posicion);
         TextView nombre = (TextView)view.findViewById(R.id.textItemNombre);
-        TextView descripcion = (TextView) view.findViewById(R.id.textItemDescripcion);
         TextView etiqueta = (TextView) view.findViewById(R.id.textItemEtiqueta);
         Button editar = (Button) view.findViewById(R.id.buttonEditItem);
         Button eliminar = (Button) view.findViewById(R.id.buttonDeleteItem);
 
         nombre.setText(articulo.getNombre());
         etiqueta.setText(articulo.getEtiqueta());
-        descripcion.setText(articulo.getDescripcion());
         editar.setTag(posicion);
         eliminar.setTag(posicion);
 
@@ -95,7 +93,6 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                   dialogo.setContentView(R.layout.crear_articulocuarto);
                   dialogo.show();
                   final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
-                  final EditText descripcion = (EditText) dialogo.findViewById(R.id.inputItemDescripcion);
                   final EditText etiqueta = (EditText) dialogo.findViewById(R.id.inputItemEtiqueta);
                   Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                   Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
@@ -103,13 +100,12 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                   articulo = lista.get(pos);
                   setId(articulo.getId());
                   nombre.setText(articulo.getNombre());
-                  descripcion.setText(articulo.getDescripcion());
                   etiqueta.setText(articulo.getEtiqueta());
                   guardar.setOnClickListener(new View.OnClickListener() {
                       @Override
                       public void onClick(View v) {
                           try {
-                              articulo = new ArticuloCuarto(getId(), nombre.getText().toString(), descripcion.getText().toString(), etiqueta.getText().toString());
+                              articulo = new ArticuloCuarto(getId(), nombre.getText().toString(), etiqueta.getText().toString());
                               clsDaoArticuloCuarto.editar(articulo);
                               lista = clsDaoArticuloCuarto.verTodos();
                               notifyDataSetChanged();

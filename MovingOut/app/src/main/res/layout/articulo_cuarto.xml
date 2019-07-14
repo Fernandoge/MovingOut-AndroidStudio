@@ -16,22 +16,11 @@
             android:text="Nombre" />
 
         <TextView
-            android:id="@+id/textItemDescripcion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Descripcion" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="112dp"
-        android:layout_height="53dp"
-        android:orientation="vertical">
-
-        <TextView
             android:id="@+id/textItemEtiqueta"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Etiqueta" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -41,7 +30,7 @@
 
         <Button
             android:id="@+id/buttonEditItem"
-            android:layout_width="95dp"
+            android:layout_width="136dp"
             android:layout_height="wrap_content"
             android:background="@mipmap/edit_icon"></Button>
 

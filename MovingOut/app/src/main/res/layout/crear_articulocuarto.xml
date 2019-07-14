@@ -11,11 +11,6 @@
         android:layout_height="wrap_content"
         android:hint="Nombre Articulo" />
 
-    <EditText
-        android:id="@+id/inputItemDescripcion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Descripcion Articulo" />
 
     <EditText
         android:layout_width="match_parent"
