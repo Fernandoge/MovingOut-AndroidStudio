@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activities.ActivityEtiquetas"></activity>
         <activity android:name=".Activities.ActivityCuartos">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,11 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.isw.movingout.Activities.ActivityArticulosYCajas"/>
-
-        <activity android:name="com.isw.movingout.Activities.ActivityArticulosCaja"/>
-
+        <activity android:name=".Activities.ActivityArticulosYCajas" />
+        <activity android:name=".Activities.ActivityArticulosCaja" />
     </application>
 
 </manifest>

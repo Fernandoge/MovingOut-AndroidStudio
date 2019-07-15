@@ -6,27 +6,19 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/inputItemNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre Articulo" />
-
-
-    <Spinner
-        android:id="@+id/dropdownArticuloCuartoEtiqueta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown" />
+        android:id="@+id/inputEtiquetaNombre"
+        android:hint="Nombre Etiqueta"/>
 
     <Button
-        android:id="@+id/buttonAddCuarto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar" />
+        android:text="Agregar"
+        android:id="@+id/buttonAddEtiqueta" />
 
     <Button
-        android:id="@+id/buttonCancelCuarto"
+        android:id="@+id/buttonCancelEtiqueta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cancelar" />

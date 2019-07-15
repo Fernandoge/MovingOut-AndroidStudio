@@ -30,12 +30,12 @@ android:orientation="vertical">
         android:layout_height="wrap_content"
         android:hint="Tamaño Caja" />
 
-    <EditText
-        android:id="@+id/inputCajaEtiqueta"
+    <Spinner
+        android:id="@+id/dropdownCajaEtiqueta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Etiqueta Caja" />
-
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
 
 
 <Button

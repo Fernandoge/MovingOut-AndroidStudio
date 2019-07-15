@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="170dp"
+        android:layout_height="53dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textNombreEtiqueta"
+            android:layout_width="76dp"
+            android:layout_height="30dp"
+            android:text="Etiqueta" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonEditEtiqueta"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/edit_icon"></Button>
+
+        <Button
+            android:id="@+id/buttonDeleteEtiqueta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/delete_icon"></Button>
+    </LinearLayout>
+
+
+
+</LinearLayout>

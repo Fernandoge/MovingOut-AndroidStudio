@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.ActivityCuartos">
+    tools:context=".Activities.ActivityEtiquetas">
 
     <Button
-        android:id="@+id/buttonAddArticuloCuarto"
+        android:id="@+id/buttonAddEtiqueta"
         android:layout_width="162dp"
         android:layout_height="158dp"
         android:background="@mipmap/add_icon"
-        android:text="Cuarto"
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="228dp" />
 
@@ -21,14 +20,5 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.2"></ListView>
-
-    <Button
-        android:id="@+id/buttonOpenEtiquetas"
-        android:layout_width="162dp"
-        android:layout_height="158dp"
-        android:background="@mipmap/add_icon"
-        android:text="ETIQUETAS"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="228dp" />
 
 </LinearLayout>

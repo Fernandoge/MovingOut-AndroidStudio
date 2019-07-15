@@ -1,7 +1,7 @@
 package com.isw.movingout.Activities;
 
+import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,32 +11,30 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.isw.movingout.Adaptadores.AdaptadorCuartos;
-import com.isw.movingout.Objetos.Cuarto;
+import com.isw.movingout.Adaptadores.AdaptadorEtiquetas;
+import com.isw.movingout.Daos.daoEtiqueta;
+import com.isw.movingout.Objetos.Etiqueta;
 import com.isw.movingout.R;
-import com.isw.movingout.Daos.daoCuarto;
 
 import java.util.ArrayList;
 
-public class ActivityCuartos extends AppCompatActivity
-{
+public class ActivityEtiquetas extends AppCompatActivity {
 
-    daoCuarto dao;
-    AdaptadorCuartos adapter;
-    ArrayList<Cuarto> lista;
-    Cuarto cuarto;
+    daoEtiqueta dao;
+    AdaptadorEtiquetas adapter;
+    ArrayList<Etiqueta> lista;
+    Etiqueta etiqueta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_cuartos);
+        setContentView(R.layout.menu_etiquetas);
 
-        dao = new daoCuarto(this);
+        dao = new daoEtiqueta(this);
         lista = dao.verTodos();
-        adapter = new AdaptadorCuartos(this, lista, dao);
+        adapter = new AdaptadorEtiquetas(this, lista, dao);
         ListView list = (ListView) findViewById(R.id.listBox);
-        Button agregar = (Button) findViewById(R.id.buttonAddArticuloCuarto);
-        Button menuEtiquetas = (Button) findViewById(R.id.buttonOpenEtiquetas);
+        Button agregar = (Button) findViewById(R.id.buttonAddEtiqueta);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -45,33 +43,24 @@ public class ActivityCuartos extends AppCompatActivity
             }
         });
 
-
-        menuEtiquetas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ActivityEtiquetas.class);
-                view.getContext().startActivity(intent);
-            }
-        });
-
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Dialog dialogo = new Dialog(ActivityCuartos.this);
+                final Dialog dialogo = new Dialog(ActivityEtiquetas.this);
                 dialogo.setTitle("Nuevo registro");
                 dialogo.setCancelable(true);
-                dialogo.setContentView(R.layout.crear_cuarto);
+                dialogo.setContentView(R.layout.crear_etiqueta);
                 dialogo.show();
-                final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
-                Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
-                Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
+                final EditText nombre = (EditText) dialogo.findViewById(R.id.inputEtiquetaNombre);
+                Button guardar = (Button) dialogo.findViewById(R.id.buttonAddEtiqueta);
+                Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelEtiqueta);
 
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
-                            cuarto = new Cuarto(nombre.getText().toString());
-                            dao.insertar(cuarto);
+                            etiqueta = new Etiqueta(nombre.getText().toString());
+                            dao.insertar(etiqueta);
                             lista = dao.verTodos();
                             adapter.notifyDataSetChanged();
                             dialogo.dismiss();
@@ -90,6 +79,7 @@ public class ActivityCuartos extends AppCompatActivity
             }
         });
 
-    }
 
+
+    }
 }

@@ -5,23 +5,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.isw.movingout.Adaptadores.AdaptadorArticulosCuarto;
 import com.isw.movingout.Adaptadores.AdaptadorCajas;
+import com.isw.movingout.Daos.daoEtiqueta;
 import com.isw.movingout.Objetos.ArticuloCuarto;
 import com.isw.movingout.Objetos.Caja;
 import com.isw.movingout.R;
 import com.isw.movingout.Daos.daoArticuloCuarto;
 import com.isw.movingout.Daos.daoCaja;
+import com.isw.movingout.Daos.daoEtiqueta;
 
 import java.util.ArrayList;
 
 public class ActivityArticulosYCajas extends AppCompatActivity {
 
+    daoEtiqueta daoEtiqueta;
     daoArticuloCuarto daoArticuloCuarto;
     daoCaja daoCaja;
     AdaptadorArticulosCuarto adapterArticulosCuarto;
@@ -42,13 +47,15 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
             currentCuartoID = extras.getInt("cuartoID");
         }
 
+        daoEtiqueta = new daoEtiqueta(this);
+
         daoArticuloCuarto = new daoArticuloCuarto(this, currentCuartoID);
         listaArticulos = daoArticuloCuarto.verTodos();
-        adapterArticulosCuarto = new AdaptadorArticulosCuarto(this, listaArticulos, daoArticuloCuarto);
+        adapterArticulosCuarto = new AdaptadorArticulosCuarto(this, listaArticulos, daoArticuloCuarto, daoEtiqueta);
 
         daoCaja = new daoCaja(this, currentCuartoID);
         listaCajas = daoCaja.verTodos();
-        adapterCajas = new AdaptadorCajas(this, listaCajas, daoCaja);
+        adapterCajas = new AdaptadorCajas(this, listaCajas, daoCaja, daoEtiqueta);
 
         ListView listArticulos = (ListView) findViewById(R.id.listBoxArticulos);
         ListView listCajas = (ListView) findViewById(R.id.listBoxCajas);
@@ -82,7 +89,11 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 final EditText descripcion = (EditText) dialogo.findViewById(R.id.inputCajaDescripcion);
                 final EditText estado = (EditText) dialogo.findViewById(R.id.inputCajaEstado);
                 final EditText tamanio = (EditText) dialogo.findViewById(R.id.inputCajaTamanio);
-                final EditText etiqueta = (EditText) dialogo.findViewById(R.id.inputCajaEtiqueta);
+                final Spinner dropdownEtiqueta = (Spinner) dialogo.findViewById(R.id.dropdownCajaEtiqueta);
+                String[] spinnerArray = daoEtiqueta.obtenerNombreEtiquetas();
+                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerArray);
+                dropdownEtiqueta.setAdapter(spinnerArrayAdapter);
+
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCaja);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCaja);
 
@@ -94,7 +105,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                                     descripcion.getText().toString(),
                                     estado.getText().toString(),
                                     tamanio.getText().toString(),
-                                    etiqueta.getText().toString(),
+                                    dropdownEtiqueta.getSelectedItem().toString(),
                                     currentCuartoID);
                             daoCaja.insertar(caja);
                             listaCajas = daoCaja.verTodos();
@@ -124,7 +135,10 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 dialogo.setContentView(R.layout.crear_articulocuarto);
                 dialogo.show();
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
-                final EditText etiqueta = (EditText) dialogo.findViewById(R.id.inputItemEtiqueta);
+                final Spinner dropdownEtiqueta = (Spinner) dialogo.findViewById(R.id.dropdownArticuloCuartoEtiqueta);
+                String[] spinnerArray = daoEtiqueta.obtenerNombreEtiquetas();
+                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerArray);
+                dropdownEtiqueta.setAdapter(spinnerArrayAdapter);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
 
@@ -133,7 +147,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                     public void onClick(View v) {
                         try {
                             articulo = new ArticuloCuarto(nombre.getText().toString(),
-                                    etiqueta.getText().toString(),
+                                    dropdownEtiqueta.getSelectedItem().toString(),
                                     currentCuartoID);
                             daoArticuloCuarto.insertar(articulo);
                             listaArticulos = daoArticuloCuarto.verTodos();
