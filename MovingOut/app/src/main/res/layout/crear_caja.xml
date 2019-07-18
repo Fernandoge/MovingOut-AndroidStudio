@@ -24,14 +24,9 @@ android:orientation="vertical">
         android:layout_height="wrap_content"
         android:hint="Estado Caja" />
 
-    <EditText
-        android:id="@+id/inputCajaTamanio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Tamaño Caja" />
 
     <Spinner
-        android:id="@+id/dropdownCajaEtiqueta"
+        android:id="@+id/dropdownCajaTamanio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/btn_dropdown"

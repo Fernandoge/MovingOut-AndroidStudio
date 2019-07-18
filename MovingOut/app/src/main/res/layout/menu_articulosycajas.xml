@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activities.ActivityArticulosYCajas">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="162dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonAddCaja"
+            android:layout_width="202dp"
+            android:layout_height="match_parent"
+            android:background="@mipmap/add_icon"
+            android:text="Caja"
+            tools:layout_editor_absoluteX="161dp"
+            tools:layout_editor_absoluteY="228dp" />
+
+        <Button
+            android:id="@+id/buttonAddArticuloCuarto"
+            android:layout_width="203dp"
+            android:layout_height="match_parent"
+            android:background="@mipmap/add_icon"
+            android:text="ArticuloCuarto"
+            tools:layout_editor_absoluteX="161dp"
+            tools:layout_editor_absoluteY="228dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ArticulosCuarto"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/listBoxArticulos"
+        android:layout_width="match_parent"
+        android:layout_height="121dp"
+        android:layout_weight="0.2">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cajas"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/listBoxCajas"
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:layout_weight="0.2"></ListView>
+
+</LinearLayout>

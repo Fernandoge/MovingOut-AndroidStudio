@@ -20,7 +20,6 @@ import com.isw.movingout.Objetos.Caja;
 import com.isw.movingout.R;
 import com.isw.movingout.Daos.daoArticuloCuarto;
 import com.isw.movingout.Daos.daoCaja;
-import com.isw.movingout.Daos.daoEtiqueta;
 
 import java.util.ArrayList;
 
@@ -40,7 +39,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_articulos);
+        setContentView(R.layout.menu_articulosycajas);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -88,11 +87,13 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputCajaNombre);
                 final EditText descripcion = (EditText) dialogo.findViewById(R.id.inputCajaDescripcion);
                 final EditText estado = (EditText) dialogo.findViewById(R.id.inputCajaEstado);
-                final EditText tamanio = (EditText) dialogo.findViewById(R.id.inputCajaTamanio);
-                final Spinner dropdownEtiqueta = (Spinner) dialogo.findViewById(R.id.dropdownCajaEtiqueta);
-                String[] spinnerArray = daoEtiqueta.obtenerNombreEtiquetas();
-                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerArray);
-                dropdownEtiqueta.setAdapter(spinnerArrayAdapter);
+
+                //final EditText tamanio = (EditText) dialogo.findViewById(R.id.inputCajaTamanio);
+                final Spinner dropdownTamanio = (Spinner) dialogo.findViewById(R.id.dropdownCajaTamanio);
+                String[] spinnerTamanioArray = {"", "Pequeña", "Mediana", "Grande", "Muy Grande"};
+                ArrayAdapter<String> spinnerTamanioArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerTamanioArray);
+                dropdownTamanio.setAdapter(spinnerTamanioArrayAdapter);
+
 
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCaja);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCaja);
@@ -104,8 +105,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                             caja = new Caja(nombre.getText().toString(),
                                     descripcion.getText().toString(),
                                     estado.getText().toString(),
-                                    tamanio.getText().toString(),
-                                    dropdownEtiqueta.getSelectedItem().toString(),
+                                    dropdownTamanio.getSelectedItem().toString(),
                                     currentCuartoID);
                             daoCaja.insertar(caja);
                             listaCajas = daoCaja.verTodos();
@@ -135,10 +135,6 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 dialogo.setContentView(R.layout.crear_articulocuarto);
                 dialogo.show();
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
-                final Spinner dropdownEtiqueta = (Spinner) dialogo.findViewById(R.id.dropdownArticuloCuartoEtiqueta);
-                String[] spinnerArray = daoEtiqueta.obtenerNombreEtiquetas();
-                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerArray);
-                dropdownEtiqueta.setAdapter(spinnerArrayAdapter);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
 
@@ -146,9 +142,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         try {
-                            articulo = new ArticuloCuarto(nombre.getText().toString(),
-                                    dropdownEtiqueta.getSelectedItem().toString(),
-                                    currentCuartoID);
+                            articulo = new ArticuloCuarto(nombre.getText().toString(), currentCuartoID);
                             daoArticuloCuarto.insertar(articulo);
                             listaArticulos = daoArticuloCuarto.verTodos();
                             adapterArticulosCuarto.notifyDataSetChanged();

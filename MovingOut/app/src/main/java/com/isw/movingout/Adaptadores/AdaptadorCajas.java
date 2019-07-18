@@ -85,16 +85,20 @@ public class AdaptadorCajas extends BaseAdapter {
         TextView descripcion = (TextView)view.findViewById(R.id.textCajaDescripcion);
         TextView estado = (TextView)view.findViewById(R.id.textCajaEstado);
         TextView tamanio = (TextView)view.findViewById(R.id.textCajaTamanio);
-        TextView etiqueta = (TextView)view.findViewById(R.id.textCajaEtiqueta);
+        Button etiqueta1 = (Button) view.findViewById(R.id.textCajaEtiqueta);
+        Button etiqueta2 = (Button) view.findViewById(R.id.textCajaEtiqueta2);
         Button editar = (Button) view.findViewById(R.id.buttonEditCaja);
         Button eliminar = (Button) view.findViewById(R.id.buttonDeleteCaja);
 
         nombre.setText(caja.getNombre());
-        etiqueta.setText(caja.getEtiqueta());
+        etiqueta1.setText(caja.getEtiqueta());
+        etiqueta2.setText(caja.getEtiqueta2());
         descripcion.setText(caja.getDescripcion());
         tamanio.setText(caja.getTamanio());
         estado.setText(caja.getEstado());
         nombre.setTag(posicion);
+        etiqueta1.setTag(posicion);
+        etiqueta2.setTag(posicion);
         editar.setTag(posicion);
         eliminar.setTag(posicion);
 
@@ -109,6 +113,96 @@ public class AdaptadorCajas extends BaseAdapter {
             }
         });
 
+        etiqueta1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = Integer.parseInt(view.getTag().toString());
+                final Dialog dialogo = new Dialog(activity);
+                dialogo.setTitle("Asignar etiqueta 1 caja");
+                dialogo.setCancelable(true);
+                dialogo.setContentView(R.layout.asignar_etiqueta);
+                dialogo.show();
+
+                final Spinner dropdownEtiqueta = (Spinner) dialogo.findViewById(R.id.dropdownAssignEtiqueta);
+                String[] spinnerArray = clsDaoEtiqueta.obtenerNombreEtiquetas();
+                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerArray);
+                dropdownEtiqueta.setAdapter(spinnerArrayAdapter);
+
+                Button asignar = (Button) dialogo.findViewById(R.id.buttonAssignEtiqueta);
+                Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelAssignEtiqueta);
+
+                caja = lista.get(pos);
+                setId(caja.getId());
+
+                asignar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            caja = new Caja(getId(), dropdownEtiqueta.getSelectedItem().toString(), null);
+                            clsDaoCaja.asignarEtiqueta(caja);
+                            lista = clsDaoCaja.verTodos();
+                            notifyDataSetChanged();
+                            dialogo.dismiss();
+                        }catch (Exception e){
+                            Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                cancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogo.dismiss();
+                    }
+                });
+            }
+        });
+
+
+        etiqueta2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = Integer.parseInt(view.getTag().toString());
+                final Dialog dialogo = new Dialog(activity);
+                dialogo.setTitle("Asignar etiqueta 2 caja");
+                dialogo.setCancelable(true);
+                dialogo.setContentView(R.layout.asignar_etiqueta);
+                dialogo.show();
+
+                final Spinner dropdownEtiqueta = (Spinner) dialogo.findViewById(R.id.dropdownAssignEtiqueta);
+                String[] spinnerArray = clsDaoEtiqueta.obtenerNombreEtiquetas();
+                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerArray);
+                dropdownEtiqueta.setAdapter(spinnerArrayAdapter);
+
+                Button asignar = (Button) dialogo.findViewById(R.id.buttonAssignEtiqueta);
+                Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelAssignEtiqueta);
+
+                caja = lista.get(pos);
+                setId(caja.getId());
+
+                asignar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            caja = new Caja(getId(), null, dropdownEtiqueta.getSelectedItem().toString());
+                            clsDaoCaja.asignarEtiqueta2(caja);
+                            lista = clsDaoCaja.verTodos();
+                            notifyDataSetChanged();
+                            dialogo.dismiss();
+                        }catch (Exception e){
+                            Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                cancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogo.dismiss();
+                    }
+                });
+            }
+        });
+
+
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,11 +215,13 @@ public class AdaptadorCajas extends BaseAdapter {
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputCajaNombre);
                 final EditText descripcion = (EditText) dialogo.findViewById(R.id.inputCajaDescripcion);
                 final EditText estado = (EditText) dialogo.findViewById(R.id.inputCajaEstado);
-                final EditText tamanio = (EditText) dialogo.findViewById(R.id.inputCajaTamanio);
-                final Spinner dropdownEtiqueta = (Spinner) dialogo.findViewById(R.id.dropdownCajaEtiqueta);
-                String[] spinnerArray = clsDaoEtiqueta.obtenerNombreEtiquetas();
-                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerArray);
-                dropdownEtiqueta.setAdapter(spinnerArrayAdapter);
+
+                //final EditText tamanio = (EditText) dialogo.findViewById(R.id.inputCajaTamanio);
+                final Spinner dropdownTamanio = (Spinner) dialogo.findViewById(R.id.dropdownCajaTamanio);
+                String[] spinnerTamanioArray = {"", "Pequeña", "Mediana", "Grande", "Muy Grande"};
+                ArrayAdapter<String> spinnerTamanioArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerTamanioArray);
+                dropdownTamanio.setAdapter(spinnerTamanioArrayAdapter);
+
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCaja);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCaja);
                 guardar.setText("Editar");
@@ -134,7 +230,6 @@ public class AdaptadorCajas extends BaseAdapter {
                 nombre.setText(caja.getNombre());
                 descripcion.setText(caja.getDescripcion());
                 estado.setText(caja.getEstado());
-                tamanio.setText(caja.getTamanio());
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -142,8 +237,7 @@ public class AdaptadorCajas extends BaseAdapter {
                             caja = new Caja(getId(), nombre.getText().toString(),
                                     descripcion.getText().toString(),
                                     estado.getText().toString(),
-                                    tamanio.getText().toString(),
-                                    dropdownEtiqueta.getSelectedItem().toString());
+                                    dropdownTamanio.getSelectedItem().toString());
                             clsDaoCaja.editar(caja);
                             lista = clsDaoCaja.verTodos();
                             notifyDataSetChanged();
@@ -192,9 +286,6 @@ public class AdaptadorCajas extends BaseAdapter {
                 del.show();
             }
         });
-
-
-
 
         return view;
     }
