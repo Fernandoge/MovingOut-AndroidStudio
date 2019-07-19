@@ -25,20 +25,23 @@ public class Caja {
         this.cuartoID = cuartoID;
     }
 
-    public Caja(int id, String nombre, String descripcion, String estado, String tamanio) {
+    public Caja(int id, String nombre, String descripcion, String tamanio) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.estado = estado;
         this.tamanio = tamanio;
     }
 
-    public Caja(String nombre, String descripcion, String estado, String tamanio, int cuartoID) {
+    public Caja(String nombre, String descripcion, String tamanio, int cuartoID) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.estado = estado;
         this.tamanio = tamanio;
         this.cuartoID = cuartoID;
+    }
+
+    public Caja(int id, String estado) {
+        this.id = id;
+        this.estado = estado;
     }
 
     public Caja(int id, String etiqueta, String etiqueta2) {

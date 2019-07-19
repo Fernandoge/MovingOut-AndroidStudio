@@ -6,12 +6,14 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -83,24 +85,29 @@ public class AdaptadorCajas extends BaseAdapter {
         caja = lista.get(posicion);
         TextView nombre = (TextView)view.findViewById(R.id.textCajaNombre);
         TextView descripcion = (TextView)view.findViewById(R.id.textCajaDescripcion);
-        TextView estado = (TextView)view.findViewById(R.id.textCajaEstado);
         TextView tamanio = (TextView)view.findViewById(R.id.textCajaTamanio);
         Button etiqueta1 = (Button) view.findViewById(R.id.textCajaEtiqueta);
         Button etiqueta2 = (Button) view.findViewById(R.id.textCajaEtiqueta2);
         Button editar = (Button) view.findViewById(R.id.buttonEditCaja);
         Button eliminar = (Button) view.findViewById(R.id.buttonDeleteCaja);
+        final CheckBox checkboxEstado = (CheckBox) view.findViewById(R.id.checkBoxEstado);
 
         nombre.setText(caja.getNombre());
         etiqueta1.setText(caja.getEtiqueta());
         etiqueta2.setText(caja.getEtiqueta2());
         descripcion.setText(caja.getDescripcion());
         tamanio.setText(caja.getTamanio());
-        estado.setText(caja.getEstado());
         nombre.setTag(posicion);
+        checkboxEstado.setTag(posicion);
         etiqueta1.setTag(posicion);
         etiqueta2.setTag(posicion);
         editar.setTag(posicion);
         eliminar.setTag(posicion);
+
+        if (caja.getEstado().equals("Embalada"))
+            checkboxEstado.setChecked(true);
+        else
+            checkboxEstado.setChecked(false);
 
         nombre.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +117,38 @@ public class AdaptadorCajas extends BaseAdapter {
                 Intent intent = new Intent(view.getContext(), ActivityArticulosCaja.class);
                 intent.putExtra("cajaID", caja.getNombre());
                 view.getContext().startActivity(intent);
+            }
+        });
+
+        checkboxEstado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = Integer.parseInt(view.getTag().toString());
+                caja = lista.get(pos);
+                setId(caja.getId());
+
+                if (checkboxEstado.isChecked())
+                {
+                    try {
+                        caja = new Caja(getId(), "Embalada");
+                        clsDaoCaja.checkEstado(caja);
+                        lista = clsDaoCaja.verTodos();
+                        notifyDataSetChanged();
+                    } catch (Exception e) {
+                        Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else
+                {
+                    try {
+                        caja = new Caja(getId(), "Desembalada");
+                        clsDaoCaja.checkEstado(caja);
+                        lista = clsDaoCaja.verTodos();
+                        notifyDataSetChanged();
+                    } catch (Exception e) {
+                        Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
@@ -214,7 +253,6 @@ public class AdaptadorCajas extends BaseAdapter {
                 dialogo.show();
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputCajaNombre);
                 final EditText descripcion = (EditText) dialogo.findViewById(R.id.inputCajaDescripcion);
-                final EditText estado = (EditText) dialogo.findViewById(R.id.inputCajaEstado);
 
                 //final EditText tamanio = (EditText) dialogo.findViewById(R.id.inputCajaTamanio);
                 final Spinner dropdownTamanio = (Spinner) dialogo.findViewById(R.id.dropdownCajaTamanio);
@@ -229,14 +267,12 @@ public class AdaptadorCajas extends BaseAdapter {
                 setId(caja.getId());
                 nombre.setText(caja.getNombre());
                 descripcion.setText(caja.getDescripcion());
-                estado.setText(caja.getEstado());
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
                             caja = new Caja(getId(), nombre.getText().toString(),
                                     descripcion.getText().toString(),
-                                    estado.getText().toString(),
                                     dropdownTamanio.getSelectedItem().toString());
                             clsDaoCaja.editar(caja);
                             lista = clsDaoCaja.verTodos();

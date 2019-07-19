@@ -86,7 +86,6 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 dialogo.show();
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputCajaNombre);
                 final EditText descripcion = (EditText) dialogo.findViewById(R.id.inputCajaDescripcion);
-                final EditText estado = (EditText) dialogo.findViewById(R.id.inputCajaEstado);
 
                 //final EditText tamanio = (EditText) dialogo.findViewById(R.id.inputCajaTamanio);
                 final Spinner dropdownTamanio = (Spinner) dialogo.findViewById(R.id.dropdownCajaTamanio);
@@ -104,7 +103,6 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                         try {
                             caja = new Caja(nombre.getText().toString(),
                                     descripcion.getText().toString(),
-                                    estado.getText().toString(),
                                     dropdownTamanio.getSelectedItem().toString(),
                                     currentCuartoID);
                             daoCaja.insertar(caja);

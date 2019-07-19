@@ -31,8 +31,7 @@ public class daoCaja {
     {
         ContentValues contenedor = new ContentValues();
         contenedor.put("nombre", caja.getNombre());
-        contenedor.put("descripcion", caja.getDescripcion());
-        contenedor.put("estado", caja.getEstado());
+        contenedor.put("descripcion", caja.getDescripcion());;
         contenedor.put("tamanio", caja.getTamanio());
         contenedor.put("cuartoid", caja.getCuartoID());
         return (cx.insert("caja", null, contenedor)) > 0;
@@ -49,8 +48,14 @@ public class daoCaja {
         ContentValues contenedor = new ContentValues();
         contenedor.put("nombre", caja.getNombre());
         contenedor.put("descripcion", caja.getDescripcion());
-        contenedor.put("estado", caja.getEstado());
         contenedor.put("tamanio", caja.getTamanio());
+        return (cx.update("caja", contenedor, "id="+caja.getId(), null)) > 0;
+    }
+
+    public boolean checkEstado(Caja caja)
+    {
+        ContentValues contenedor = new ContentValues();
+        contenedor.put("estado", caja.getEstado());
         return (cx.update("caja", contenedor, "id="+caja.getId(), null)) > 0;
     }
 
