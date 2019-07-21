@@ -115,7 +115,8 @@ public class AdaptadorCajas extends BaseAdapter {
                 int pos = Integer.parseInt(view.getTag().toString());
                 caja = lista.get(pos);
                 Intent intent = new Intent(view.getContext(), ActivityArticulosCaja.class);
-                intent.putExtra("cajaID", caja.getNombre());
+                intent.putExtra("cajaID", caja.getId());
+                intent.putExtra("cajaNombre", caja.getNombre());
                 view.getContext().startActivity(intent);
             }
         });

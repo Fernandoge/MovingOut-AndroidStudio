@@ -9,12 +9,32 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="162dp"
+        android:layout_height="29dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cuarto actual:" />
+
+        <TextView
+            android:id="@+id/textCurrentCuartoNombre"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="138dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/buttonAddCaja"
-            android:layout_width="202dp"
+            android:layout_width="207dp"
             android:layout_height="match_parent"
             android:background="@mipmap/add_icon"
             android:text="Caja"

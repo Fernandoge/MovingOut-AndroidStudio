@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.isw.movingout.Adaptadores.AdaptadorArticulosCaja;
@@ -24,6 +25,7 @@ public class ActivityArticulosCaja extends AppCompatActivity {
     ArrayList<ArticuloCaja> lista;
     ArticuloCaja articuloCaja;
     int currentCajaID;
+    String currentCajaNombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +35,14 @@ public class ActivityArticulosCaja extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             currentCajaID = extras.getInt("cajaID");
+            currentCajaNombre = extras.getString("cajaNombre");
         }
 
         dao = new daoArticuloCaja(this, currentCajaID);
         lista = dao.verTodos();
         adapter = new AdaptadorArticulosCaja(this, lista, dao);
+        TextView textCurrentCaja = (TextView) findViewById(R.id.textCurrentCajaNombre);
+        textCurrentCaja.setText(currentCajaNombre);
         ListView list = (ListView) findViewById(R.id.listBox);
         Button agregarArticuloCaja = (Button) findViewById(R.id.buttonAddArticuloCaja);
         list.setAdapter(adapter);

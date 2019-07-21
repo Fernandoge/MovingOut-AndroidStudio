@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.isw.movingout.Adaptadores.AdaptadorArticulosCuarto;
@@ -35,6 +36,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
     ArticuloCuarto articulo;
     Caja caja;
     int currentCuartoID;
+    String currentCuartoNombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             currentCuartoID = extras.getInt("cuartoID");
+            currentCuartoNombre = extras.getString("cuartoNombre");
         }
 
         daoEtiqueta = new daoEtiqueta(this);
@@ -55,6 +58,9 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
         daoCaja = new daoCaja(this, currentCuartoID);
         listaCajas = daoCaja.verTodos();
         adapterCajas = new AdaptadorCajas(this, listaCajas, daoCaja, daoEtiqueta);
+
+        TextView textCurrentCaja = (TextView) findViewById(R.id.textCurrentCuartoNombre);
+        textCurrentCaja.setText(currentCuartoNombre);
 
         ListView listArticulos = (ListView) findViewById(R.id.listBoxArticulos);
         ListView listCajas = (ListView) findViewById(R.id.listBoxCajas);
