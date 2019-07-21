@@ -104,7 +104,7 @@ public class AdaptadorCajas extends BaseAdapter {
         editar.setTag(posicion);
         eliminar.setTag(posicion);
 
-        if (caja.getEstado().equals("Embalada"))
+        if (caja.getEstado() != null && caja.getEstado().equals("Embalada"))
             checkboxEstado.setChecked(true);
         else
             checkboxEstado.setChecked(false);
