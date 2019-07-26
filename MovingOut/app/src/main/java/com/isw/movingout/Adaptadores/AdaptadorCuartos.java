@@ -78,12 +78,10 @@ public class AdaptadorCuartos extends BaseAdapter
         cuarto = lista.get(posicion);
         Button nombre = (Button)view.findViewById(R.id.buttonCuarto);
         Button editar = (Button) view.findViewById(R.id.buttonEditItem);
-        Button eliminar = (Button) view.findViewById(R.id.buttonDeleteItem);
 
         nombre.setText(cuarto.getNombre());
         nombre.setTag(posicion);
         editar.setTag(posicion);
-        eliminar.setTag(posicion);
 
         nombre.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +109,7 @@ public class AdaptadorCuartos extends BaseAdapter
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
+                Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarCuarto);
                 guardar.setText("Editar");
                 cuarto = lista.get(pos);
                 setId(cuarto.getId());
@@ -136,40 +135,35 @@ public class AdaptadorCuartos extends BaseAdapter
                         dialogo.dismiss();
                     }
                 });
-            }
-        });
 
-        eliminar.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                //Dialogo confirmar si / no
-                int pos = Integer.parseInt(view.getTag().toString());
-                cuarto = lista.get(pos);
-                setId(cuarto.getId());
-                AlertDialog.Builder del = new AlertDialog.Builder(activity);
-                del.setMessage("¿Estas seguro de eliminar este cuarto?");
-                del.setCancelable(false);
-                del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                eliminar.setOnClickListener(new View.OnClickListener()
+                {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        clsDaoCuarto.eliminar(getId());
-                        lista = clsDaoCuarto.verTodos();
-                        notifyDataSetChanged();
+                    public void onClick(View view)
+                    {
+                        AlertDialog.Builder del = new AlertDialog.Builder(activity);
+                        del.setMessage("¿Estas seguro de eliminar este cuarto?");
+                        del.setCancelable(false);
+                        del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                clsDaoCuarto.eliminar(getId());
+                                lista = clsDaoCuarto.verTodos();
+                                notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
+                        });
+                        del.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        del.show();
                     }
                 });
-                del.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                del.show();
             }
         });
-
-
 
         return view;
     }

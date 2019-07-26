@@ -88,7 +88,6 @@ public class AdaptadorCajas extends BaseAdapter {
         TextView tamanio = (TextView)view.findViewById(R.id.textCajaTamanio);
         Button etiqueta = (Button) view.findViewById(R.id.textCajaEtiqueta);
         Button editar = (Button) view.findViewById(R.id.buttonEditCaja);
-        Button eliminar = (Button) view.findViewById(R.id.buttonDeleteCaja);
         final CheckBox checkboxEstado = (CheckBox) view.findViewById(R.id.checkBoxEstado);
 
         nombre.setText(caja.getNombre());
@@ -99,7 +98,6 @@ public class AdaptadorCajas extends BaseAdapter {
         checkboxEstado.setTag(posicion);
         etiqueta.setTag(posicion);
         editar.setTag(posicion);
-        eliminar.setTag(posicion);
 
         if (caja.getEstado() != null && caja.getEstado().equals("Embalada"))
             checkboxEstado.setChecked(true);
@@ -215,6 +213,7 @@ public class AdaptadorCajas extends BaseAdapter {
 
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCaja);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCaja);
+                Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarCaja);
                 guardar.setText("Editar");
                 caja = lista.get(pos);
                 setId(caja.getId());
@@ -243,36 +242,33 @@ public class AdaptadorCajas extends BaseAdapter {
                     }
                 });
 
-            }
-        });
-
-        eliminar.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                //Dialogo confirmar si / no
-                int pos = Integer.parseInt(view.getTag().toString());
-                caja = lista.get(pos);
-                setId(caja.getId());
-                AlertDialog.Builder del = new AlertDialog.Builder(activity);
-                del.setMessage("¿Estas seguro de eliminar esta caja?");
-                del.setCancelable(false);
-                del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                eliminar.setOnClickListener(new View.OnClickListener()
+                {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        clsDaoCaja.eliminar(getId());
-                        lista = clsDaoCaja.verTodos();
-                        notifyDataSetChanged();
+                    public void onClick(View view)
+                    {
+                        AlertDialog.Builder del = new AlertDialog.Builder(activity);
+                        del.setMessage("¿Estas seguro de eliminar esta caja?");
+                        del.setCancelable(false);
+                        del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                clsDaoCaja.eliminar(getId());
+                                lista = clsDaoCaja.verTodos();
+                                notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
+                        });
+                        del.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        del.show();
                     }
                 });
-                del.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                });
-                del.show();
             }
         });
 

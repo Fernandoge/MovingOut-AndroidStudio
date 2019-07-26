@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="333dp"
-        android:layout_height="match_parent"
+        android:layout_height="155dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -89,20 +89,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="150dp"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/buttonEditCaja"
             android:layout_width="74dp"
-            android:layout_height="88dp"
+            android:layout_height="match_parent"
             android:background="@mipmap/edit_icon"></Button>
 
-        <Button
-            android:id="@+id/buttonDeleteCaja"
-            android:layout_width="74dp"
-            android:layout_height="88dp"
-            android:background="@mipmap/delete_icon"></Button>
     </LinearLayout>
 
 

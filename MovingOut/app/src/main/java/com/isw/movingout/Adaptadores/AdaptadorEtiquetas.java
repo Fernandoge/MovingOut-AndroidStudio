@@ -75,11 +75,9 @@ public class AdaptadorEtiquetas extends BaseAdapter {
         etiqueta = lista.get(posicion);
         TextView nombre = (TextView) view.findViewById(R.id.textNombreEtiqueta);
         Button editar = (Button) view.findViewById(R.id.buttonEditEtiqueta);
-        Button eliminar = (Button) view.findViewById(R.id.buttonDeleteEtiqueta);
 
         nombre.setText(etiqueta.getNombre());
         editar.setTag(posicion);
-        eliminar.setTag(posicion);
 
         editar.setOnClickListener(new View.OnClickListener()
         {
@@ -95,6 +93,7 @@ public class AdaptadorEtiquetas extends BaseAdapter {
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputEtiquetaNombre);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddEtiqueta);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelEtiqueta);
+                Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarEtiqueta);
                 guardar.setText("Editar");
                 etiqueta = lista.get(pos);
                 setId(etiqueta.getId());
@@ -120,40 +119,35 @@ public class AdaptadorEtiquetas extends BaseAdapter {
                         dialogo.dismiss();
                     }
                 });
-            }
-        });
 
-        eliminar.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                //Dialogo confirmar si / no
-                int pos = Integer.parseInt(view.getTag().toString());
-                etiqueta = lista.get(pos);
-                setId(etiqueta.getId());
-                AlertDialog.Builder del = new AlertDialog.Builder(activity);
-                del.setMessage("¿Estas seguro de eliminar este etiqueta?");
-                del.setCancelable(false);
-                del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                eliminar.setOnClickListener(new View.OnClickListener()
+                {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        clsDaoEtiqueta.eliminar(getId());
-                        lista = clsDaoEtiqueta.verTodos();
-                        notifyDataSetChanged();
+                    public void onClick(View view)
+                    {
+                        AlertDialog.Builder del = new AlertDialog.Builder(activity);
+                        del.setMessage("¿Estas seguro de eliminar este etiqueta?");
+                        del.setCancelable(false);
+                        del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                clsDaoEtiqueta.eliminar(getId());
+                                lista = clsDaoEtiqueta.verTodos();
+                                notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
+                        });
+                        del.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        del.show();
                     }
                 });
-                del.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                del.show();
             }
         });
-
-
 
         return view;
     }

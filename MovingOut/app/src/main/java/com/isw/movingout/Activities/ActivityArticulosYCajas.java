@@ -102,6 +102,9 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
 
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCaja);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCaja);
+                Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarCaja);
+                eliminar.setVisibility(View.GONE);
+
 
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -141,6 +144,9 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
+                Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarArticuloCuarto);
+                eliminar.setVisibility(View.GONE);
+
 
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override

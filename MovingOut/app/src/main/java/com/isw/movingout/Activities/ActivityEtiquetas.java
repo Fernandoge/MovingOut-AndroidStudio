@@ -54,6 +54,8 @@ public class ActivityEtiquetas extends AppCompatActivity {
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputEtiquetaNombre);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddEtiqueta);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelEtiqueta);
+                Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarEtiqueta);
+                eliminar.setVisibility(View.GONE);
 
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override

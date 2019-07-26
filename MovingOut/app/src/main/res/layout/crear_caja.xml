@@ -39,4 +39,10 @@ android:text="Agregar" />
     android:layout_height="wrap_content"
     android:text="Cancelar" />
 
+    <Button
+        android:id="@+id/buttonEliminarCaja"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eliminar Caja" />
+
 </LinearLayout>

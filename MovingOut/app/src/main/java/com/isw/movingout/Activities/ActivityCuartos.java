@@ -65,6 +65,8 @@ public class ActivityCuartos extends AppCompatActivity
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
+                Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarCuarto);
+                eliminar.setVisibility(View.GONE);
 
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override

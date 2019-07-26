@@ -81,13 +81,11 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
         TextView nombre = (TextView)view.findViewById(R.id.textItemNombre);
         Button etiqueta = (Button)view.findViewById(R.id.textItemEtiqueta);
         Button editar = (Button) view.findViewById(R.id.buttonEditItem);
-        Button eliminar = (Button) view.findViewById(R.id.buttonDeleteItem);
 
         nombre.setText(articulo.getNombre());
         etiqueta.setText(articulo.getEtiqueta());
         etiqueta.setTag(posicion);
         editar.setTag(posicion);
-        eliminar.setTag(posicion);
 
         etiqueta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +143,8 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                   final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
                   Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                   Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
+                  Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarArticuloCuarto);
+
                   guardar.setText("Editar");
                   articulo = lista.get(pos);
                   setId(articulo.getId());
@@ -170,38 +170,35 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                       }
                   });
 
+                  eliminar.setOnClickListener(new View.OnClickListener()
+                  {
+                      @Override
+                      public void onClick(View view)
+                      {
+                          AlertDialog.Builder del = new AlertDialog.Builder(activity);
+                          del.setMessage("¿Estas seguro de eliminar este articulo?");
+                          del.setCancelable(false);
+                          del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                              @Override
+                              public void onClick(DialogInterface dialog, int which) {
+                                  clsDaoArticuloCuarto.eliminar(getId());
+                                  lista = clsDaoArticuloCuarto.verTodos();
+                                  notifyDataSetChanged();
+                                  dialogo.dismiss();
+                              }
+                          });
+                          del.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                              @Override
+                              public void onClick(DialogInterface dialog, int which) {
+
+                              }
+                          });
+                          del.show();
+                      }
+                  });
+
               }
           });
-
-        eliminar.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                //Dialogo confirmar si / no
-                int pos = Integer.parseInt(view.getTag().toString());
-                articulo = lista.get(pos);
-                setId(articulo.getId());
-                AlertDialog.Builder del = new AlertDialog.Builder(activity);
-                del.setMessage("¿Estas seguro de eliminar este articulo?");
-                del.setCancelable(false);
-                del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        clsDaoArticuloCuarto.eliminar(getId());
-                        lista = clsDaoArticuloCuarto.verTodos();
-                        notifyDataSetChanged();
-                    }
-                });
-                del.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                del.show();
-            }
-        });
         return view;
     }
 

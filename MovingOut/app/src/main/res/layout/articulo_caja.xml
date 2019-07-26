@@ -5,20 +5,27 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="98dp"
+        android:layout_width="157dp"
         android:layout_height="53dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textArticuloCajaNombre"
             android:layout_width="match_parent"
-            android:layout_height="29dp"
+            android:layout_height="match_parent"
             android:text="Nombre" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="159dp"
+        android:layout_height="53dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textArticuloCajaCantidad"
             android:layout_width="match_parent"
-            android:layout_height="29dp"
+            android:layout_height="51dp"
             android:text="Cantidad" />
 
     </LinearLayout>
@@ -34,11 +41,6 @@
             android:layout_height="wrap_content"
             android:background="@mipmap/edit_icon"></Button>
 
-        <Button
-            android:id="@+id/buttonDeleteArticuloCaja"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/delete_icon"></Button>
     </LinearLayout>
 
 

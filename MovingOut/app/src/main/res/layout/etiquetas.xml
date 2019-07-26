@@ -5,7 +5,7 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="170dp"
+        android:layout_width="312dp"
         android:layout_height="53dp"
         android:orientation="vertical">
 
@@ -28,11 +28,6 @@
             android:layout_height="wrap_content"
             android:background="@mipmap/edit_icon"></Button>
 
-        <Button
-            android:id="@+id/buttonDeleteEtiqueta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/delete_icon"></Button>
     </LinearLayout>
 
 

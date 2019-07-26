@@ -23,4 +23,10 @@
         android:layout_height="wrap_content"
         android:text="Cancelar" />
 
+    <Button
+        android:id="@+id/buttonEliminarEtiqueta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eliminar Etiqueta" />
+
 </LinearLayout>

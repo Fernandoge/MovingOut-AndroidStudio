@@ -65,6 +65,8 @@ public class ActivityArticulosCaja extends AppCompatActivity {
                 final EditText cantidad = (EditText) dialogo.findViewById(R.id.inputArticuloCajaCantidad);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddArticuloCaja);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelArticuloCaja);
+                Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarArticuloCaja);
+                eliminar.setVisibility(View.GONE);
 
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override
