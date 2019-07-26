@@ -15,6 +15,12 @@
             android:layout_height="29dp"
             android:text="Nombre" />
 
+        <TextView
+            android:id="@+id/textArticuloCajaCantidad"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:text="Cantidad" />
+
     </LinearLayout>
 
     <LinearLayout

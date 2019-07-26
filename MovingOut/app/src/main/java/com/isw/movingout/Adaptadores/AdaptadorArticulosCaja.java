@@ -73,10 +73,12 @@ public class AdaptadorArticulosCaja extends BaseAdapter {
         }
         articuloCaja = lista.get(posicion);
         TextView nombre = (TextView)view.findViewById(R.id.textArticuloCajaNombre);
+        TextView cantidad = (TextView) view.findViewById(R.id.textArticuloCajaCantidad);
         Button editar = (Button) view.findViewById(R.id.buttonEditArticuloCaja);
         Button eliminar = (Button) view.findViewById(R.id.buttonDeleteArticuloCaja);
 
         nombre.setText(articuloCaja.getNombre());
+        cantidad.setText(String.valueOf(articuloCaja.getCantidad()));
         editar.setTag(posicion);
         eliminar.setTag(posicion);
 
@@ -90,17 +92,19 @@ public class AdaptadorArticulosCaja extends BaseAdapter {
                 dialogo.setContentView(R.layout.crear_articulocaja);
                 dialogo.show();
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputArticuloCajaNombre);
+                final EditText cantidad = (EditText) dialogo.findViewById(R.id.inputArticuloCajaCantidad);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddArticuloCaja);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelArticuloCaja);
                 guardar.setText("Editar");
                 articuloCaja = lista.get(pos);
                 setId(articuloCaja.getId());
                 nombre.setText(articuloCaja.getNombre());
+                cantidad.setText(String.valueOf(articuloCaja.getCantidad()));
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
-                            articuloCaja = new ArticuloCaja(getId(), nombre.getText().toString());
+                            articuloCaja = new ArticuloCaja(getId(), nombre.getText().toString(), Integer.parseInt(cantidad.getText().toString()));
                             clsDaoArticuloCaja.editar(articuloCaja);
                             lista = clsDaoArticuloCaja.verTodos();
                             notifyDataSetChanged();

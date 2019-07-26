@@ -12,6 +12,13 @@
         android:hint="Nombre Articulo" />
 
 
+    <EditText
+        android:id="@+id/inputArticuloCajaCantidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cantidad Articulo"
+        android:inputType="number" />
+
     <Button
         android:id="@+id/buttonAddArticuloCaja"
         android:layout_width="match_parent"

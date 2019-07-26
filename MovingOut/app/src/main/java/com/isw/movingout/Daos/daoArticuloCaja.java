@@ -23,7 +23,7 @@ public class daoArticuloCaja
         this.contexto = c;
         this.currentCaja = cajaID;
         cx = c.openOrCreateDatabase(nombreBD, Context.MODE_PRIVATE, null);
-        cx.execSQL("create table if not exists articuloCaja(id integer primary key autoincrement, nombre text, cajaid integer)");
+        cx.execSQL("create table if not exists articuloCaja(id integer primary key autoincrement, nombre text, cantidad integer, cajaid integer)");
 
     }
 
@@ -32,6 +32,7 @@ public class daoArticuloCaja
         ContentValues contenedor = new ContentValues();
         contenedor.put("nombre", articuloCaja.getNombre());
         contenedor.put("cajaid", articuloCaja.getCajaID());
+        contenedor.put("cantidad", articuloCaja.getCantidad());
         return (cx.insert("articuloCaja", null, contenedor)) > 0;
     }
 
@@ -44,6 +45,7 @@ public class daoArticuloCaja
     {
         ContentValues contenedor = new ContentValues();
         contenedor.put("nombre", a.getNombre());
+        contenedor.put("cantidad", a.getCantidad());
         return (cx.update("articuloCaja", contenedor, "id="+a.getId(), null)) > 0;
     }
 
@@ -57,7 +59,8 @@ public class daoArticuloCaja
             do{
                 lista.add(new ArticuloCaja(cursor.getInt(0),
                         cursor.getString(1),
-                        cursor.getInt(2)));
+                        cursor.getInt(2),
+                        cursor.getInt(3)));
 
             }while (cursor.moveToNext());
         }
@@ -70,7 +73,8 @@ public class daoArticuloCaja
         cursor.moveToPosition(posicion);
         articuloCaja = (new ArticuloCaja(cursor.getInt(0),
                 cursor.getString(1),
-                cursor.getInt(2)));
+                cursor.getInt(2),
+                cursor.getInt(3)));
         return articuloCaja;
     }
 

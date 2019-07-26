@@ -62,6 +62,7 @@ public class ActivityArticulosCaja extends AppCompatActivity {
                 dialogo.setContentView(R.layout.crear_articulocaja);
                 dialogo.show();
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputArticuloCajaNombre);
+                final EditText cantidad = (EditText) dialogo.findViewById(R.id.inputArticuloCajaCantidad);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddArticuloCaja);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelArticuloCaja);
 
@@ -70,7 +71,7 @@ public class ActivityArticulosCaja extends AppCompatActivity {
                     public void onClick(View v) {
                         try {
                             articuloCaja = new ArticuloCaja(nombre.getText().toString(),
-                                    currentCajaID);
+                                    Integer.parseInt(cantidad.getText().toString()), currentCajaID);
                             dao.insertar(articuloCaja);
                             lista = dao.verTodos();
                             adapter.notifyDataSetChanged();

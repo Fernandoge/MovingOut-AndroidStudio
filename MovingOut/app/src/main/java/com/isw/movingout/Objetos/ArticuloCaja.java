@@ -3,25 +3,29 @@ package com.isw.movingout.Objetos;
 public class ArticuloCaja {
     int id;
     String nombre;
+    int cantidad;
     int cajaID;
 
     public ArticuloCaja() {
     }
 
-    public ArticuloCaja(int id, String nombre) {
+    public ArticuloCaja(int id, String nombre, int cantidad, int cajaID) {
         this.id = id;
         this.nombre = nombre;
-    }
-
-    public ArticuloCaja(String nombre, int cajaID) {
-        this.nombre = nombre;
+        this.cantidad = cantidad;
         this.cajaID = cajaID;
     }
 
-    public ArticuloCaja(int id, String nombre, int cajaID) {
+    public ArticuloCaja(String nombre, int cantidad, int cajaID) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.cajaID = cajaID;
+    }
+
+    public ArticuloCaja(int id, String nombre, int cantidad) {
         this.id = id;
         this.nombre = nombre;
-        this.cajaID = cajaID;
+        this.cantidad = cantidad;
     }
 
     public int getId() {
@@ -38,6 +42,14 @@ public class ArticuloCaja {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public int getCajaID() {
