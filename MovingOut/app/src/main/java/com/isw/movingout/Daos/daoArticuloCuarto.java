@@ -23,7 +23,7 @@ public class daoArticuloCuarto {
         this.contexto = c;
         this.currentCuarto = cuartoID;
         cx = c.openOrCreateDatabase(nombreBD, Context.MODE_PRIVATE, null);
-        cx.execSQL("create table if not exists articuloCuarto(id integer primary key autoincrement, nombre text, etiqueta text, etiqueta2 text, cuartoid integer)");
+        cx.execSQL("create table if not exists articuloCuarto(id integer primary key autoincrement, nombre text, etiqueta text, cuartoid integer)");
 
     }
 
@@ -47,18 +47,11 @@ public class daoArticuloCuarto {
         return (cx.update("articuloCuarto", contenedor, "id="+a.getId(), null)) > 0;
     }
 
-    public boolean asignarEtiqueta(ArticuloCuarto articuloCuarto1)
+    public boolean asignarEtiqueta(ArticuloCuarto articuloCuarto)
     {
         ContentValues contenedor = new ContentValues();
-        contenedor.put("etiqueta", articuloCuarto1.getEtiqueta());
-        return (cx.update("articuloCuarto", contenedor, "id="+articuloCuarto1.getId(), null)) > 0;
-    }
-
-    public boolean asignarEtiqueta2(ArticuloCuarto articuloCuarto2)
-    {
-        ContentValues contenedor = new ContentValues();
-        contenedor.put("etiqueta2", articuloCuarto2.getEtiqueta2());
-        return (cx.update("articuloCuarto" , contenedor, "id="+articuloCuarto2.getId(), null)) > 0;
+        contenedor.put("etiqueta", articuloCuarto.getEtiqueta());
+        return (cx.update("articuloCuarto", contenedor, "id="+articuloCuarto.getId(), null)) > 0;
     }
 
     public ArrayList<ArticuloCuarto> verTodos()
@@ -72,8 +65,7 @@ public class daoArticuloCuarto {
                 lista.add(new ArticuloCuarto(cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getString(2),
-                        cursor.getString(3),
-                        cursor.getInt(4)));
+                        cursor.getInt(3)));
 
             }while (cursor.moveToNext());
         }
@@ -87,8 +79,7 @@ public class daoArticuloCuarto {
         articuloCuarto = new ArticuloCuarto(cursor.getInt(0),
                 cursor.getString(1),
                 cursor.getString(2),
-                cursor.getString(3),
-                cursor.getInt(4));
+                cursor.getInt(3));
         return articuloCuarto;
     }
 }

@@ -23,7 +23,7 @@ public class daoCaja {
         this.contexto = c;
         this.currentCuarto = cuartoID;
         cx = c.openOrCreateDatabase(nombreBD, Context.MODE_PRIVATE, null);
-        cx.execSQL("create table if not exists caja (id integer primary key autoincrement, nombre text, descripcion text, estado text, tamanio text, etiqueta text, etiqueta2 text, cuartoid integer)");
+        cx.execSQL("create table if not exists caja (id integer primary key autoincrement, nombre text, descripcion text, estado text, tamanio text, etiqueta text, cuartoid integer)");
     }
 
 
@@ -66,13 +66,6 @@ public class daoCaja {
         return (cx.update("caja", contenedor, "id="+caja.getId(), null)) > 0;
     }
 
-    public boolean asignarEtiqueta2(Caja caja)
-    {
-        ContentValues contenedor = new ContentValues();
-        contenedor.put("etiqueta2", caja.getEtiqueta2());
-        return (cx.update("caja", contenedor, "id="+caja.getId(), null)) > 0;
-    }
-
     public ArrayList<Caja> verTodos()
     {
         lista.clear();
@@ -86,8 +79,7 @@ public class daoCaja {
                         cursor.getString(3),
                         cursor.getString(4),
                         cursor.getString(5),
-                        cursor.getString(6),
-                        cursor.getInt(7)));
+                        cursor.getInt(6)));
 
             }while (cursor.moveToNext());
         }
@@ -104,8 +96,7 @@ public class daoCaja {
                 cursor.getString(3),
                 cursor.getString(4),
                 cursor.getString(5),
-                cursor.getString(6),
-                cursor.getInt(7));
+                cursor.getInt(6));
         return caja;
     }
 }

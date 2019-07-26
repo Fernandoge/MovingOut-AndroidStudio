@@ -79,20 +79,17 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
         }
         articulo = lista.get(posicion);
         TextView nombre = (TextView)view.findViewById(R.id.textItemNombre);
-        Button etiqueta1 = (Button)view.findViewById(R.id.textItemEtiqueta);
-        Button etiqueta2 = (Button)view.findViewById(R.id.textItemEtiqueta2);
+        Button etiqueta = (Button)view.findViewById(R.id.textItemEtiqueta);
         Button editar = (Button) view.findViewById(R.id.buttonEditItem);
         Button eliminar = (Button) view.findViewById(R.id.buttonDeleteItem);
 
         nombre.setText(articulo.getNombre());
-        etiqueta1.setText(articulo.getEtiqueta());
-        etiqueta2.setText(articulo.getEtiqueta2());
-        etiqueta1.setTag(posicion);
-        etiqueta2.setTag(posicion);
+        etiqueta.setText(articulo.getEtiqueta());
+        etiqueta.setTag(posicion);
         editar.setTag(posicion);
         eliminar.setTag(posicion);
 
-        etiqueta1.setOnClickListener(new View.OnClickListener() {
+        etiqueta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int pos = Integer.parseInt(view.getTag().toString());
@@ -135,52 +132,6 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                 });
             }
         });
-
-        etiqueta2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int pos = Integer.parseInt(view.getTag().toString());
-                final Dialog dialogo = new Dialog(activity);
-                dialogo.setTitle("Asignar etiqueta 2 articuloCuarto");
-                dialogo.setCancelable(true);
-                dialogo.setContentView(R.layout.asignar_etiqueta);
-                dialogo.show();
-
-                final Spinner dropdownEtiqueta = (Spinner) dialogo.findViewById(R.id.dropdownAssignEtiqueta);
-                String[] spinnerArray = clsDaoEtiqueta.obtenerNombreEtiquetas();
-                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerArray);
-                dropdownEtiqueta.setAdapter(spinnerArrayAdapter);
-
-                Button asignar = (Button) dialogo.findViewById(R.id.buttonAssignEtiqueta);
-                Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelAssignEtiqueta);
-
-                articulo = lista.get(pos);
-                setId(articulo.getId());
-
-                asignar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            articulo = new ArticuloCuarto(getId(), null, dropdownEtiqueta.getSelectedItem().toString());
-                            clsDaoArticuloCuarto.asignarEtiqueta2(articulo);
-                            lista = clsDaoArticuloCuarto.verTodos();
-                            notifyDataSetChanged();
-                            dialogo.dismiss();
-                        }catch (Exception e){
-                            Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                cancelar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialogo.dismiss();
-                    }
-                });
-            }
-        });
-
-
 
         editar.setOnClickListener(new View.OnClickListener() {
               @Override
@@ -251,9 +202,6 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                 del.show();
             }
         });
-
-
-
         return view;
     }
 

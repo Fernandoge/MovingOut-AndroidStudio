@@ -25,12 +25,6 @@
         <Button
             android:id="@+id/textItemEtiqueta"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:text="Etiqueta1" />
-
-        <Button
-            android:id="@+id/textItemEtiqueta2"
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Etiqueta1" />
 

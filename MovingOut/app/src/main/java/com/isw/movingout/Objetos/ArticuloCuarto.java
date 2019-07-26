@@ -10,7 +10,7 @@ public class ArticuloCuarto {
     public ArticuloCuarto() {
     }
 
-    public ArticuloCuarto(int id, String nombre, String etiqueta, String etiqueta2, int cuartoID) {
+    public ArticuloCuarto(int id, String nombre, String etiqueta, int cuartoID) {
         this.id = id;
         this.nombre = nombre;
         this.etiqueta = etiqueta;
@@ -31,7 +31,6 @@ public class ArticuloCuarto {
     public ArticuloCuarto(int id, String etiqueta, String etiqueta2) {
         this.id = id;
         this.etiqueta = etiqueta;
-        this.etiqueta2 = etiqueta2;
     }
 
     public int getId() {

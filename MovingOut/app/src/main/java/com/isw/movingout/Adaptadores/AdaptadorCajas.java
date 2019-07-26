@@ -86,21 +86,18 @@ public class AdaptadorCajas extends BaseAdapter {
         TextView nombre = (TextView)view.findViewById(R.id.textCajaNombre);
         TextView descripcion = (TextView)view.findViewById(R.id.textCajaDescripcion);
         TextView tamanio = (TextView)view.findViewById(R.id.textCajaTamanio);
-        Button etiqueta1 = (Button) view.findViewById(R.id.textCajaEtiqueta);
-        Button etiqueta2 = (Button) view.findViewById(R.id.textCajaEtiqueta2);
+        Button etiqueta = (Button) view.findViewById(R.id.textCajaEtiqueta);
         Button editar = (Button) view.findViewById(R.id.buttonEditCaja);
         Button eliminar = (Button) view.findViewById(R.id.buttonDeleteCaja);
         final CheckBox checkboxEstado = (CheckBox) view.findViewById(R.id.checkBoxEstado);
 
         nombre.setText(caja.getNombre());
-        etiqueta1.setText(caja.getEtiqueta());
-        etiqueta2.setText(caja.getEtiqueta2());
+        etiqueta.setText(caja.getEtiqueta());
         descripcion.setText(caja.getDescripcion());
         tamanio.setText(caja.getTamanio());
         nombre.setTag(posicion);
         checkboxEstado.setTag(posicion);
-        etiqueta1.setTag(posicion);
-        etiqueta2.setTag(posicion);
+        etiqueta.setTag(posicion);
         editar.setTag(posicion);
         eliminar.setTag(posicion);
 
@@ -153,7 +150,7 @@ public class AdaptadorCajas extends BaseAdapter {
             }
         });
 
-        etiqueta1.setOnClickListener(new View.OnClickListener() {
+        etiqueta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int pos = Integer.parseInt(view.getTag().toString());
@@ -180,51 +177,6 @@ public class AdaptadorCajas extends BaseAdapter {
                         try {
                             caja = new Caja(getId(), dropdownEtiqueta.getSelectedItem().toString(), null);
                             clsDaoCaja.asignarEtiqueta(caja);
-                            lista = clsDaoCaja.verTodos();
-                            notifyDataSetChanged();
-                            dialogo.dismiss();
-                        }catch (Exception e){
-                            Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                cancelar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialogo.dismiss();
-                    }
-                });
-            }
-        });
-
-
-        etiqueta2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int pos = Integer.parseInt(view.getTag().toString());
-                final Dialog dialogo = new Dialog(activity);
-                dialogo.setTitle("Asignar etiqueta 2 caja");
-                dialogo.setCancelable(true);
-                dialogo.setContentView(R.layout.asignar_etiqueta);
-                dialogo.show();
-
-                final Spinner dropdownEtiqueta = (Spinner) dialogo.findViewById(R.id.dropdownAssignEtiqueta);
-                String[] spinnerArray = clsDaoEtiqueta.obtenerNombreEtiquetas();
-                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerArray);
-                dropdownEtiqueta.setAdapter(spinnerArrayAdapter);
-
-                Button asignar = (Button) dialogo.findViewById(R.id.buttonAssignEtiqueta);
-                Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelAssignEtiqueta);
-
-                caja = lista.get(pos);
-                setId(caja.getId());
-
-                asignar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            caja = new Caja(getId(), null, dropdownEtiqueta.getSelectedItem().toString());
-                            clsDaoCaja.asignarEtiqueta2(caja);
                             lista = clsDaoCaja.verTodos();
                             notifyDataSetChanged();
                             dialogo.dismiss();

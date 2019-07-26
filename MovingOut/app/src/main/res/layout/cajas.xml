@@ -66,14 +66,8 @@
                 <Button
                     android:id="@+id/textCajaEtiqueta"
                     android:layout_width="match_parent"
-                    android:layout_height="62dp"
-                    android:text="Etiqueta 1" />
-
-                <Button
-                    android:id="@+id/textCajaEtiqueta2"
-                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="ETIQUETA 2" />
+                    android:text="Etiqueta 1" />
 
             </LinearLayout>
 
