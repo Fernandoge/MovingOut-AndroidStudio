@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Para eliminar la caja elija una de las 2 opciones:" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:gravity="bottom"
+        android:text="1)" />
+
+
+    <Button
+        android:id="@+id/buttonMoveryEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mover Articulos a la siguiente caja y eliminar esta:" />
+
+    <Spinner
+        android:id="@+id/dropdownListaCajas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="bottom"
+        android:text="2)" />
+
+    <Button
+        android:id="@+id/buttonEliminarTodo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eliminar caja con todo dentro" />
+
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="bottom" />
+
+    <Button
+        android:id="@+id/buttonCancelarEliminarCaja"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancelar Eliminación de la caja" />
+
+
+</LinearLayout>

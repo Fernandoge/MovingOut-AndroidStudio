@@ -19,8 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.isw.movingout.Activities.ActivityArticulosCaja;
+import com.isw.movingout.Daos.daoArticuloCaja;
 import com.isw.movingout.Daos.daoCaja;
 import com.isw.movingout.Daos.daoEtiqueta;
+import com.isw.movingout.Objetos.ArticuloCaja;
 import com.isw.movingout.Objetos.Caja;
 import com.isw.movingout.Objetos.Cuarto;
 import com.isw.movingout.R;
@@ -30,10 +32,14 @@ import java.util.ArrayList;
 public class AdaptadorCajas extends BaseAdapter {
 
     ArrayList<Caja> listaCajas;
+    ArrayList<Caja> listaTotalCajas;
     ArrayList<Cuarto> listaCuartos;
+    ArrayList<ArticuloCaja> listaArticulosCaja;
+    daoArticuloCaja clsDaoArticuloCaja;
     daoCaja clsDaoCaja;
     daoEtiqueta clsDaoEtiqueta;
     Caja caja;
+    ArticuloCaja articuloCaja;
     Activity activity;
     int id = 0;
 
@@ -263,6 +269,7 @@ public class AdaptadorCajas extends BaseAdapter {
                     @Override
                     public void onClick(View view)
                     {
+                        /*
                         AlertDialog.Builder del = new AlertDialog.Builder(activity);
                         del.setMessage("¿Estas seguro de eliminar esta caja?");
                         del.setCancelable(false);
@@ -282,6 +289,103 @@ public class AdaptadorCajas extends BaseAdapter {
                             }
                         });
                         del.show();
+                        */
+                        final Dialog dialogoEliminar = new Dialog(activity);
+                        dialogoEliminar.setTitle("Eliminar Caja");
+                        dialogoEliminar.setCancelable(true);
+                        dialogoEliminar.setContentView(R.layout.eliminar_caja);
+                        dialogoEliminar.show();
+                        listaTotalCajas = clsDaoCaja.obtenerCajas();
+
+                        Button moverYEliminar = (Button) dialogoEliminar.findViewById(R.id.buttonMoveryEliminar);
+                        Button eliminarTodo = (Button) dialogoEliminar.findViewById(R.id.buttonEliminarTodo);
+                        Button cancelarEliminarCaja = (Button) dialogoEliminar.findViewById(R.id.buttonCancelarEliminarCaja);
+                        //Spinner Cajas
+                        final Spinner dropdownListaCajas = (Spinner) dialogoEliminar.findViewById(R.id.dropdownListaCajas);
+                        String[] spinnerArrayCajas = new String[listaTotalCajas.size() + 1];
+                        final Integer[] idCajasArray = new Integer[listaTotalCajas.size() + 1];
+                        spinnerArrayCajas[0] = "";
+                        for(int i = 1; i<listaTotalCajas.size()+1; i++)
+                        {
+                            spinnerArrayCajas[i] = listaTotalCajas.get(i-1).getNombre();
+                            idCajasArray[i] = listaTotalCajas.get(i-1).getId();
+                        }
+                        ArrayAdapter<String> spinnerListaCajasArrayAdapter = new ArrayAdapter<String> (dialogoEliminar.getContext(), android.R.layout.simple_spinner_item, spinnerArrayCajas);
+                        dropdownListaCajas.setAdapter(spinnerListaCajasArrayAdapter);
+
+                        moverYEliminar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                AlertDialog.Builder del = new AlertDialog.Builder(activity);
+                                del.setMessage("¿Estas seguro de eliminar esta caja y mover sus articulos a la caja seleccionada?");
+                                del.setCancelable(false);
+                                del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        try {
+                                            if (dropdownListaCajas.getSelectedItemPosition() == 0)
+                                                Toast.makeText(activity, "Tiene que elegir una caja primero", Toast.LENGTH_SHORT).show();
+                                            else {
+                                                clsDaoArticuloCaja = new daoArticuloCaja(activity, getId());
+                                                listaArticulosCaja = clsDaoArticuloCaja.verTodos();
+                                                for (int i = 0; i < listaArticulosCaja.size(); i++) {
+                                                    articuloCaja = new ArticuloCaja(listaArticulosCaja.get(i).getId(), idCajasArray[dropdownListaCajas.getSelectedItemPosition()]);
+                                                    clsDaoArticuloCaja.mover(articuloCaja);
+                                                }
+                                                clsDaoCaja.eliminar(getId());
+                                                listaCajas = clsDaoCaja.verTodos();
+                                                notifyDataSetChanged();
+                                                dialogoEliminar.dismiss();
+                                                dialogo.dismiss();
+                                            }
+                                        } catch (Exception e) {
+                                            Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                                del.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                del.show();
+                            }
+                        });
+
+                        eliminarTodo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                AlertDialog.Builder del = new AlertDialog.Builder(activity);
+                                del.setMessage("¿Estas seguro de eliminar esta caja y sus articulos?");
+                                del.setCancelable(false);
+                                del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        clsDaoCaja.eliminar(getId());
+                                        listaCajas = clsDaoCaja.verTodos();
+                                        notifyDataSetChanged();
+                                        dialogo.dismiss();
+                                        dialogoEliminar.dismiss();
+                                    }
+                                });
+                                del.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                del.show();
+                            }
+                        });
+
+                        cancelarEliminarCaja.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialogoEliminar.dismiss();
+                            }
+                        });
+
                     }
                 });
 
