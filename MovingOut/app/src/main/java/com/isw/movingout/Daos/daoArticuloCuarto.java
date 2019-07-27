@@ -47,6 +47,13 @@ public class daoArticuloCuarto {
         return (cx.update("articuloCuarto", contenedor, "id="+a.getId(), null)) > 0;
     }
 
+    public boolean mover(ArticuloCuarto a)
+    {
+        ContentValues contenedor = new ContentValues();
+        contenedor.put("cuartoid", a.getCuartoID());
+        return (cx.update("articuloCuarto", contenedor, "id="+a.getId(), null)) > 0;
+    }
+
     public boolean asignarEtiqueta(ArticuloCuarto articuloCuarto)
     {
         ContentValues contenedor = new ContentValues();

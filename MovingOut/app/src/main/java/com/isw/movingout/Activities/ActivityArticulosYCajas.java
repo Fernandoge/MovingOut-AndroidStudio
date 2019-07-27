@@ -15,9 +15,11 @@ import android.widget.Toast;
 
 import com.isw.movingout.Adaptadores.AdaptadorArticulosCuarto;
 import com.isw.movingout.Adaptadores.AdaptadorCajas;
+import com.isw.movingout.Daos.daoCuarto;
 import com.isw.movingout.Daos.daoEtiqueta;
 import com.isw.movingout.Objetos.ArticuloCuarto;
 import com.isw.movingout.Objetos.Caja;
+import com.isw.movingout.Objetos.Cuarto;
 import com.isw.movingout.R;
 import com.isw.movingout.Daos.daoArticuloCuarto;
 import com.isw.movingout.Daos.daoCaja;
@@ -29,10 +31,12 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
     daoEtiqueta daoEtiqueta;
     daoArticuloCuarto daoArticuloCuarto;
     daoCaja daoCaja;
+    daoCuarto daoCuarto;
     AdaptadorArticulosCuarto adapterArticulosCuarto;
     AdaptadorCajas adapterCajas;
     ArrayList<ArticuloCuarto> listaArticulos;
     ArrayList<Caja> listaCajas;
+    ArrayList<Cuarto> listaCuartos;
     ArticuloCuarto articulo;
     Caja caja;
     int currentCuartoID;
@@ -51,9 +55,12 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
 
         daoEtiqueta = new daoEtiqueta(this);
 
+        daoCuarto = new daoCuarto(this);
+        listaCuartos = daoCuarto.verTodos();
+
         daoArticuloCuarto = new daoArticuloCuarto(this, currentCuartoID);
         listaArticulos = daoArticuloCuarto.verTodos();
-        adapterArticulosCuarto = new AdaptadorArticulosCuarto(this, listaArticulos, daoArticuloCuarto, daoEtiqueta);
+        adapterArticulosCuarto = new AdaptadorArticulosCuarto(this, listaArticulos, daoArticuloCuarto, daoEtiqueta, listaCuartos);
 
         daoCaja = new daoCaja(this, currentCuartoID);
         listaCajas = daoCaja.verTodos();
@@ -103,6 +110,8 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCaja);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCaja);
                 Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarCaja);
+
+
                 eliminar.setVisibility(View.GONE);
 
 
@@ -144,8 +153,15 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
+
                 Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarArticuloCuarto);
+                final Spinner dropdownCajas = (Spinner) dialogo.findViewById(R.id.dropdownMoverArticuloCuarto);
+                Button mover = (Button) dialogo.findViewById(R.id.buttonMoverArticuloCuarto);
+                TextView textMover = (TextView) dialogo.findViewById(R.id.textMoverArticuloCuarto);
                 eliminar.setVisibility(View.GONE);
+                dropdownCajas.setVisibility(View.GONE);
+                mover.setVisibility(View.GONE);
+                textMover.setVisibility(View.GONE);
 
 
                 guardar.setOnClickListener(new View.OnClickListener() {

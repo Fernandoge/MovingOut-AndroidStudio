@@ -170,11 +170,13 @@ public class AdaptadorArticulosCaja extends BaseAdapter {
                         try {
                             if (dropdownCajas.getSelectedItemPosition() == 0)
                                 Toast.makeText(activity, "Tiene que elegir una caja primero", Toast.LENGTH_SHORT).show();
-                            articuloCaja = new ArticuloCaja(getId(), idCajasArray[dropdownCajas.getSelectedItemPosition()]);
-                            clsDaoArticuloCaja.mover(articuloCaja);
-                            listaArticulosCaja = clsDaoArticuloCaja.verTodos();
-                            notifyDataSetChanged();
-                            dialogo.dismiss();
+                            else{
+                                articuloCaja = new ArticuloCaja(getId(), idCajasArray[dropdownCajas.getSelectedItemPosition()]);
+                                clsDaoArticuloCaja.mover(articuloCaja);
+                                listaArticulosCaja = clsDaoArticuloCaja.verTodos();
+                                notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
                         } catch (Exception e) {
                             Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
                         }

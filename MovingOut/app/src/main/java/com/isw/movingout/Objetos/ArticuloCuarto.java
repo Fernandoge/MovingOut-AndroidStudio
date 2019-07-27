@@ -33,6 +33,11 @@ public class ArticuloCuarto {
         this.etiqueta = etiqueta;
     }
 
+    public ArticuloCuarto(int id, int cuartoID) {
+        this.id = id;
+        this.cuartoID = cuartoID;
+    }
+
     public int getId() {
         return id;
     }

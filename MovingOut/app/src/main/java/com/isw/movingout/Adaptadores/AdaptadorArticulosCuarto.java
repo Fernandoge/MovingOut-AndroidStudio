@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.isw.movingout.Daos.daoEtiqueta;
 import com.isw.movingout.Objetos.ArticuloCuarto;
+import com.isw.movingout.Objetos.Cuarto;
 import com.isw.movingout.R;
 import com.isw.movingout.Daos.daoArticuloCuarto;
 
@@ -26,7 +27,8 @@ import java.util.ArrayList;
 
 public class AdaptadorArticulosCuarto extends BaseAdapter
 {
-    ArrayList<ArticuloCuarto> lista;
+    ArrayList<ArticuloCuarto> listaArticulosCuarto;
+    ArrayList<Cuarto> listaCuartos;
     daoArticuloCuarto clsDaoArticuloCuarto;
     daoEtiqueta clsDaoEtiqueta;
     ArticuloCuarto articulo;
@@ -41,31 +43,32 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
         this.id = id;
     }
 
-    public AdaptadorArticulosCuarto(Activity a, ArrayList<ArticuloCuarto> lista, daoArticuloCuarto daoArticuloCuarto, daoEtiqueta daoEtiqueta)
+    public AdaptadorArticulosCuarto(Activity a, ArrayList<ArticuloCuarto> listaArticulosCuarto, daoArticuloCuarto daoArticuloCuarto, daoEtiqueta daoEtiqueta, ArrayList<Cuarto> listaCuartos)
     {
-        this.lista = lista;
+        this.listaArticulosCuarto = listaArticulosCuarto;
         this.activity = a;
         this.clsDaoArticuloCuarto = daoArticuloCuarto;
         this.clsDaoEtiqueta = daoEtiqueta;
+        this.listaCuartos = listaCuartos;
     }
 
     @Override
     public int getCount() {
-        if (lista != null)
-            return lista.size();
+        if (listaArticulosCuarto != null)
+            return listaArticulosCuarto.size();
         else
             return 0;
     }
 
     @Override
     public ArticuloCuarto getItem(int i) {
-        articulo = lista.get(i);
+        articulo = listaArticulosCuarto.get(i);
         return null;
     }
 
     @Override
     public long getItemId(int i) {
-        articulo = lista.get(i);
+        articulo = listaArticulosCuarto.get(i);
         return articulo.getId();
     }
 
@@ -77,7 +80,7 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
             LayoutInflater li = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = li.inflate(R.layout.articulo_cuarto, null);
         }
-        articulo = lista.get(posicion);
+        articulo = listaArticulosCuarto.get(posicion);
         TextView nombre = (TextView)view.findViewById(R.id.textItemNombre);
         Button etiqueta = (Button)view.findViewById(R.id.textItemEtiqueta);
         Button editar = (Button) view.findViewById(R.id.buttonEditItem);
@@ -105,7 +108,7 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                 Button asignar = (Button) dialogo.findViewById(R.id.buttonAssignEtiqueta);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelAssignEtiqueta);
 
-                articulo = lista.get(pos);
+                articulo = listaArticulosCuarto.get(pos);
                 setId(articulo.getId());
 
                 asignar.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +117,7 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                         try {
                             articulo = new ArticuloCuarto(getId(), dropdownEtiqueta.getSelectedItem().toString(), null);
                             clsDaoArticuloCuarto.asignarEtiqueta(articulo);
-                            lista = clsDaoArticuloCuarto.verTodos();
+                            listaArticulosCuarto = clsDaoArticuloCuarto.verTodos();
                             notifyDataSetChanged();
                             dialogo.dismiss();
                         }catch (Exception e){
@@ -144,9 +147,22 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                   Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                   Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
                   Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarArticuloCuarto);
+                  Button mover = (Button) dialogo.findViewById(R.id.buttonMoverArticuloCuarto);
+
+                  final Spinner dropdownCuartos = (Spinner) dialogo.findViewById(R.id.dropdownMoverArticuloCuarto);
+                  String[] spinnerArray = new String[listaCuartos.size() + 1];
+                  final Integer[] idCuartosArray = new Integer[listaCuartos.size() + 1];
+                  spinnerArray[0] = "";
+                  for(int i = 1; i<listaCuartos.size()+1; i++)
+                  {
+                      spinnerArray[i] = listaCuartos.get(i-1).getNombre();
+                      idCuartosArray[i] = listaCuartos.get(i-1).getId();
+                  }
+                  ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerArray);
+                  dropdownCuartos.setAdapter(spinnerArrayAdapter);
 
                   guardar.setText("Editar");
-                  articulo = lista.get(pos);
+                  articulo = listaArticulosCuarto.get(pos);
                   setId(articulo.getId());
                   nombre.setText(articulo.getNombre());
                   guardar.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +171,7 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                           try {
                               articulo = new ArticuloCuarto(getId(), nombre.getText().toString());
                               clsDaoArticuloCuarto.editar(articulo);
-                              lista = clsDaoArticuloCuarto.verTodos();
+                              listaArticulosCuarto = clsDaoArticuloCuarto.verTodos();
                               notifyDataSetChanged();
                               dialogo.dismiss();
                           } catch (Exception e) {
@@ -182,7 +198,7 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                               @Override
                               public void onClick(DialogInterface dialog, int which) {
                                   clsDaoArticuloCuarto.eliminar(getId());
-                                  lista = clsDaoArticuloCuarto.verTodos();
+                                  listaArticulosCuarto = clsDaoArticuloCuarto.verTodos();
                                   notifyDataSetChanged();
                                   dialogo.dismiss();
                               }
@@ -194,6 +210,25 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                               }
                           });
                           del.show();
+                      }
+                  });
+
+                  mover.setOnClickListener(new View.OnClickListener() {
+                      @Override
+                      public void onClick(View v) {
+                          try {
+                              if (dropdownCuartos.getSelectedItemPosition() == 0)
+                                  Toast.makeText(activity, "Tiene que elegir un cuarto primero", Toast.LENGTH_SHORT).show();
+                              else{
+                                  articulo = new ArticuloCuarto(getId(), idCuartosArray[dropdownCuartos.getSelectedItemPosition()]);
+                                  clsDaoArticuloCuarto.mover(articulo);
+                                  listaArticulosCuarto = clsDaoArticuloCuarto.verTodos();
+                                  notifyDataSetChanged();
+                                  dialogo.dismiss();
+                              }
+                          } catch (Exception e) {
+                              Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
+                          }
                       }
                   });
 
