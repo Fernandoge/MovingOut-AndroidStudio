@@ -99,4 +99,25 @@ public class daoCaja {
                 cursor.getInt(6));
         return caja;
     }
+
+    public ArrayList<Caja> obtenerCajas()
+    {
+        lista.clear();
+        Cursor cursor = cx.rawQuery("select * from caja", null);
+        if (cursor != null && cursor.getCount()>0){
+            cursor.moveToFirst();
+            do{
+                lista.add(new Caja(cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getInt(6)));
+
+            }while (cursor.moveToNext());
+        }
+        return lista;
+    }
+
 }

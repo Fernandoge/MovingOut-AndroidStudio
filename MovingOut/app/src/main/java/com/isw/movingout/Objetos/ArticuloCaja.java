@@ -28,6 +28,11 @@ public class ArticuloCaja {
         this.cantidad = cantidad;
     }
 
+    public ArticuloCaja(int id, int cajaID) {
+        this.id = id;
+        this.cajaID = cajaID;
+    }
+
     public int getId() {
         return id;
     }

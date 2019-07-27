@@ -8,21 +8,26 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.isw.movingout.Adaptadores.AdaptadorArticulosCaja;
 import com.isw.movingout.Daos.daoArticuloCaja;
+import com.isw.movingout.Daos.daoCaja;
 import com.isw.movingout.Objetos.ArticuloCaja;
+import com.isw.movingout.Objetos.Caja;
 import com.isw.movingout.R;
 
 import java.util.ArrayList;
 
 public class ActivityArticulosCaja extends AppCompatActivity {
 
-    daoArticuloCaja dao;
+    daoArticuloCaja daoArticuloCaja;
+    daoCaja daoCaja;
     AdaptadorArticulosCaja adapter;
-    ArrayList<ArticuloCaja> lista;
+    ArrayList<ArticuloCaja> listaArticulosCaja;
+    ArrayList<Caja> listaCajas;
     ArticuloCaja articuloCaja;
     int currentCajaID;
     String currentCajaNombre;
@@ -38,9 +43,11 @@ public class ActivityArticulosCaja extends AppCompatActivity {
             currentCajaNombre = extras.getString("cajaNombre");
         }
 
-        dao = new daoArticuloCaja(this, currentCajaID);
-        lista = dao.verTodos();
-        adapter = new AdaptadorArticulosCaja(this, lista, dao);
+        daoArticuloCaja = new daoArticuloCaja(this, currentCajaID);
+        daoCaja = new daoCaja(this,0);
+        listaArticulosCaja = daoArticuloCaja.verTodos();
+        listaCajas = daoCaja.obtenerCajas();
+        adapter = new AdaptadorArticulosCaja(this, listaArticulosCaja, daoArticuloCaja, listaCajas);
         TextView textCurrentCaja = (TextView) findViewById(R.id.textCurrentCajaNombre);
         textCurrentCaja.setText(currentCajaNombre);
         ListView list = (ListView) findViewById(R.id.listBox);
@@ -65,8 +72,16 @@ public class ActivityArticulosCaja extends AppCompatActivity {
                 final EditText cantidad = (EditText) dialogo.findViewById(R.id.inputArticuloCajaCantidad);
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddArticuloCaja);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelArticuloCaja);
+
                 Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarArticuloCaja);
+                final Spinner dropdownCajas = (Spinner) dialogo.findViewById(R.id.dropdownMoverArticuloCaja);
+                Button mover = (Button) dialogo.findViewById(R.id.buttonMoverArticuloCaja);
+                TextView textMover = (TextView) dialogo.findViewById(R.id.text2);
                 eliminar.setVisibility(View.GONE);
+                dropdownCajas.setVisibility(View.GONE);
+                mover.setVisibility(View.GONE);
+                textMover.setVisibility(View.GONE);
+
 
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -74,8 +89,8 @@ public class ActivityArticulosCaja extends AppCompatActivity {
                         try {
                             articuloCaja = new ArticuloCaja(nombre.getText().toString(),
                                     Integer.parseInt(cantidad.getText().toString()), currentCajaID);
-                            dao.insertar(articuloCaja);
-                            lista = dao.verTodos();
+                            daoArticuloCaja.insertar(articuloCaja);
+                            listaArticulosCaja = daoArticuloCaja.verTodos();
                             adapter.notifyDataSetChanged();
                             dialogo.dismiss();
                         }catch (Exception e){
