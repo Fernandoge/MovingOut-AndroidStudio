@@ -168,7 +168,7 @@ public class AdaptadorArticulosCaja extends BaseAdapter {
                     @Override
                     public void onClick(View v) {
                         try {
-                            if (idCajasArray[dropdownCajas.getSelectedItemPosition()] == 0)
+                            if (dropdownCajas.getSelectedItemPosition() == 0)
                                 Toast.makeText(activity, "Tiene que elegir una caja primero", Toast.LENGTH_SHORT).show();
                             articuloCaja = new ArticuloCaja(getId(), idCajasArray[dropdownCajas.getSelectedItemPosition()]);
                             clsDaoArticuloCaja.mover(articuloCaja);
