@@ -23,7 +23,7 @@ public class daoArticuloCuarto {
         this.contexto = c;
         this.currentCuarto = cuartoID;
         cx = c.openOrCreateDatabase(nombreBD, Context.MODE_PRIVATE, null);
-        cx.execSQL("create table if not exists articuloCuarto(id integer primary key autoincrement, nombre text, etiqueta text, cuartoid integer)");
+        cx.execSQL("create table if not exists articuloCuarto(id integer primary key autoincrement, nombre text, tipo text, etiqueta text, cuartoid integer)");
 
     }
 
@@ -32,6 +32,7 @@ public class daoArticuloCuarto {
         ContentValues contenedor = new ContentValues();
         contenedor.put("nombre", articuloCuarto.getNombre());
         contenedor.put("cuartoid", articuloCuarto.getCuartoID());
+        contenedor.put("tipo", articuloCuarto.getTipo());
         return (cx.insert("articuloCuarto", null, contenedor)) > 0;
     }
 
@@ -44,6 +45,7 @@ public class daoArticuloCuarto {
     {
         ContentValues contenedor = new ContentValues();
         contenedor.put("nombre", a.getNombre());
+        contenedor.put("tipo",a.getTipo());
         return (cx.update("articuloCuarto", contenedor, "id="+a.getId(), null)) > 0;
     }
 
@@ -72,7 +74,8 @@ public class daoArticuloCuarto {
                 lista.add(new ArticuloCuarto(cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getString(2),
-                        cursor.getInt(3)));
+                        cursor.getString(3),
+                        cursor.getInt(4)));
 
             }while (cursor.moveToNext());
         }
@@ -86,7 +89,8 @@ public class daoArticuloCuarto {
         articuloCuarto = new ArticuloCuarto(cursor.getInt(0),
                 cursor.getString(1),
                 cursor.getString(2),
-                cursor.getInt(3));
+                cursor.getString(3),
+                cursor.getInt(4));
         return articuloCuarto;
     }
 }

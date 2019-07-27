@@ -12,8 +12,14 @@
         <TextView
             android:id="@+id/textItemNombre"
             android:layout_width="match_parent"
-            android:layout_height="78dp"
+            android:layout_height="37dp"
             android:text="Nombre" />
+
+        <TextView
+            android:id="@+id/textItemTipo"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:text="Tipo" />
 
     </LinearLayout>
 

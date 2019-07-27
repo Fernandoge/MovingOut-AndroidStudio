@@ -3,6 +3,7 @@ package com.isw.movingout.Objetos;
 public class ArticuloCuarto {
     int id;
     String nombre;
+    String tipo;
     String etiqueta;
     String etiqueta2;
     int cuartoID;
@@ -10,11 +11,11 @@ public class ArticuloCuarto {
     public ArticuloCuarto() {
     }
 
-    public ArticuloCuarto(int id, String nombre, String etiqueta, int cuartoID) {
+    public ArticuloCuarto(int id, String nombre, String tipo, String etiqueta, int cuartoID) {
         this.id = id;
         this.nombre = nombre;
+        this.tipo = tipo;
         this.etiqueta = etiqueta;
-        this.etiqueta2 = etiqueta2;
         this.cuartoID = cuartoID;
     }
 
@@ -23,12 +24,24 @@ public class ArticuloCuarto {
         this.nombre = nombre;
     }
 
+    public ArticuloCuarto(int id, String nombre, String tipo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.tipo = tipo;
+    }
+
+    public ArticuloCuarto(String nombre, String tipo, int cuartoID) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.cuartoID = cuartoID;
+    }
+
     public ArticuloCuarto(String nombre, int cuartoID) {
         this.nombre = nombre;
         this.cuartoID = cuartoID;
     }
 
-    public ArticuloCuarto(int id, String etiqueta, String etiqueta2) {
+    public ArticuloCuarto(int id, String etiqueta, String etiqueta2, String etiqueta3) {
         this.id = id;
         this.etiqueta = etiqueta;
     }
@@ -76,5 +89,13 @@ public class ArticuloCuarto {
 
     public void setCuartoID(int cuartoID) {
         this.cuartoID = cuartoID;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

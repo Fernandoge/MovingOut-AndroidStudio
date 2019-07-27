@@ -82,10 +82,12 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
         }
         articulo = listaArticulosCuarto.get(posicion);
         TextView nombre = (TextView)view.findViewById(R.id.textItemNombre);
+        TextView tipo = (TextView) view.findViewById(R.id.textItemTipo);
         Button etiqueta = (Button)view.findViewById(R.id.textItemEtiqueta);
         Button editar = (Button) view.findViewById(R.id.buttonEditItem);
 
         nombre.setText(articulo.getNombre());
+        tipo.setText(articulo.getTipo());
         etiqueta.setText(articulo.getEtiqueta());
         etiqueta.setTag(posicion);
         editar.setTag(posicion);
@@ -115,7 +117,7 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                     @Override
                     public void onClick(View v) {
                         try {
-                            articulo = new ArticuloCuarto(getId(), dropdownEtiqueta.getSelectedItem().toString(), null);
+                            articulo = new ArticuloCuarto(getId(), dropdownEtiqueta.getSelectedItem().toString(), null, null);
                             clsDaoArticuloCuarto.asignarEtiqueta(articulo);
                             listaArticulosCuarto = clsDaoArticuloCuarto.verTodos();
                             notifyDataSetChanged();
@@ -144,6 +146,13 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                   dialogo.setContentView(R.layout.crear_articulocuarto);
                   dialogo.show();
                   final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
+
+                  //Spinner tipo
+                  final Spinner dropdownTipo = (Spinner) dialogo.findViewById(R.id.dropdownArticuloCuartoTipo);
+                  String[] spinnerTamanioArray = {"", "Mueble", "Electrodoméstico", "Decoración", "Planta", "Implemento Gym", "Otros"};
+                  ArrayAdapter<String> spinnerTamanioArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerTamanioArray);
+                  dropdownTipo.setAdapter(spinnerTamanioArrayAdapter);
+
                   Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                   Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
                   Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarArticuloCuarto);
@@ -169,7 +178,7 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                       @Override
                       public void onClick(View v) {
                           try {
-                              articulo = new ArticuloCuarto(getId(), nombre.getText().toString());
+                              articulo = new ArticuloCuarto(getId(), nombre.getText().toString(), dropdownTipo.getSelectedItem().toString());
                               clsDaoArticuloCuarto.editar(articulo);
                               listaArticulosCuarto = clsDaoArticuloCuarto.verTodos();
                               notifyDataSetChanged();

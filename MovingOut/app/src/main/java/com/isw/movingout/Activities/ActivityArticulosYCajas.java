@@ -100,7 +100,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputCajaNombre);
                 final EditText descripcion = (EditText) dialogo.findViewById(R.id.inputCajaDescripcion);
 
-                //final EditText tamanio = (EditText) dialogo.findViewById(R.id.inputCajaTamanio);
+                //Spinner Tamanio
                 final Spinner dropdownTamanio = (Spinner) dialogo.findViewById(R.id.dropdownCajaTamanio);
                 String[] spinnerTamanioArray = {"", "Pequeña", "Mediana", "Grande", "Muy Grande"};
                 ArrayAdapter<String> spinnerTamanioArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerTamanioArray);
@@ -156,16 +156,22 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 dialogo.setContentView(R.layout.crear_articulocuarto);
                 dialogo.show();
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputItemNombre);
+
+                //Spinner tipo
+                final Spinner dropdownTipo = (Spinner) dialogo.findViewById(R.id.dropdownArticuloCuartoTipo);
+                String[] spinnerTamanioArray = {"", "Mueble", "Electrodoméstico", "Decoración", "Planta", "Implemento Gym", "Otros"};
+                ArrayAdapter<String> spinnerTamanioArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerTamanioArray);
+                dropdownTipo.setAdapter(spinnerTamanioArrayAdapter);
+
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
-
                 Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarArticuloCuarto);
-                final Spinner dropdownCajas = (Spinner) dialogo.findViewById(R.id.dropdownMoverArticuloCuarto);
+                final Spinner dropdownCuartos = (Spinner) dialogo.findViewById(R.id.dropdownMoverArticuloCuarto);
                 Button mover = (Button) dialogo.findViewById(R.id.buttonMoverArticuloCuarto);
                 TextView textMover = (TextView) dialogo.findViewById(R.id.textMoverArticuloCuarto);
-                
+
                 eliminar.setVisibility(View.GONE);
-                dropdownCajas.setVisibility(View.GONE);
+                dropdownCuartos.setVisibility(View.GONE);
                 mover.setVisibility(View.GONE);
                 textMover.setVisibility(View.GONE);
 
@@ -174,7 +180,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         try {
-                            articulo = new ArticuloCuarto(nombre.getText().toString(), currentCuartoID);
+                            articulo = new ArticuloCuarto(nombre.getText().toString(),dropdownTipo.getSelectedItem().toString(), currentCuartoID);
                             daoArticuloCuarto.insertar(articulo);
                             listaArticulos = daoArticuloCuarto.verTodos();
                             adapterArticulosCuarto.notifyDataSetChanged();

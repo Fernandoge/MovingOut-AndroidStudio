@@ -207,7 +207,7 @@ public class AdaptadorCajas extends BaseAdapter {
                 final EditText nombre = (EditText) dialogo.findViewById(R.id.inputCajaNombre);
                 final EditText descripcion = (EditText) dialogo.findViewById(R.id.inputCajaDescripcion);
 
-                //final EditText tamanio = (EditText) dialogo.findViewById(R.id.inputCajaTamanio);
+                //Spinner Tamanio
                 final Spinner dropdownTamanio = (Spinner) dialogo.findViewById(R.id.dropdownCajaTamanio);
                 String[] spinnerTamanioArray = {"", "Pequeña", "Mediana", "Grande", "Muy Grande"};
                 ArrayAdapter<String> spinnerTamanioArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerTamanioArray);
