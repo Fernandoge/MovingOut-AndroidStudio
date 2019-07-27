@@ -64,7 +64,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
 
         daoCaja = new daoCaja(this, currentCuartoID);
         listaCajas = daoCaja.verTodos();
-        adapterCajas = new AdaptadorCajas(this, listaCajas, daoCaja, daoEtiqueta);
+        adapterCajas = new AdaptadorCajas(this, listaCajas, daoCaja, daoEtiqueta, listaCuartos);
 
         TextView textCurrentCaja = (TextView) findViewById(R.id.textCurrentCuartoNombre);
         textCurrentCaja.setText(currentCuartoNombre);
@@ -110,9 +110,14 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCaja);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCaja);
                 Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarCaja);
-
+                final Spinner dropdownCajas = (Spinner) dialogo.findViewById(R.id.dropdownMoverArticuloCuarto);
+                Button mover = (Button) dialogo.findViewById(R.id.buttonMoverArticuloCuarto);
+                TextView textMover = (TextView) dialogo.findViewById(R.id.textMoverArticuloCuarto);
 
                 eliminar.setVisibility(View.GONE);
+                dropdownCajas.setVisibility(View.GONE);
+                mover.setVisibility(View.GONE);
+                textMover.setVisibility(View.GONE);
 
 
                 guardar.setOnClickListener(new View.OnClickListener() {
@@ -158,6 +163,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 final Spinner dropdownCajas = (Spinner) dialogo.findViewById(R.id.dropdownMoverArticuloCuarto);
                 Button mover = (Button) dialogo.findViewById(R.id.buttonMoverArticuloCuarto);
                 TextView textMover = (TextView) dialogo.findViewById(R.id.textMoverArticuloCuarto);
+                
                 eliminar.setVisibility(View.GONE);
                 dropdownCajas.setVisibility(View.GONE);
                 mover.setVisibility(View.GONE);

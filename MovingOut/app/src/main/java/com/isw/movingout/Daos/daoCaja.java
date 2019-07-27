@@ -66,6 +66,13 @@ public class daoCaja {
         return (cx.update("caja", contenedor, "id="+caja.getId(), null)) > 0;
     }
 
+    public boolean mover(Caja caja)
+    {
+        ContentValues contenedor = new ContentValues();
+        contenedor.put("cuartoid", caja.getCuartoID());
+        return (cx.update("caja", contenedor, "id="+caja.getId(), null)) > 0;
+    }
+
     public ArrayList<Caja> verTodos()
     {
         lista.clear();

@@ -45,4 +45,23 @@ android:text="Agregar" />
         android:layout_height="wrap_content"
         android:text="Eliminar Caja" />
 
+    <TextView
+        android:id="@+id/textMoverCaja"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:gravity="bottom|left"
+        android:text="Mover a otro cuarto" />
+    <Spinner
+        android:id="@+id/dropdownMoverCaja"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
+    <Button
+        android:id="@+id/buttonMoverCaja"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mover" />
+
 </LinearLayout>

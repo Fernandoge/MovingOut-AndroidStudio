@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +22,15 @@ import com.isw.movingout.Activities.ActivityArticulosCaja;
 import com.isw.movingout.Daos.daoCaja;
 import com.isw.movingout.Daos.daoEtiqueta;
 import com.isw.movingout.Objetos.Caja;
+import com.isw.movingout.Objetos.Cuarto;
 import com.isw.movingout.R;
 
 import java.util.ArrayList;
 
 public class AdaptadorCajas extends BaseAdapter {
 
-    ArrayList<Caja> lista;
+    ArrayList<Caja> listaCajas;
+    ArrayList<Cuarto> listaCuartos;
     daoCaja clsDaoCaja;
     daoEtiqueta clsDaoEtiqueta;
     Caja caja;
@@ -44,30 +45,31 @@ public class AdaptadorCajas extends BaseAdapter {
         this.id = id;
     }
 
-    public AdaptadorCajas(Activity activity, ArrayList<Caja> lista, daoCaja clsDaoCaja, daoEtiqueta clsDaoEtiqueta) {
-        this.lista = lista;
+    public AdaptadorCajas(Activity activity, ArrayList<Caja> listaCajas, daoCaja clsDaoCaja, daoEtiqueta clsDaoEtiqueta, ArrayList<Cuarto> listaCuartos) {
+        this.listaCajas = listaCajas;
         this.clsDaoCaja = clsDaoCaja;
         this.clsDaoEtiqueta = clsDaoEtiqueta;
         this.activity = activity;
+        this.listaCuartos = listaCuartos;
     }
 
     @Override
     public int getCount() {
-        if (lista != null)
-            return lista.size();
+        if (listaCajas != null)
+            return listaCajas.size();
         else
             return 0;
     }
 
     @Override
     public Caja getItem(int i) {
-        caja = lista.get(i);
+        caja = listaCajas.get(i);
         return null;
     }
 
     @Override
     public long getItemId(int i) {
-        caja = lista.get(i);
+        caja = listaCajas.get(i);
         return caja.getId();
     }
 
@@ -82,7 +84,7 @@ public class AdaptadorCajas extends BaseAdapter {
             view = li.inflate(R.layout.cajas, null);
         }
 
-        caja = lista.get(posicion);
+        caja = listaCajas.get(posicion);
         TextView nombre = (TextView)view.findViewById(R.id.textCajaNombre);
         TextView descripcion = (TextView)view.findViewById(R.id.textCajaDescripcion);
         TextView tamanio = (TextView)view.findViewById(R.id.textCajaTamanio);
@@ -108,7 +110,7 @@ public class AdaptadorCajas extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 int pos = Integer.parseInt(view.getTag().toString());
-                caja = lista.get(pos);
+                caja = listaCajas.get(pos);
                 Intent intent = new Intent(view.getContext(), ActivityArticulosCaja.class);
                 intent.putExtra("cajaID", caja.getId());
                 intent.putExtra("cajaNombre", caja.getNombre());
@@ -120,7 +122,7 @@ public class AdaptadorCajas extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 int pos = Integer.parseInt(view.getTag().toString());
-                caja = lista.get(pos);
+                caja = listaCajas.get(pos);
                 setId(caja.getId());
 
                 if (checkboxEstado.isChecked())
@@ -128,7 +130,7 @@ public class AdaptadorCajas extends BaseAdapter {
                     try {
                         caja = new Caja(getId(), "Embalada");
                         clsDaoCaja.checkEstado(caja);
-                        lista = clsDaoCaja.verTodos();
+                        listaCajas = clsDaoCaja.verTodos();
                         notifyDataSetChanged();
                     } catch (Exception e) {
                         Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
@@ -139,7 +141,7 @@ public class AdaptadorCajas extends BaseAdapter {
                     try {
                         caja = new Caja(getId(), "Desembalada");
                         clsDaoCaja.checkEstado(caja);
-                        lista = clsDaoCaja.verTodos();
+                        listaCajas = clsDaoCaja.verTodos();
                         notifyDataSetChanged();
                     } catch (Exception e) {
                         Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
@@ -166,7 +168,7 @@ public class AdaptadorCajas extends BaseAdapter {
                 Button asignar = (Button) dialogo.findViewById(R.id.buttonAssignEtiqueta);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelAssignEtiqueta);
 
-                caja = lista.get(pos);
+                caja = listaCajas.get(pos);
                 setId(caja.getId());
 
                 asignar.setOnClickListener(new View.OnClickListener() {
@@ -175,7 +177,7 @@ public class AdaptadorCajas extends BaseAdapter {
                         try {
                             caja = new Caja(getId(), dropdownEtiqueta.getSelectedItem().toString(), null);
                             clsDaoCaja.asignarEtiqueta(caja);
-                            lista = clsDaoCaja.verTodos();
+                            listaCajas = clsDaoCaja.verTodos();
                             notifyDataSetChanged();
                             dialogo.dismiss();
                         }catch (Exception e){
@@ -214,8 +216,22 @@ public class AdaptadorCajas extends BaseAdapter {
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCaja);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCaja);
                 Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarCaja);
+                Button mover = (Button) dialogo.findViewById(R.id.buttonMoverCaja);
+
+                final Spinner dropdownCuartos = (Spinner) dialogo.findViewById(R.id.dropdownMoverCaja);
+                String[] spinnerArray = new String[listaCuartos.size() + 1];
+                final Integer[] idCuartosArray = new Integer[listaCuartos.size() + 1];
+                spinnerArray[0] = "";
+                for(int i = 1; i<listaCuartos.size()+1; i++)
+                {
+                    spinnerArray[i] = listaCuartos.get(i-1).getNombre();
+                    idCuartosArray[i] = listaCuartos.get(i-1).getId();
+                }
+                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerArray);
+                dropdownCuartos.setAdapter(spinnerArrayAdapter);
+
                 guardar.setText("Editar");
-                caja = lista.get(pos);
+                caja = listaCajas.get(pos);
                 setId(caja.getId());
                 nombre.setText(caja.getNombre());
                 descripcion.setText(caja.getDescripcion());
@@ -227,7 +243,7 @@ public class AdaptadorCajas extends BaseAdapter {
                                     descripcion.getText().toString(),
                                     dropdownTamanio.getSelectedItem().toString());
                             clsDaoCaja.editar(caja);
-                            lista = clsDaoCaja.verTodos();
+                            listaCajas = clsDaoCaja.verTodos();
                             notifyDataSetChanged();
                             dialogo.dismiss();
                         }catch (Exception e){
@@ -254,7 +270,7 @@ public class AdaptadorCajas extends BaseAdapter {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 clsDaoCaja.eliminar(getId());
-                                lista = clsDaoCaja.verTodos();
+                                listaCajas = clsDaoCaja.verTodos();
                                 notifyDataSetChanged();
                                 dialogo.dismiss();
                             }
@@ -266,6 +282,25 @@ public class AdaptadorCajas extends BaseAdapter {
                             }
                         });
                         del.show();
+                    }
+                });
+
+                mover.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            if (dropdownCuartos.getSelectedItemPosition() == 0)
+                                Toast.makeText(activity, "Tiene que elegir un cuarto primero", Toast.LENGTH_SHORT).show();
+                            else{
+                                caja = new Caja(getId(), idCuartosArray[dropdownCuartos.getSelectedItemPosition()]);
+                                clsDaoCaja.mover(caja);
+                                listaCajas = clsDaoCaja.verTodos();
+                                notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
+                        } catch (Exception e) {
+                            Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 

@@ -47,6 +47,11 @@ public class Caja {
         this.etiqueta = etiqueta;
     }
 
+    public Caja(int id, int cuartoID) {
+        this.id = id;
+        this.cuartoID = cuartoID;
+    }
+
     public int getId() {
         return id;
     }
