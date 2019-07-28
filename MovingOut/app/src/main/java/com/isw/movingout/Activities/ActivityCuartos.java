@@ -72,11 +72,15 @@ public class ActivityCuartos extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
                         try {
-                            cuarto = new Cuarto(nombre.getText().toString());
-                            dao.insertar(cuarto);
-                            lista = dao.verTodos();
-                            adapter.notifyDataSetChanged();
-                            dialogo.dismiss();
+                            if (nombre.getText().toString().isEmpty())
+                                nombre.setError("Este campo es obligatorio");
+                            else {
+                                cuarto = new Cuarto(nombre.getText().toString());
+                                dao.insertar(cuarto);
+                                lista = dao.verTodos();
+                                adapter.notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
                         }catch (Exception e){
                             Toast.makeText(getApplication(), "ERROR", Toast.LENGTH_SHORT).show();
                         }

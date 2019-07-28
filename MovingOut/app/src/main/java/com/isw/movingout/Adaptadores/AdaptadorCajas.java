@@ -245,13 +245,23 @@ public class AdaptadorCajas extends BaseAdapter {
                     @Override
                     public void onClick(View v) {
                         try {
-                            caja = new Caja(getId(), nombre.getText().toString(),
-                                    descripcion.getText().toString(),
-                                    dropdownTamanio.getSelectedItem().toString());
-                            clsDaoCaja.editar(caja);
-                            listaCajas = clsDaoCaja.verTodos();
-                            notifyDataSetChanged();
-                            dialogo.dismiss();
+                            if (nombre.getText().toString().isEmpty() || descripcion.getText().toString().isEmpty() || dropdownTamanio.getSelectedItemPosition() == 0) {
+                                if (nombre.getText().toString().isEmpty())
+                                    nombre.setError("Este campo es obligatorio");
+                                if (descripcion.getText().toString().isEmpty())
+                                    descripcion.setError("Este campo es obligatorio");
+                                if (dropdownTamanio.getSelectedItemPosition() == 0)
+                                    Toast.makeText(activity, "Seleccione un tamaño para la caja", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                caja = new Caja(getId(), nombre.getText().toString(),
+                                        descripcion.getText().toString(),
+                                        dropdownTamanio.getSelectedItem().toString());
+                                clsDaoCaja.editar(caja);
+                                listaCajas = clsDaoCaja.verTodos();
+                                notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
                         }catch (Exception e){
                             Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
                         }
@@ -269,27 +279,6 @@ public class AdaptadorCajas extends BaseAdapter {
                     @Override
                     public void onClick(View view)
                     {
-                        /*
-                        AlertDialog.Builder del = new AlertDialog.Builder(activity);
-                        del.setMessage("¿Estas seguro de eliminar esta caja?");
-                        del.setCancelable(false);
-                        del.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                clsDaoCaja.eliminar(getId());
-                                listaCajas = clsDaoCaja.verTodos();
-                                notifyDataSetChanged();
-                                dialogo.dismiss();
-                            }
-                        });
-                        del.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-                        del.show();
-                        */
                         final Dialog dialogoEliminar = new Dialog(activity);
                         dialogoEliminar.setTitle("Eliminar Caja");
                         dialogoEliminar.setCancelable(true);

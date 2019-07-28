@@ -122,11 +122,19 @@ public class AdaptadorArticulosCaja extends BaseAdapter {
                     @Override
                     public void onClick(View v) {
                         try {
-                            articuloCaja = new ArticuloCaja(getId(), nombre.getText().toString(), Integer.parseInt(cantidad.getText().toString()));
-                            clsDaoArticuloCaja.editar(articuloCaja);
-                            listaArticulosCaja = clsDaoArticuloCaja.verTodos();
-                            notifyDataSetChanged();
-                            dialogo.dismiss();
+                            if (nombre.getText().toString().isEmpty() || cantidad.getText().toString().isEmpty()) {
+                                if (nombre.getText().toString().isEmpty())
+                                    nombre.setError("Este campo es obligatorio");
+                                if (cantidad.getText().toString().isEmpty())
+                                    cantidad.setError("Este campo es obligatorio");
+                            }
+                            else {
+                                articuloCaja = new ArticuloCaja(getId(), nombre.getText().toString(), Integer.parseInt(cantidad.getText().toString()));
+                                clsDaoArticuloCaja.editar(articuloCaja);
+                                listaArticulosCaja = clsDaoArticuloCaja.verTodos();
+                                notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
                         } catch (Exception e) {
                             Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
                         }

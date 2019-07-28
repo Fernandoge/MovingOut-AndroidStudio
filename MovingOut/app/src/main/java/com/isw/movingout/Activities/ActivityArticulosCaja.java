@@ -87,12 +87,20 @@ public class ActivityArticulosCaja extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         try {
-                            articuloCaja = new ArticuloCaja(nombre.getText().toString(),
-                                    Integer.parseInt(cantidad.getText().toString()), currentCajaID);
-                            daoArticuloCaja.insertar(articuloCaja);
-                            listaArticulosCaja = daoArticuloCaja.verTodos();
-                            adapter.notifyDataSetChanged();
-                            dialogo.dismiss();
+                            if (nombre.getText().toString().isEmpty() || cantidad.getText().toString().isEmpty()) {
+                                if (nombre.getText().toString().isEmpty())
+                                    nombre.setError("Este campo es obligatorio");
+                                if (cantidad.getText().toString().isEmpty())
+                                    cantidad.setError("Este campo es obligatorio");
+                            }
+                            else {
+                                articuloCaja = new ArticuloCaja(nombre.getText().toString(),
+                                        Integer.parseInt(cantidad.getText().toString()), currentCajaID);
+                                daoArticuloCaja.insertar(articuloCaja);
+                                listaArticulosCaja = daoArticuloCaja.verTodos();
+                                adapter.notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
                         }catch (Exception e){
                             Toast.makeText(getApplication(), "ERROR", Toast.LENGTH_SHORT).show();
                         }

@@ -102,11 +102,15 @@ public class AdaptadorEtiquetas extends BaseAdapter {
                     @Override
                     public void onClick(View v) {
                         try {
-                            etiqueta = new Etiqueta(getId(), nombre.getText().toString());
-                            clsDaoEtiqueta.editar(etiqueta);
-                            lista = clsDaoEtiqueta.verTodos();
-                            notifyDataSetChanged();
-                            dialogo.dismiss();
+                            if (nombre.getText().toString().isEmpty())
+                                nombre.setError("Este campo es obligatorio");
+                            else {
+                                etiqueta = new Etiqueta(getId(), nombre.getText().toString());
+                                clsDaoEtiqueta.editar(etiqueta);
+                                lista = clsDaoEtiqueta.verTodos();
+                                notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
                         }catch (Exception e){
                             Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
                         }

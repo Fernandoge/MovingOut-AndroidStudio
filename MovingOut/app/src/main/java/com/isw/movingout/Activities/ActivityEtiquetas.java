@@ -61,11 +61,15 @@ public class ActivityEtiquetas extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         try {
-                            etiqueta = new Etiqueta(nombre.getText().toString());
-                            dao.insertar(etiqueta);
-                            lista = dao.verTodos();
-                            adapter.notifyDataSetChanged();
-                            dialogo.dismiss();
+                            if (nombre.getText().toString().isEmpty())
+                                nombre.setError("Este campo es obligatorio");
+                            else {
+                                etiqueta = new Etiqueta(nombre.getText().toString());
+                                dao.insertar(etiqueta);
+                                lista = dao.verTodos();
+                                adapter.notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
                         }catch (Exception e){
                             Toast.makeText(getApplication(), "ERROR", Toast.LENGTH_SHORT).show();
                         }

@@ -106,9 +106,9 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 ArrayAdapter<String> spinnerTamanioArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerTamanioArray);
                 dropdownTamanio.setAdapter(spinnerTamanioArrayAdapter);
 
-
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCaja);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCaja);
+
                 Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarCaja);
                 final Spinner dropdownCajas = (Spinner) dialogo.findViewById(R.id.dropdownMoverCaja);
                 Button mover = (Button) dialogo.findViewById(R.id.buttonMoverCaja);
@@ -124,14 +124,24 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         try {
-                            caja = new Caja(nombre.getText().toString(),
-                                    descripcion.getText().toString(),
-                                    dropdownTamanio.getSelectedItem().toString(),
-                                    currentCuartoID);
-                            daoCaja.insertar(caja);
-                            listaCajas = daoCaja.verTodos();
-                            adapterCajas.notifyDataSetChanged();
-                            dialogo.dismiss();
+                            if (nombre.getText().toString().isEmpty() || descripcion.getText().toString().isEmpty() || dropdownTamanio.getSelectedItemPosition() == 0) {
+                                if (nombre.getText().toString().isEmpty())
+                                    nombre.setError("Este campo es obligatorio");
+                                if (descripcion.getText().toString().isEmpty())
+                                    descripcion.setError("Este campo es obligatorio");
+                                if (dropdownTamanio.getSelectedItemPosition() == 0)
+                                    Toast.makeText(getApplication(), "Seleccione un tamaño para la caja", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                caja = new Caja(nombre.getText().toString(),
+                                        descripcion.getText().toString(),
+                                        dropdownTamanio.getSelectedItem().toString(),
+                                        currentCuartoID);
+                                daoCaja.insertar(caja);
+                                listaCajas = daoCaja.verTodos();
+                                adapterCajas.notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
                         }catch (Exception e){
                             Toast.makeText(getApplication(), "ERROR", Toast.LENGTH_SHORT).show();
                         }
@@ -180,11 +190,19 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         try {
-                            articulo = new ArticuloCuarto(nombre.getText().toString(),dropdownTipo.getSelectedItem().toString(), currentCuartoID);
-                            daoArticuloCuarto.insertar(articulo);
-                            listaArticulos = daoArticuloCuarto.verTodos();
-                            adapterArticulosCuarto.notifyDataSetChanged();
-                            dialogo.dismiss();
+                            if (nombre.getText().toString().isEmpty() || dropdownTipo.getSelectedItemPosition() == 0){
+                                if(nombre.getText().toString().isEmpty())
+                                    nombre.setError("Este campo es obligatorio");
+                                if (dropdownTipo.getSelectedItemPosition() == 0)
+                                    Toast.makeText(getApplication(), "Seleccione un tipo para el articulo", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                articulo = new ArticuloCuarto(nombre.getText().toString(), dropdownTipo.getSelectedItem().toString(), currentCuartoID);
+                                daoArticuloCuarto.insertar(articulo);
+                                listaArticulos = daoArticuloCuarto.verTodos();
+                                adapterArticulosCuarto.notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
                         }catch (Exception e){
                             Toast.makeText(getApplication(), "ERROR", Toast.LENGTH_SHORT).show();
                         }

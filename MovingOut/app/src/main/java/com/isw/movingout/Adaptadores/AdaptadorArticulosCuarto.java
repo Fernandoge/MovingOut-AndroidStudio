@@ -178,11 +178,19 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                       @Override
                       public void onClick(View v) {
                           try {
-                              articulo = new ArticuloCuarto(getId(), nombre.getText().toString(), dropdownTipo.getSelectedItem().toString());
-                              clsDaoArticuloCuarto.editar(articulo);
-                              listaArticulosCuarto = clsDaoArticuloCuarto.verTodos();
-                              notifyDataSetChanged();
-                              dialogo.dismiss();
+                              if (nombre.getText().toString().isEmpty() || dropdownTipo.getSelectedItemPosition() == 0){
+                                  if(nombre.getText().toString().isEmpty())
+                                      nombre.setError("Este campo es obligatorio");
+                                  if (dropdownTipo.getSelectedItemPosition() == 0)
+                                      Toast.makeText(activity, "Seleccione un tipo para el articulo", Toast.LENGTH_SHORT).show();
+                              }
+                              else {
+                                  articulo = new ArticuloCuarto(getId(), nombre.getText().toString(), dropdownTipo.getSelectedItem().toString());
+                                  clsDaoArticuloCuarto.editar(articulo);
+                                  listaArticulosCuarto = clsDaoArticuloCuarto.verTodos();
+                                  notifyDataSetChanged();
+                                  dialogo.dismiss();
+                              }
                           } catch (Exception e) {
                               Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
                           }

@@ -118,11 +118,15 @@ public class AdaptadorCuartos extends BaseAdapter
                     @Override
                     public void onClick(View v) {
                         try {
-                            cuarto = new Cuarto(getId(), nombre.getText().toString());
-                            clsDaoCuarto.editar(cuarto);
-                            lista = clsDaoCuarto.verTodos();
-                            notifyDataSetChanged();
-                            dialogo.dismiss();
+                            if (nombre.getText().toString().isEmpty())
+                                nombre.setError("Este campo es obligatorio");
+                            else {
+                                cuarto = new Cuarto(getId(), nombre.getText().toString());
+                                clsDaoCuarto.editar(cuarto);
+                                lista = clsDaoCuarto.verTodos();
+                                notifyDataSetChanged();
+                                dialogo.dismiss();
+                            }
                         }catch (Exception e){
                             Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
                         }
