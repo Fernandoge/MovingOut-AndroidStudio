@@ -241,6 +241,7 @@ public class AdaptadorCajas extends BaseAdapter {
                 setId(caja.getId());
                 nombre.setText(caja.getNombre());
                 descripcion.setText(caja.getDescripcion());
+                dropdownTamanio.setSelection(spinnerTamanioArrayAdapter.getPosition(caja.getTamanio()));
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

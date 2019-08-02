@@ -149,9 +149,9 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
 
                   //Spinner tipo
                   final Spinner dropdownTipo = (Spinner) dialogo.findViewById(R.id.dropdownArticuloCuartoTipo);
-                  String[] spinnerTamanioArray = {"", "Mueble", "Electrodoméstico", "Decoración", "Planta", "Implemento Gym", "Otros"};
-                  ArrayAdapter<String> spinnerTamanioArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerTamanioArray);
-                  dropdownTipo.setAdapter(spinnerTamanioArrayAdapter);
+                  String[] spinnerTipoArray = {"", "Mueble", "Electrodoméstico", "Decoración", "Planta", "Implemento Gym", "Otros"};
+                  ArrayAdapter<String> spinnerTipoArrayAdapter = new ArrayAdapter<String> (dialogo.getContext(), android.R.layout.simple_spinner_item, spinnerTipoArray);
+                  dropdownTipo.setAdapter(spinnerTipoArrayAdapter);
 
                   Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                   Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
@@ -174,6 +174,7 @@ public class AdaptadorArticulosCuarto extends BaseAdapter
                   articulo = listaArticulosCuarto.get(pos);
                   setId(articulo.getId());
                   nombre.setText(articulo.getNombre());
+                  dropdownTipo.setSelection(spinnerTipoArrayAdapter.getPosition(articulo.getTipo()));
                   guardar.setOnClickListener(new View.OnClickListener() {
                       @Override
                       public void onClick(View v) {
