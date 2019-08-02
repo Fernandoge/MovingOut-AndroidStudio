@@ -60,6 +60,24 @@ public class daoCuarto {
         return lista;
     }
 
+    public ArrayList<Cuarto> verTodos(int currentCuarto)
+    {
+        lista.clear();
+        Cursor cursor = cx.rawQuery("select * from cuarto", null);
+        if (cursor != null && cursor.getCount()>0){
+            cursor.moveToFirst();
+            do{
+                if (currentCuarto != cursor.getInt(0))
+                {
+                    lista.add(new Cuarto(cursor.getInt(0), cursor.getString(1)));
+                }
+
+
+            }while (cursor.moveToNext());
+        }
+        return lista;
+    }
+
     public Cuarto verUno(int posicion)
     {
         Cursor cursor = cx.rawQuery("select * from cuarto", null);

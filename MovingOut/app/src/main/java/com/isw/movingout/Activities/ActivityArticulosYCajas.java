@@ -56,7 +56,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
         daoEtiqueta = new daoEtiqueta(this);
 
         daoCuarto = new daoCuarto(this);
-        listaCuartos = daoCuarto.verTodos();
+        listaCuartos = daoCuarto.verTodos(currentCuartoID);
 
         daoArticuloCuarto = new daoArticuloCuarto(this, currentCuartoID);
         listaArticulos = daoArticuloCuarto.verTodos();

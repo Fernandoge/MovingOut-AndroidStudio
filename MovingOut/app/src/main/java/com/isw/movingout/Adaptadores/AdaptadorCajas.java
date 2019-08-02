@@ -284,7 +284,7 @@ public class AdaptadorCajas extends BaseAdapter {
                         dialogoEliminar.setCancelable(true);
                         dialogoEliminar.setContentView(R.layout.eliminar_caja);
                         dialogoEliminar.show();
-                        listaTotalCajas = clsDaoCaja.obtenerCajas();
+                        listaTotalCajas = clsDaoCaja.obtenerCajas(getId());
 
                         Button moverYEliminar = (Button) dialogoEliminar.findViewById(R.id.buttonMoveryEliminar);
                         Button eliminarTodo = (Button) dialogoEliminar.findViewById(R.id.buttonEliminarTodo);

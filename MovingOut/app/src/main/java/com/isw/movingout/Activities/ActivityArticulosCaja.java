@@ -46,7 +46,7 @@ public class ActivityArticulosCaja extends AppCompatActivity {
         daoArticuloCaja = new daoArticuloCaja(this, currentCajaID);
         daoCaja = new daoCaja(this,0);
         listaArticulosCaja = daoArticuloCaja.verTodos();
-        listaCajas = daoCaja.obtenerCajas();
+        listaCajas = daoCaja.obtenerCajas(currentCajaID);
         adapter = new AdaptadorArticulosCaja(this, listaArticulosCaja, daoArticuloCaja, listaCajas);
         TextView textCurrentCaja = (TextView) findViewById(R.id.textCurrentCajaNombre);
         textCurrentCaja.setText(currentCajaNombre);
