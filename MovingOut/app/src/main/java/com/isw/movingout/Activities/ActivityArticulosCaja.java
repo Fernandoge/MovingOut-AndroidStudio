@@ -43,13 +43,13 @@ public class ActivityArticulosCaja extends AppCompatActivity {
             currentCajaNombre = extras.getString("cajaNombre");
         }
 
+        setTitle("Caja Actual: " + currentCajaNombre);
+
         daoArticuloCaja = new daoArticuloCaja(this, currentCajaID);
         daoCaja = new daoCaja(this,0);
         listaArticulosCaja = daoArticuloCaja.verTodos();
         listaCajas = daoCaja.obtenerCajas(currentCajaID);
         adapter = new AdaptadorArticulosCaja(this, listaArticulosCaja, daoArticuloCaja, listaCajas);
-        TextView textCurrentCaja = (TextView) findViewById(R.id.textCurrentCajaNombre);
-        textCurrentCaja.setText(currentCajaNombre);
         ListView list = (ListView) findViewById(R.id.listBox);
         Button agregarArticuloCaja = (Button) findViewById(R.id.buttonAddArticuloCaja);
         list.setAdapter(adapter);
@@ -77,10 +77,12 @@ public class ActivityArticulosCaja extends AppCompatActivity {
                 final Spinner dropdownCajas = (Spinner) dialogo.findViewById(R.id.dropdownMoverArticuloCaja);
                 Button mover = (Button) dialogo.findViewById(R.id.buttonMoverArticuloCaja);
                 TextView textMover = (TextView) dialogo.findViewById(R.id.text2);
+                TextView separador = (TextView) dialogo.findViewById(R.id.separador);
                 eliminar.setVisibility(View.GONE);
                 dropdownCajas.setVisibility(View.GONE);
                 mover.setVisibility(View.GONE);
                 textMover.setVisibility(View.GONE);
+                separador.setVisibility(View.GONE);
 
 
                 guardar.setOnClickListener(new View.OnClickListener() {

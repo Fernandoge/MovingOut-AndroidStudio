@@ -5,20 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@mipmap/beach_background2"
     tools:context=".Activities.ActivityEtiquetas">
-
-    <Button
-        android:id="@+id/buttonAddEtiqueta"
-        android:layout_width="162dp"
-        android:layout_height="158dp"
-        android:background="@mipmap/add_icon"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="228dp" />
 
     <ListView
         android:id="@+id/listBox"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.2"></ListView>
+
+    <Button
+        android:id="@+id/buttonAddEtiqueta"
+        android:layout_width="106dp"
+        android:layout_height="99dp"
+        android:layout_gravity="right"
+        android:background="@mipmap/menu_etiquetas"
+        android:gravity="right"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="228dp" />
 
 </LinearLayout>

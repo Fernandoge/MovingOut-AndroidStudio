@@ -11,6 +11,14 @@
         android:layout_height="wrap_content"
         android:hint="Nombre Articulo" />
 
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:gravity="bottom"
+        android:text="Tipo Articulo"
+        android:textSize="18sp" />
+
     <Spinner
         android:id="@+id/dropdownArticuloCuartoTipo"
         android:layout_width="match_parent"
@@ -22,26 +30,26 @@
         android:id="@+id/buttonAddCuarto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar" />
+        android:background="@mipmap/button_azul"
+        android:text="Agregar"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/buttonCancelCuarto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cancelar" />
-
-    <Button
-        android:id="@+id/buttonEliminarArticuloCuarto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Eliminar Articulo" />
+        android:background="@mipmap/button_azul"
+        android:text="Cancelar"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/textMoverArticuloCuarto"
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:gravity="bottom|left"
-        android:text="Mover a otro cuarto" />
+        android:text="Mover a otro cuarto"
+        android:textSize="18sp" />
+
     <Spinner
         android:id="@+id/dropdownMoverArticuloCuarto"
         android:layout_width="match_parent"
@@ -53,7 +61,22 @@
         android:id="@+id/buttonMoverArticuloCuarto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mover" />
+        android:background="@mipmap/button_azul"
+        android:text="Mover"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/separador"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <Button
+        android:id="@+id/buttonEliminarArticuloCuarto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/button_naranjo"
+        android:text="Eliminar Articulo"
+        android:textColor="#FFFFFF" />
 
 
 </LinearLayout>

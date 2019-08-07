@@ -53,6 +53,7 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
             currentCuartoNombre = extras.getString("cuartoNombre");
         }
 
+        setTitle("Cuarto actual: " + currentCuartoNombre);
         daoEtiqueta = new daoEtiqueta(this);
 
         daoCuarto = new daoCuarto(this);
@@ -65,9 +66,6 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
         daoCaja = new daoCaja(this, currentCuartoID);
         listaCajas = daoCaja.verTodos();
         adapterCajas = new AdaptadorCajas(this, listaCajas, daoCaja, daoEtiqueta, listaCuartos);
-
-        TextView textCurrentCaja = (TextView) findViewById(R.id.textCurrentCuartoNombre);
-        textCurrentCaja.setText(currentCuartoNombre);
 
         ListView listArticulos = (ListView) findViewById(R.id.listBoxArticulos);
         ListView listCajas = (ListView) findViewById(R.id.listBoxCajas);
@@ -113,11 +111,13 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 final Spinner dropdownCajas = (Spinner) dialogo.findViewById(R.id.dropdownMoverCaja);
                 Button mover = (Button) dialogo.findViewById(R.id.buttonMoverCaja);
                 TextView textMover = (TextView) dialogo.findViewById(R.id.textMoverCaja);
+                TextView separador = (TextView) dialogo.findViewById(R.id.separador);
 
                 eliminar.setVisibility(View.GONE);
                 dropdownCajas.setVisibility(View.GONE);
                 mover.setVisibility(View.GONE);
                 textMover.setVisibility(View.GONE);
+                separador.setVisibility(View.GONE);
 
 
                 guardar.setOnClickListener(new View.OnClickListener() {
@@ -179,11 +179,13 @@ public class ActivityArticulosYCajas extends AppCompatActivity {
                 final Spinner dropdownCuartos = (Spinner) dialogo.findViewById(R.id.dropdownMoverArticuloCuarto);
                 Button mover = (Button) dialogo.findViewById(R.id.buttonMoverArticuloCuarto);
                 TextView textMover = (TextView) dialogo.findViewById(R.id.textMoverArticuloCuarto);
+                TextView separador = (TextView) dialogo.findViewById(R.id.separador);
 
                 eliminar.setVisibility(View.GONE);
                 dropdownCuartos.setVisibility(View.GONE);
                 mover.setVisibility(View.GONE);
                 textMover.setVisibility(View.GONE);
+                separador.setVisibility(View.GONE);
 
 
                 guardar.setOnClickListener(new View.OnClickListener() {

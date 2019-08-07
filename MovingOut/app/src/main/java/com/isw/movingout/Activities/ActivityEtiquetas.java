@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.isw.movingout.Adaptadores.AdaptadorEtiquetas;
@@ -29,6 +30,8 @@ public class ActivityEtiquetas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_etiquetas);
+
+        setTitle("Menu Etiquetas");
 
         dao = new daoEtiqueta(this);
         lista = dao.verTodos();
@@ -55,7 +58,9 @@ public class ActivityEtiquetas extends AppCompatActivity {
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddEtiqueta);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelEtiqueta);
                 Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarEtiqueta);
+                TextView separador = (TextView) dialogo.findViewById(R.id.separador);
                 eliminar.setVisibility(View.GONE);
+                separador.setVisibility(View.GONE);
 
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override

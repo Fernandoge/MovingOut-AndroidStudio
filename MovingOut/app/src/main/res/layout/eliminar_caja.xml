@@ -8,22 +8,27 @@
     <TextView
         android:id="@+id/text1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Para eliminar la caja elija una de las 2 opciones:" />
+        android:layout_height="70dp"
+        android:text="Para eliminar la caja elija una de las 2 opciones:"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text2"
         android:layout_width="match_parent"
         android:layout_height="41dp"
         android:gravity="bottom"
-        android:text="1)" />
+        android:text="1)"
+        android:textSize="22dp" />
 
 
     <Button
         android:id="@+id/buttonMoveryEliminar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mover Articulos a la siguiente caja y eliminar esta:" />
+        android:background="@mipmap/button_naranjo"
+        android:text="Mover Articulos a la siguiente caja y eliminar esta:"
+        android:textColor="#FFFFFF" />
 
     <Spinner
         android:id="@+id/dropdownListaCajas"
@@ -37,25 +42,30 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="bottom"
-        android:text="2)" />
+        android:text="2)"
+        android:textSize="22dp" />
 
     <Button
         android:id="@+id/buttonEliminarTodo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eliminar caja con todo dentro" />
+        android:background="@mipmap/button_naranjo"
+        android:text="Eliminar caja con todo dentro"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/text4"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="30dp"
         android:gravity="bottom" />
 
     <Button
         android:id="@+id/buttonCancelarEliminarCaja"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cancelar Eliminación de la caja" />
+        android:background="@mipmap/button_azul"
+        android:text="Cancelar Eliminación de la caja"
+        android:textColor="#FFFFFF" />
 
 
 </LinearLayout>

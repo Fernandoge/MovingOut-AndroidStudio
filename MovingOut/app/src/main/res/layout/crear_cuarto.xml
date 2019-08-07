@@ -6,27 +6,44 @@
     android:orientation="vertical">
 
     <EditText
+        android:id="@+id/inputItemNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/inputItemNombre"
-        android:hint="Nombre Cuarto"/>
+        android:gravity="center"
+        android:hint="Nombre Cuarto" />
+
+    <TextView
+        android:id="@+id/separador2"
+        android:layout_width="match_parent"
+        android:layout_height="9dp" />
 
     <Button
+        android:id="@+id/buttonAddCuarto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@mipmap/button_azul"
         android:text="Agregar"
-        android:id="@+id/buttonAddCuarto" />
+        android:textColor="@color/ic_launcher_background" />
 
     <Button
         android:id="@+id/buttonCancelCuarto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cancelar" />
+        android:background="@mipmap/button_azul"
+        android:text="Cancelar"
+        android:textColor="@color/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/separador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/buttonEliminarCuarto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eliminar Cuarto" />
+        android:background="@mipmap/button_naranjo"
+        android:text="Eliminar Cuarto"
+        android:textColor="@color/ic_launcher_background" />
 
 </LinearLayout>

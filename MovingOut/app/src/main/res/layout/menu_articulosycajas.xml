@@ -5,67 +5,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@mipmap/beach_background2"
     tools:context=".Activities.ActivityArticulosYCajas">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="29dp"
+        android:layout_height="77dp"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/text3"
-            android:layout_width="0dp"
+            android:id="@+id/separador5"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cuarto actual:" />
-
-        <TextView
-            android:id="@+id/textCurrentCuartoNombre"
-            android:layout_width="225dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="138dp"
-        android:orientation="horizontal">
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonAddCaja"
-            android:layout_width="207dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@mipmap/add_icon"
-            android:text="Caja"
+            android:background="@mipmap/add_caja"
             tools:layout_editor_absoluteX="161dp"
             tools:layout_editor_absoluteY="228dp" />
+
+        <TextView
+            android:id="@+id/separador6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonAddArticuloCuarto"
-            android:layout_width="203dp"
-            android:layout_height="match_parent"
-            android:background="@mipmap/add_icon"
-            android:text="ArticuloCuarto"
+            android:layout_width="wrap_content"
+            android:layout_height="77dp"
+            android:background="@mipmap/add_articulocuarto"
             tools:layout_editor_absoluteX="161dp"
             tools:layout_editor_absoluteY="228dp" />
+
+        <TextView
+            android:id="@+id/separador7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
     <TextView
-        android:id="@+id/text1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ArticulosCuarto"
+        android:id="@+id/separador8"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_weight="0"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold" />
-
-    <ListView
-        android:id="@+id/listBoxArticulos"
-        android:layout_width="match_parent"
-        android:layout_height="121dp"
-        android:layout_weight="0.2">
-
-    </ListView>
 
     <TextView
         android:id="@+id/text2"
@@ -78,7 +74,33 @@
     <ListView
         android:id="@+id/listBoxCajas"
         android:layout_width="match_parent"
-        android:layout_height="136dp"
-        android:layout_weight="0.2"></ListView>
+        android:layout_height="40dp"
+        android:layout_weight="0.2">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/separador"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="#9FBEBEBE"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ArticulosCuarto"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/listBoxArticulos"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_weight="0.2">
+
+    </ListView>
 
 </LinearLayout>

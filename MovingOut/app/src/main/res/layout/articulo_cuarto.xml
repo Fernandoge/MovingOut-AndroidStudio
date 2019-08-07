@@ -5,47 +5,69 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="130dp"
-        android:layout_height="76dp"
+        android:layout_width="62dp"
+        android:layout_height="55dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:text="Nombre:" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tipo:" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="182dp"
+        android:layout_height="55dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textItemNombre"
             android:layout_width="match_parent"
-            android:layout_height="37dp"
+            android:layout_height="29dp"
             android:text="Nombre" />
 
         <TextView
             android:id="@+id/textItemTipo"
             android:layout_width="match_parent"
-            android:layout_height="37dp"
+            android:layout_height="29dp"
             android:text="Tipo" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="148dp"
-        android:layout_height="76dp"
+        android:layout_width="98dp"
+        android:layout_height="54dp"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/textItemEtiqueta"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Etiqueta1" />
+            android:layout_width="99dp"
+            android:layout_height="43dp"
+            android:layout_gravity="clip_horizontal|center|center_vertical|fill_vertical|end"
+            android:background="@mipmap/etiqueta"
+            android:text="Etiqueta1"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="76dp"
+        android:layout_height="53dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/buttonEditItem"
             android:layout_width="match_parent"
-            android:layout_height="78dp"
-            android:background="@mipmap/edit_icon"></Button>
+            android:layout_height="42dp"
+            android:background="@mipmap/tuercas"></Button>
 
     </LinearLayout>
 

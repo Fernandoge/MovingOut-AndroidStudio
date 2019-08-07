@@ -2,6 +2,7 @@ package com.isw.movingout.Activities;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.isw.movingout.Adaptadores.AdaptadorCuartos;
@@ -30,7 +32,7 @@ public class ActivityCuartos extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_cuartos);
-
+        setTitle("Menu Cuartos");
         dao = new daoCuarto(this);
         lista = dao.verTodos();
         adapter = new AdaptadorCuartos(this, lista, dao);
@@ -66,7 +68,9 @@ public class ActivityCuartos extends AppCompatActivity
                 Button guardar = (Button) dialogo.findViewById(R.id.buttonAddCuarto);
                 Button cancelar = (Button) dialogo.findViewById(R.id.buttonCancelCuarto);
                 Button eliminar = (Button) dialogo.findViewById(R.id.buttonEliminarCuarto);
+                TextView separador = (TextView) dialogo.findViewById(R.id.separador);
                 eliminar.setVisibility(View.GONE);
+                separador.setVisibility(View.GONE);
 
                 guardar.setOnClickListener(new View.OnClickListener() {
                     @Override

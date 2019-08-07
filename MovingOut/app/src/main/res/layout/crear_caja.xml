@@ -19,6 +19,14 @@ android:orientation="vertical">
         android:hint="Descripcion Caja" />
 
 
+    <TextView
+        android:id="@+id/text8"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:gravity="bottom"
+        android:text="Tamaño Caja"
+        android:textSize="18sp" />
+
     <Spinner
         android:id="@+id/dropdownCajaTamanio"
         android:layout_width="match_parent"
@@ -27,30 +35,29 @@ android:orientation="vertical">
         android:spinnerMode="dropdown" />
 
 
-<Button
-android:id="@+id/buttonAddCaja"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:text="Agregar" />
-
-<Button
-    android:id="@+id/buttonCancelCaja"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Cancelar" />
-
     <Button
-        android:id="@+id/buttonEliminarCaja"
+        android:id="@+id/buttonAddCaja"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eliminar Caja" />
+        android:background="@mipmap/button_azul"
+        android:text="Agregar"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/buttonCancelCaja"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/button_azul"
+        android:text="Cancelar"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/textMoverCaja"
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:gravity="bottom|left"
-        android:text="Mover a otro cuarto" />
+        android:text="Mover a otro cuarto"
+        android:textSize="18dp" />
     <Spinner
         android:id="@+id/dropdownMoverCaja"
         android:layout_width="match_parent"
@@ -62,6 +69,21 @@ android:text="Agregar" />
         android:id="@+id/buttonMoverCaja"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mover" />
+        android:background="@mipmap/button_azul"
+        android:text="Mover"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/separador"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <Button
+        android:id="@+id/buttonEliminarCaja"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/button_naranjo"
+        android:text="Eliminar Caja"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

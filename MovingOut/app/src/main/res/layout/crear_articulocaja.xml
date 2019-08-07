@@ -23,19 +23,17 @@
         android:id="@+id/buttonAddArticuloCaja"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar" />
+        android:background="@mipmap/button_azul"
+        android:text="Agregar"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/buttonCancelArticuloCaja"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cancelar" />
-
-    <Button
-        android:id="@+id/buttonEliminarArticuloCaja"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Eliminar Articulo" />
+        android:background="@mipmap/button_azul"
+        android:text="Cancelar"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/text2"
@@ -54,6 +52,21 @@
         android:id="@+id/buttonMoverArticuloCaja"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mover" />
+        android:background="@mipmap/button_azul"
+        android:text="Mover"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/separador"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <Button
+        android:id="@+id/buttonEliminarArticuloCaja"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/button_naranjo"
+        android:text="Eliminar Articulo"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

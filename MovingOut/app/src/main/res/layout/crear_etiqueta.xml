@@ -12,21 +12,32 @@
         android:hint="Nombre Etiqueta"/>
 
     <Button
+        android:id="@+id/buttonAddEtiqueta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@mipmap/button_azul"
         android:text="Agregar"
-        android:id="@+id/buttonAddEtiqueta" />
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/buttonCancelEtiqueta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cancelar" />
+        android:background="@mipmap/button_azul"
+        android:text="Cancelar"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/separador"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
 
     <Button
         android:id="@+id/buttonEliminarEtiqueta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eliminar Etiqueta" />
+        android:background="@mipmap/button_naranjo"
+        android:text="Eliminar Etiqueta"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

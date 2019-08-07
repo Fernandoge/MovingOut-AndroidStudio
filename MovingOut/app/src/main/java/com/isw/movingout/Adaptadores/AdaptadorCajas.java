@@ -285,6 +285,7 @@ public class AdaptadorCajas extends BaseAdapter {
                         dialogoEliminar.setCancelable(true);
                         dialogoEliminar.setContentView(R.layout.eliminar_caja);
                         dialogoEliminar.show();
+                        dialogo.dismiss();
                         listaTotalCajas = clsDaoCaja.obtenerCajas(getId());
 
                         Button moverYEliminar = (Button) dialogoEliminar.findViewById(R.id.buttonMoveryEliminar);
@@ -373,6 +374,7 @@ public class AdaptadorCajas extends BaseAdapter {
                             @Override
                             public void onClick(View v) {
                                 dialogoEliminar.dismiss();
+                                dialogo.show();
                             }
                         });
 

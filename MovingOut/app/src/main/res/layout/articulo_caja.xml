@@ -5,41 +5,52 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="157dp"
+        android:layout_width="67dp"
+        android:layout_height="53dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text12"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:text="Nombre:" />
+
+        <TextView
+            android:id="@+id/text11"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:text="Cantidad:" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="270dp"
         android:layout_height="53dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textArticuloCajaNombre"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="29dp"
             android:text="Nombre" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="159dp"
-        android:layout_height="53dp"
-        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textArticuloCajaCantidad"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="match_parent"
             android:text="Cantidad" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="74dp"
         android:layout_height="54dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/buttonEditArticuloCaja"
-            android:layout_width="95dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/edit_icon"></Button>
+            android:background="@mipmap/tuercas"></Button>
 
     </LinearLayout>
 
